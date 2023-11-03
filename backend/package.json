@@ -1,25 +1,30 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Kenichi Beveridge",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.20.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "mongoose": "^8.0.0"
-  },
-  "devDependencies": {
-    "chai": "^4.3.10",
-    "chai-as-promised": "^7.1.1",
-    "chai-http": "^4.4.0",
-    "mocha": "^10.2.0",
-    "sinon": "^17.0.1"
-  }
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "build": "nodemon index.js",
+        "start": "NODE_ENV=dev nodemon index.js",
+        "test": "NODE_ENV=test c8 mocha './tests/**/*.test.js' --exit --timeout=5000"
+    },
+    "author": "Kenichi Beveridge",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.20.2",
+        "cors": "^2.8.5",
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "mongoose": "^8.0.0"
+    },
+    "devDependencies": {
+        "c8": "^8.0.1",
+        "chai": "^4.3.10",
+        "chai-as-promised": "^7.1.1",
+        "chai-http": "^4.4.0",
+        "mocha": "^10.2.0",
+        "sinon": "^17.0.1",
+        "sinon-chai": "^3.7.0"
+    }
 }
