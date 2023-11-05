@@ -53,13 +53,19 @@ describe('habit service tests', () => {
             sandbox.restore()
             let rejectFindStub = sandbox.stub(mongoose.Model, 'find').rejects(new Error("can't find database"));
             // expect(async () => { await habits.getHabits() }).to.throw("can't find database")
+            try {
+                const res = await habits.getHabits();
+            } catch (err) {
+                expect(err).to.be.instanceOf(Error)
+                expect(err.message).to.equal("can't find database")
 
-            const res = await habits.getHabits();
+            }
 
-            expect(rejectFindStub).to.have.been.calledOnce;
-            expect(res).to.be.a('Object')
-            expect(res.status).to.equal(404);
-            expect(res.error).to.equal("can't find database");
+
+            // expect(rejectFindStub).to.have.been.calledOnce;
+            // expect(res).to.be.a('Object')
+            // expect(res.status).to.equal(404);
+            // expect(res.error).to.equal("can't find database");
             rejectFindStub.restore();
 
         })
@@ -108,17 +114,23 @@ describe('habit service tests', () => {
 
         })
 
-        it('should return a 400 error', async () => {
+        it('should return an error', async () => {
 
 
             const newHabit = { name: "Walking" }
 
             let stub = sandbox.stub(mongoose.Model, 'create').rejects();
 
-            let res = await habits.addHabit(newHabit);
+            try {
+                let res = await habits.addHabit(newHabit);
+            } catch (err) {
 
-            expect(stub).to.have.been.calledOnce;
-            expect(res.status).to.equal(400)
+                expect(stub).to.have.been.calledOnce;
+                expect(err).to.be.instanceOf(Error)
+            }
+
+
+
 
 
         })

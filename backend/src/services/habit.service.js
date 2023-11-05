@@ -4,12 +4,15 @@ class HabitServices {
 
     getHabits = async () => {
         try {
-            return await Habit.find({});
+            const res = await Habit.find({});
+            // console.log(res);
+            return res;
         } catch (err) {
-            return {
-                status: 404,
-                error: err.message
-            }
+            // return {
+            //     status: 404,
+            //     error: err.message
+            // }
+            throw err
         }
     }
 
@@ -22,10 +25,11 @@ class HabitServices {
 
         } catch (err) {
 
-            return {
-                status: 400,
-                error: err.message
-            }
+            // return {
+            //     status: 400,
+            //     error: err.message
+            // }
+            throw err
         }
     }
 
