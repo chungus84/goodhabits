@@ -5,6 +5,8 @@ import bodyParser from 'body-parser';
 
 import main from './src/db/main.js';
 
+import { router as habitRouter } from './src/routes/habits.routes.js';
+
 const app = express();
 
 dotenv.config({ path: `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ''}` })
@@ -13,6 +15,9 @@ const PORT = process.env.PORT;
 
 
 app.use(cors());
+app.use(bodyParser.json());
+app.use('/', habitRouter);
+
 
 main();
 

@@ -72,7 +72,34 @@ describe('HabitController Test', () => {
             // expect(getHabitsStub).to.have.been.calledOnce;
 
 
+        });
 
+        it('should create anew habit', async () => {
+            let newHabit = { name: "Running" };
+            // addHabitStub = sandbox.stub(habitServ, 'addHabit').resolves(newHabit);
+            // let createStub = sandbox.stub(mongoose.Model, 'create').resolves(newHabit);
+            const res = {
+                json: sinon.spy(),
+                status: sinon.stub().resolvesThis
+            }
+
+            let result = await habitCont.addHabit(newHabit, res);
+
+            expect(res.json).to.have.been.calledOnce;
+        })
+
+        it('should return an error ', async () => {
+            let newHabit = { name: "Running" };
+            // addHabitStub = sandbox.stub(habitServ, 'addHabit').resolves(newHabit);
+            // let createStub = sandbox.stub(mongoose.Model, 'create').resolves(newHabit);
+            const res = {
+                json: sinon.spy(),
+                status: sinon.stub().resolvesThis
+            }
+
+            let stub = sandbox.stub(mongoose.Model, 'create').rejects(newHabit);
+
+            let result = await habitCont.addHabit(newHabit, res)
         })
     })
 })
