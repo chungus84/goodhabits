@@ -44,7 +44,7 @@ describe('HabitController Test', () => {
 
 
             let habit = await habitCont.getAllHabits({}, res);
-            console.log(res.status);
+
 
             expect(res.json).to.have.been.calledOnce;
             expect(findStub).to.have.been.calledOnce;

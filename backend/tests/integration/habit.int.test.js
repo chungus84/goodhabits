@@ -45,7 +45,8 @@ describe('Testing requests for habits on database', () => {
         it('should return a 201 from POST request', async () => {
             const req = {
                 body: {
-                    name: "Reading"
+                    name: "Reading",
+                    minutes: 120,
                 }
             }
 
@@ -62,7 +63,6 @@ describe('Testing requests for habits on database', () => {
             }
 
             const res = await chai.request(server).post("/").send(req.body);
-
             expect(res).to.have.status(400);
         })
     })

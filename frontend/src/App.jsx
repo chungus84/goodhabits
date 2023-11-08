@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom';
+
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import Header from './Components/Header'
+import HabitCard from './Components/HabitCard';
+import HabitPage from './HabitPage';
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+import { getHabits } from '../asyncFunctions/habitAPICalls.js';
+
+
+function App() {
+    const [habits, setHabits] = useState([]);
+    const [error, setError] = useState({ type: ``, message: `` })
+    const [habitNames, setHabitNames] = useState([])
+
+    const cardNames = (habitArray) => {
+        const habitSet = new Set();
+        habitArray.forEach(habit => {
+            habitSet.add(habit.name);
+        })
+        return habitSet
+    }
+
+    const getHabitHandler = async () => {
+        const externalDataCallResult = await getHabits();
+        if (externalDataCallResult?.error) {
+            const errorObject = { ...externalDataCallResult.error };
+            errorObject.message = `There was a problem getting your habits ${externalDataCallResult.error.message}`;
+            setError(errorObject);
+        }
+
+        const habitCall = externalDataCallResult?.habits ? externalDataCallResult.habits : [];
+        // console.log(habitCall);
+
+
+        setHabitNames(cardNames(habitCall))
+        console.log(habitNames);
+        setHabits(habitCall);
+        console.log(habits);
+
+    }
+
+    useEffect(() => {
+        getHabitHandler()
+
+    }, [])
+
+    return (
+        <>
+            <Header />
+            <div className="container-fluid">
+                <Routes>
+                    <Route path="/" element={<HabitPage data={{ habits, habitNames, error: error.message }} />} />
+                </Routes>
+            </div>
+        </>
+    )
 }
 
 export default App

@@ -8,7 +8,7 @@ class HabitControllers {
         try {
             const habits = await habitServices.getHabits();
             // console.log(habits);
-            console.log(habits);
+
             res.status(200).json(habits)
         } catch (err) {
             res.status(400).json(err)

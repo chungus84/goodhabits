@@ -9,8 +9,10 @@ describe('Habit model', () => {
 
         await habit.validate().catch(err => {
 
+
             expect(err.errors.name).to.exist;
-            expect(err.message).to.equal('Habit validation failed: name: Path `name` is required.')
+            expect(err.errors.minutes).to.exist;
+            expect(err.message).to.equal('Habit validation failed: minutes: Path `minutes` is required., name: Path `name` is required.')
         })
 
 

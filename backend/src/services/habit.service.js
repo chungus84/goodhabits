@@ -21,6 +21,7 @@ class HabitServices {
         if (!newHabit || !newHabit.name) return Promise.reject(new Error('Invalid arguments'))
         try {
 
+
             return await Habit.create(newHabit);
 
         } catch (err) {
