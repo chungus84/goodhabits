@@ -5,7 +5,7 @@ import HabitModel from './utils/habit.model';
 
 const HabitFeed = ({ data }) => {
 
-    const habitCardNames = data.habits;
+    const habitCardNames = data.habitCards;
     // console.log(`habit card names: ${habitCardNames}`);
 
     useEffect(() => {
@@ -16,11 +16,11 @@ const HabitFeed = ({ data }) => {
         if (habitCardNames?.length > 0) {
             let displayHabitNames = [];
             displayHabitNames.push(habitCardNames.map(habit => {
-                const newHabit = new HabitModel(habit._id, habit.name, habit.minutes, habit.distance, habit.createdAt)
-                return <HabitCard data={newHabit} key={habit._id} />
+
+                return <HabitCard data={habit.name} key={habit._id} />
             }))
 
-            console.log(displayHabitNames);
+            // console.log(displayHabitNames);
 
             return displayHabitNames
 

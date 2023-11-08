@@ -14,14 +14,19 @@ import { getHabits } from '../asyncFunctions/habitAPICalls.js';
 function App() {
     const [habits, setHabits] = useState([]);
     const [error, setError] = useState({ type: ``, message: `` })
-    const [habitNames, setHabitNames] = useState([])
+    const [habitCards, setHabitCards] = useState([])
 
     const cardNames = (habitArray) => {
+        let count = 0;
+        const habitOBJ = []
         const habitSet = new Set();
         habitArray.forEach(habit => {
             habitSet.add(habit.name);
         })
-        return habitSet
+        // console.log(habitSet);
+        habitSet.forEach(e => habitOBJ.push({ name: e, _id: count++ }))
+        console.log(habitOBJ);
+        return habitOBJ
     }
 
     const getHabitHandler = async () => {
@@ -35,11 +40,11 @@ function App() {
         const habitCall = externalDataCallResult?.habits ? externalDataCallResult.habits : [];
         // console.log(habitCall);
 
-
-        setHabitNames(cardNames(habitCall))
-        console.log(habitNames);
         setHabits(habitCall);
-        console.log(habits);
+        setHabitCards(cardNames(habitCall))
+        // console.log(habitCards);
+
+        // console.log(habits);
 
     }
 
@@ -53,7 +58,7 @@ function App() {
             <Header />
             <div className="container-fluid">
                 <Routes>
-                    <Route path="/" element={<HabitPage data={{ habits, habitNames, error: error.message }} />} />
+                    <Route path="/" element={<HabitPage data={{ habits, habitCards, error: error.message }} />} />
                 </Routes>
             </div>
         </>
