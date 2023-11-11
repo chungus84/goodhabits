@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom';
 
+
 import './App.css'
 
 import Header from './Components/Header'
 import HabitCard from './Components/HabitCard';
 import HabitPage from './HabitPage';
+import HabitSummary from './Components/HabitSummary';
 
 
 import { getHabits } from '../asyncFunctions/habitAPICalls.js';
@@ -59,6 +61,7 @@ function App() {
             <div className="container-fluid">
                 <Routes>
                     <Route path="/" element={<HabitPage data={{ habits, habitCards, error: error.message }} />} />
+                    <Route path="/habit/:id" element={<HabitSummary data={habits} />} />
                 </Routes>
             </div>
         </>

@@ -5,7 +5,7 @@ import { beforeEach, describe, expect } from 'vitest';
 vi.mock('axios');
 
 describe('habitAPICall Suite', () => {
-    const testError = { message: 'TestError' };
+    const testError = { message: 'Test Error' };
     let funcResult;
 
     describe('getHabits tests', () => {
@@ -45,5 +45,24 @@ describe('habitAPICall Suite', () => {
             expect(funcResult).toStrictEqual(errorRes);
         })
 
+    });
+
+    describe('Error returned', () => {
+        test('should return appropriate error message when error is returned from server', async () => {
+            const message = `Data not available from  the server: ${testError.message}`;
+            const expectedReturn = {
+                habits: [],
+                status: 400,
+                error: {
+                    type: `get`,
+                    message
+                }
+            };
+
+            axiosMock.get.mockRejectedValueOnce({ response: { status: 400, message: `Test Error` } });
+            funcResult = await api.getHabits();
+
+            expect(funcResult).toStrictEqual(expectedReturn);
+        })
     })
 });

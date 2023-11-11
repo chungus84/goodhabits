@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import HabitCard from './HabitCard';
 import HabitModel from './utils/habit.model';
 
+import './utils/css/HabitFeed.css'
+
 const HabitFeed = ({ data }) => {
 
     const habitCardNames = data.habitCards;
@@ -17,7 +19,7 @@ const HabitFeed = ({ data }) => {
             let displayHabitNames = [];
             displayHabitNames.push(habitCardNames.map(habit => {
 
-                return <HabitCard data={habit.name} key={habit._id} />
+                return <HabitCard data={habit} key={habit._id} />
             }))
 
             // console.log(displayHabitNames);
@@ -29,7 +31,13 @@ const HabitFeed = ({ data }) => {
         }
     }
     return (
-        <div>{popHabitNames()}</div>
+        <div className='row row-cols-sm-auto justify-content-around feed py-3 px-2 rounded'>
+
+            {popHabitNames()}
+
+
+        </div>
+
     )
 }
 

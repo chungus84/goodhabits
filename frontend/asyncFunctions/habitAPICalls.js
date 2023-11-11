@@ -12,7 +12,7 @@ export const getHabits = async () => {
             status: err.response?.status ?? 204,
             error: {
                 type: 'get',
-                message: `Data not available from  the server: ${err.message}`
+                message: `Data not available from  the server: ${err.message ?? err.response.message}`
             }
         }
     }
