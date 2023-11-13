@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import HabitCard from './HabitCard';
 import HabitModel from './utils/habit.model';
 
+
 import './utils/css/HabitFeed.css'
 
 const HabitFeed = ({ data }) => {
 
     const habitCardNames = data.habitCards;
+    const habits = data.habits;
     // console.log(`habit card names: ${habitCardNames}`);
+    console.log(data.habits);
 
     useEffect(() => {
 
@@ -19,7 +22,7 @@ const HabitFeed = ({ data }) => {
             let displayHabitNames = [];
             displayHabitNames.push(habitCardNames.map(habit => {
 
-                return <HabitCard data={habit} key={habit._id} />
+                return <HabitCard data={habit} habits={habits} key={habit._id} />
             }))
 
             // console.log(displayHabitNames);

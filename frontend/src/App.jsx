@@ -27,7 +27,7 @@ function App() {
         })
         // console.log(habitSet);
         habitSet.forEach(e => habitOBJ.push({ name: e, _id: count++ }))
-        console.log(habitOBJ);
+        // console.log(habitOBJ);
         return habitOBJ
     }
 
@@ -61,7 +61,7 @@ function App() {
             <div className="container-fluid">
                 <Routes>
                     <Route path="/" element={<HabitPage data={{ habits, habitCards, error: error.message }} />} />
-                    <Route path="/habit/:id" element={<HabitSummary data={habits} />} />
+                    <Route path="/habit/:id" element={<HabitSummary data={{ habits, habitCards }} />} />
                 </Routes>
             </div>
         </>
