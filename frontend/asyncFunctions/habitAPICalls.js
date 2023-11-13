@@ -17,3 +17,18 @@ export const getHabits = async () => {
         }
     }
 }
+
+export const submitHabit = async habit => {
+    try {
+        const res = await axios.post(`${import.meta.env.VITE_MYDAYSURL}/`, habit)
+        return { habit: res.data, status: res.status };
+    } catch (err) {
+        return {
+            status: err.response?.status,
+            error: {
+                type: `post`,
+                message: err.response?.message
+            }
+        }
+    }
+}

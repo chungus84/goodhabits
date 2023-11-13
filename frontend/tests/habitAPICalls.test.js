@@ -65,4 +65,24 @@ describe('habitAPICall Suite', () => {
             expect(funcResult).toStrictEqual(expectedReturn);
         })
     })
+
+    describe('submitHabit tests', () => {
+        const testNewHabit = { name: "Walking", minutes: 20, distance: 2 }
+
+        describe('add a new habit request', () => {
+            beforeEach(() => {
+                api.submitHabit(testNewHabit);
+            });
+            test('should have made a post request to axios', () => {
+                expect(axiosMock.post).toHaveBeenCalledTimes(1);
+            });
+
+            test('should have made a request to the / url with the testNewHabit', () => {
+                expect(axiosMock.post).toHaveBeenCalledWith(
+                    `${import.meta.env.VITE_MYDAYSURL}/`,
+                    testNewHabit
+                );
+            })
+        })
+    })
 });
