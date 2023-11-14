@@ -34,7 +34,7 @@ const HabitFeed = ({ data }) => {
         }
     }
     return (
-        <div className='row row-cols-sm-auto justify-content-around feed py-3 px-2 rounded'>
+        <div className='row row-cols-sm-auto justify-content-around feed py-3 px-2 rounded' data-testid="newcard">
 
             {popHabitNames()}
 

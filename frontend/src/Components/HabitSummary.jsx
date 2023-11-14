@@ -1,6 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom"
+import MetricCard from "./MetricCard";
+
 
 import HabitChart from './HabitChart';
+import { calcMetric, buildChartArray } from "./utils/helper.js";
 
 const HabitSummary = (data) => {
 
@@ -22,29 +25,18 @@ const HabitSummary = (data) => {
         if (ele.name === userHabit.name) return ele;
     })
 
-    const calcMetric = (metric) => {
-        let total = 0;
-        habitRec.forEach((ele) => { total += ele[metric] });
-        return total
-    }
-
-    const buildChartArray = (metric) => {
-        let retArr = [];
-        habitRec.forEach((ele) => { retArr.push(ele[metric]) })
-        // console.log(retArr);
-        return retArr
-
-    }
 
 
     return (
         <>
-            <div>{userHabit.name}</div>
-            <div onClick={(() => navigate(`/`))}>back</div>
-            <div>{`minutes: ${calcMetric("minutes")}`}</div>
-            <div>{`distance ${calcMetric("distance")} miles`}</div>
-            <div className="bg-white"><HabitChart data={buildChartArray('minutes')} /></div>
-            <div className="bg-white"><HabitChart data={buildChartArray('distance')} /></div>
+            <h2>{userHabit.name}</h2>
+            <div onClick={(() => navigate(`/`))}>〈 back</div>
+            <h3>{`minutes spent ${userHabit.name}: ${calcMetric(habitRec, "minutes")}`}</h3>
+            <h3>{`distance ${calcMetric(habitRec, "distance")} miles`}</h3>
+            <h2>Minutes per Day</h2>
+            <div className="bg-white"><HabitChart data={buildChartArray(habitRec, 'minutes')} /></div>
+            <h2>Distance per Day</h2>
+            <div className="bg-white"><HabitChart data={buildChartArray(habitRec, 'distance')} /></div>
 
         </>
 

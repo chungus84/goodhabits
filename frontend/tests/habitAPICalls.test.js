@@ -83,6 +83,32 @@ describe('habitAPICall Suite', () => {
                     testNewHabit
                 );
             })
+        });
+        describe('Successful POST request', () => {
+            test('should should return the habit I have just added', async () => {
+                const expectedResponse = { data: testNewHabit, status: 201 };
+                const expectedReturn = { habit: testNewHabit, status: 201 };
+
+                axiosMock.post.mockResolvedValueOnce(expectedResponse);
+                funcResult = await api.submitHabit(testNewHabit);
+
+                expect(funcResult).toStrictEqual(expectedReturn);
+            });
+        });
+
+        describe('Unsuccessful POST request', () => {
+
+            test('should return an error property in the response', async () => {
+                const expectedResponse = { response: { status: 400, message: testError.message } }
+                const expectedReturn = { status: 400, error: { type: 'post', message: testError.message } }
+
+                axiosMock.post.mockRejectedValueOnce(expectedResponse);
+                funcResult = await api.submitHabit(testNewHabit);
+
+                expect(funcResult).toStrictEqual(expectedReturn)
+
+            })
+
         })
     })
 });

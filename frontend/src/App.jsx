@@ -11,6 +11,7 @@ import HabitSummary from './Components/HabitSummary';
 
 
 import { getHabits } from '../asyncFunctions/habitAPICalls.js';
+import * as helper from './Components/utils/helper';
 
 
 function App() {
@@ -18,18 +19,7 @@ function App() {
     const [error, setError] = useState({ type: ``, message: `` })
     const [habitCards, setHabitCards] = useState([])
 
-    const cardNames = (habitArray) => {
-        let count = 0;
-        const habitOBJ = []
-        const habitSet = new Set();
-        habitArray.forEach(habit => {
-            habitSet.add(habit.name);
-        })
-        // console.log(habitSet);
-        habitSet.forEach(e => habitOBJ.push({ name: e, _id: count++ }))
-        // console.log(habitOBJ);
-        return habitOBJ
-    }
+
 
     const getHabitHandler = async () => {
         const externalDataCallResult = await getHabits();
@@ -43,7 +33,7 @@ function App() {
         // console.log(habitCall);
 
         setHabits(habitCall);
-        setHabitCards(cardNames(habitCall))
+        setHabitCards(helper.cardNames(habitCall))
         // console.log(habitCards);
 
         // console.log(habits);
