@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">7.69% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">10% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/10</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -95,23 +95,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -123,23 +123,23 @@
 import { useRef, useEffect } from 'react';
 &nbsp;
 &nbsp;
-const HabitChart = <span class="fstat-no" title="function not covered" >({</span> data, width = <span class="branch-0 cbranch-no" title="branch not covered" >640, h</span>eight = <span class="branch-0 cbranch-no" title="branch not covered" >400, m</span>arginTop = <span class="branch-0 cbranch-no" title="branch not covered" >20, m</span>arginRight = <span class="branch-0 cbranch-no" title="branch not covered" >20, m</span>arginBottom = <span class="branch-0 cbranch-no" title="branch not covered" >30, m</span>arginLeft = <span class="branch-0 cbranch-no" title="branch not covered" >40 }</span>) =&gt; {
+const HabitChart = ({ data, width = 640, height = 400, marginTop = 20, marginRight = 20, marginBottom = 30, marginLeft = 40 }) =&gt; {
 &nbsp;
-    const gx = <span class="cstat-no" title="statement not covered" >useRef();</span>
-    const gy = <span class="cstat-no" title="statement not covered" >useRef();</span>
-    const x = <span class="cstat-no" title="statement not covered" >d3.scaleLinear([0, data.length - 1], [marginLeft, width - marginRight]);</span>
-    const y = <span class="cstat-no" title="statement not covered" >d3.scaleLinear(d3.extent(data), [height - marginBottom, marginTop]);</span>
-    const line = <span class="cstat-no" title="statement not covered" >d3.line(<span class="fstat-no" title="function not covered" >(d</span>, i) =&gt; <span class="cstat-no" title="statement not covered" >x(i), y</span>);</span>
-<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >v</span>oid d3.select(gx.current).call(d3.axisBottom(x)), [</span>gx, x]);</span>
-<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >v</span>oid d3.select(gy.current).call(d3.axisLeft(y)), [</span>gy, y]);</span>
+    const gx = useRef();
+    const gy = useRef();
+    const x = d3.scaleLinear([0, data.length - 1], [marginLeft, width - marginRight]);
+    const y = d3.scaleLinear(d3.extent(data), [height - marginBottom, marginTop]);
+    const line = d3.line((d, i) =&gt; x(i), y);
+    useEffect(() =&gt; void d3.select(gx.current).call(d3.axisBottom(x)), [gx, x]);
+    useEffect(() =&gt; void d3.select(gy.current).call(d3.axisLeft(y)), [gy, y]);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return (</span>
+    return (
         &lt;svg width={width} height={height}&gt;
             &lt;g ref={gx} transform={`translate(0,${height - marginBottom})`} /&gt;
             &lt;g ref={gy} transform={`translate(${marginLeft},0)`} /&gt;
             &lt;path fill="none" stroke="green" strokeWidth="1.5" d={line(data)} /&gt;
             &lt;g fill="white" stroke="black" strokeWidth="1.5"&gt;
-                {data.map(<span class="fstat-no" title="function not covered" >(d</span>, i) =&gt; (<span class="cstat-no" title="statement not covered" >&lt;circle key={i} cx={x(i)} cy={y(d)} r="2.5" /&gt;))</span>}
+                {data.map((d, i) =&gt; (&lt;circle key={i} cx={x(i)} cy={y(d)} r="2.5" /&gt;))}
             &lt;/g&gt;
 &nbsp;
         &lt;/svg&gt;
@@ -154,7 +154,7 @@ export default HabitChart
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-14T17:05:06.671Z
+                at 2023-11-14T19:12:03.485Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

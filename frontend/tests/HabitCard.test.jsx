@@ -15,6 +15,6 @@ describe('HabitCard tests', () => {
         render(<MemoryRouter><HabitCard data={{ name: "Walking", _id: 123 }} /></MemoryRouter>)
         const title = screen.getByText(/Walking/i);
         fireEvent.click(title);
-        expect(await screen.findByText(/Walking/i)).toBeInTheDocument();
+        expect(await screen.findByText(/Habit/i)).toBeInTheDocument();
     })
 })

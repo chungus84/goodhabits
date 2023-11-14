@@ -9,13 +9,14 @@ const HabitSummary = (data) => {
 
     const id = useParams();
     const navigate = useNavigate();
-    // console.log(data.data);
+    console.log(data.data);
     const { habits, habitCards } = data.data;
     // console.log(habits);
     // console.log(habitCards);
 
 
     const userHabit = habitCards.find(ele => {
+        console.log(id.id);
         if (ele._id === parseInt(id.id)) return ele
     })
 
@@ -25,7 +26,7 @@ const HabitSummary = (data) => {
         if (ele.name === userHabit.name) return ele;
     })
 
-
+    console.log(`userHabuit is: ${userHabit.name}`);
 
     return (
         <>
