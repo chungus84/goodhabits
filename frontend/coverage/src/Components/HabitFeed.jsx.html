@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/12</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/12</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -118,34 +118,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,37 +165,37 @@ import HabitModel from './utils/habit.model';
 &nbsp;
 import './utils/css/HabitFeed.css'
 &nbsp;
-const HabitFeed = <span class="fstat-no" title="function not covered" >({</span> data }) =&gt; {
+const HabitFeed = ({ data }) =&gt; {
 &nbsp;
-    const habitCardNames = <span class="cstat-no" title="statement not covered" >data.habitCards;</span>
-    const habits = <span class="cstat-no" title="statement not covered" >data.habits;</span>
+    // console.log(`habitFeed: ${data}`);
+&nbsp;
+    const habitCardNames = data.habitCards;
+    const habits = data.habits;
     // console.log(`habit card names: ${habitCardNames}`);
-<span class="cstat-no" title="statement not covered" >    console.log(data.habits);</span>
+    // console.log(data.habits);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+    useEffect(() =&gt; {
 &nbsp;
     }, [data])
 &nbsp;
-    const popHabitNames = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >        if (habitCardNames?.length &gt; 0) {</span>
-            let displayHabitNames = <span class="cstat-no" title="statement not covered" >[];</span>
-<span class="cstat-no" title="statement not covered" >            displayHabitNames.push(habitCardNames.map(<span class="fstat-no" title="function not covered" >habit =&gt; {</span></span>
+    const popHabitNames = (habits, habitCardsNames) =&gt; {
+        if (habitCardNames?.length &gt; 0) {
+            let displayHabitNames = [];
+            displayHabitNames.push(habitCardNames.map(habit =&gt; {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                return &lt;HabitCard data={habit} habits={habits} key={habit._id} /&gt;</span>
+                return &lt;HabitCard data={habit} habits={habits} key={habit._id} /&gt;
             }))
 &nbsp;
             // console.log(displayHabitNames);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            return displayHabitNames</span>
-&nbsp;
-&nbsp;
+            return displayHabitNames
 &nbsp;
         }
     }
-<span class="cstat-no" title="statement not covered" >    return (</span>
+    return (
         &lt;div className='row row-cols-sm-auto justify-content-around feed py-3 px-2 rounded' data-testid="newcard"&gt;
 &nbsp;
-            {popHabitNames()}
+            {popHabitNames(habits, habitCardNames)}
 &nbsp;
 &nbsp;
         &lt;/div&gt;
@@ -211,7 +211,7 @@ export default HabitFeed
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-14T19:12:03.485Z
+                at 2023-11-15T14:05:39.142Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

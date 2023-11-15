@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -141,37 +141,37 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -201,38 +201,38 @@ import { getHabits } from '../asyncFunctions/habitAPICalls.js';
 import * as helper from './Components/utils/helper';
 &nbsp;
 &nbsp;
-function <span class="fstat-no" title="function not covered" >App() {</span>
-    const [habits, setHabits] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
-    const [error, setError] = <span class="cstat-no" title="statement not covered" >useState({ type: ``, message: `` })</span>
-    const [habitCards, setHabitCards] = <span class="cstat-no" title="statement not covered" >useState([])</span>
+function App() {
+    const [habits, setHabits] = useState([]);
+    const [error, setError] = useState({ type: ``, message: `` })
+    const [habitCards, setHabitCards] = useState([])
 &nbsp;
 &nbsp;
 &nbsp;
-    const getHabitHandler = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async () =&gt; {</span></span>
-        const externalDataCallResult = <span class="cstat-no" title="statement not covered" >await getHabits();</span>
-<span class="cstat-no" title="statement not covered" >        if (externalDataCallResult?.error) {</span>
-            const errorObject = <span class="cstat-no" title="statement not covered" >{ ...externalDataCallResult.error };</span>
-<span class="cstat-no" title="statement not covered" >            errorObject.message = `There was a problem getting your habits ${externalDataCallResult.error.message}`;</span>
-<span class="cstat-no" title="statement not covered" >            setError(errorObject);</span>
+    const getHabitHandler = async () =&gt; {
+        const externalDataCallResult = await getHabits();
+        if (externalDataCallResult?.error) {
+            const errorObject = { ...externalDataCallResult.error };
+            errorObject.message = `There was a problem getting your habits ${externalDataCallResult.error.message}`;
+            setError(errorObject);
         }
 &nbsp;
-        const habitCall = <span class="cstat-no" title="statement not covered" >externalDataCallResult?.habits ? externalDataCallResult.habits : [];</span>
+        const habitCall = externalDataCallResult?.habits ? externalDataCallResult.habits : [];
         // console.log(habitCall);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        setHabits(habitCall);</span>
-<span class="cstat-no" title="statement not covered" >        setHabitCards(helper.cardNames(habitCall))</span>
+        setHabits(habitCall);
+        setHabitCards(helper.cardNames(habitCall))
         // console.log(habitCards);
 &nbsp;
         // console.log(habits);
 &nbsp;
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >        getHabitHandler()</span>
+    useEffect(() =&gt; {
+        getHabitHandler()
 &nbsp;
     }, [])
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return (</span>
+    return (
         &lt;&gt;
             &lt;Header /&gt;
             &lt;div className="container-fluid"&gt;
@@ -253,7 +253,7 @@ export default App
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-14T19:12:03.485Z
+                at 2023-11-15T14:05:39.142Z
             </div>
         <script src="../prettify.js"></script>
         <script>

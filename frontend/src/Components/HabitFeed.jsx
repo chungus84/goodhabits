@@ -8,16 +8,18 @@ import './utils/css/HabitFeed.css'
 
 const HabitFeed = ({ data }) => {
 
+    // console.log(`habitFeed: ${data}`);
+
     const habitCardNames = data.habitCards;
     const habits = data.habits;
     // console.log(`habit card names: ${habitCardNames}`);
-    console.log(data.habits);
+    // console.log(data.habits);
 
     useEffect(() => {
 
     }, [data])
 
-    const popHabitNames = () => {
+    const popHabitNames = (habits, habitCardsNames) => {
         if (habitCardNames?.length > 0) {
             let displayHabitNames = [];
             displayHabitNames.push(habitCardNames.map(habit => {
@@ -29,14 +31,12 @@ const HabitFeed = ({ data }) => {
 
             return displayHabitNames
 
-
-
         }
     }
     return (
         <div className='row row-cols-sm-auto justify-content-around feed py-3 px-2 rounded' data-testid="newcard">
 
-            {popHabitNames()}
+            {popHabitNames(habits, habitCardNames)}
 
 
         </div>
