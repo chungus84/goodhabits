@@ -1,12 +1,13 @@
 import * as helper from '../src/Components/utils/helper'
+import { parseISO } from 'date-fns';
 
 describe('tests the helper functions in helper.js', () => {
     describe('calcMetric', () => {
         test('should calculate a specific metric given an array of objects', () => {
             const testHabitArray = [
-                { name: "Running", minutes: 52, distance: 3 },
-                { name: "Running", minutes: 20, distance: 1 },
-                { name: "Running", minutes: 30, distance: 2 }
+                { name: "Running", minutes: 52, distance: 3, createdAt: new Date("2023-11-01T21:13:30Z") },
+                { name: "Running", minutes: 20, distance: 1, createdAt: new Date("2023-11-01T21:13:30Z") },
+                { name: "Running", minutes: 30, distance: 2, createdAt: new Date("2023-11-01T21:13:30Z") }
             ]
 
             expect(helper.calcMetric(testHabitArray, "minutes")).toBe(102);
@@ -34,13 +35,27 @@ describe('tests the helper functions in helper.js', () => {
     describe('buildChartArray tests', () => {
         test('should return an array of specific metric', () => {
             const testHabitArray = [
-                { name: "Running", minutes: 52, distance: 3 },
-                { name: "Running", minutes: 20, distance: 1 },
-                { name: "Running", minutes: 30, distance: 2 }
+                { name: "Running", minutes: 52, distance: 3, createdAt: new Date("2023-11-01T21:13:30Z") },
+                { name: "Running", minutes: 20, distance: 1, createdAt: new Date("2023-11-01T21:13:30Z") },
+                { name: "Running", minutes: 30, distance: 2, createdAt: new Date("2023-11-01T21:13:30Z") }
 
             ]
 
-            const expectedReturn = [52, 20, 30]
+            const expectedReturn = [
+                {
+                    date: new Date("2023-11-01T21:13:30Z"),
+                    total: 52
+                },
+                {
+                    date: new Date("2023-11-01T21:13:30Z"),
+                    total: 20
+                },
+                {
+                    date: new Date("2023-11-01T21:13:30Z"),
+                    total: 30
+                },
+
+            ]
 
             const result = helper.buildChartArray(testHabitArray, "minutes");
 

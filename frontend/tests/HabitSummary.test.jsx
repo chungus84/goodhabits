@@ -55,7 +55,7 @@ describe('HabitSummary tests', () => {
 
         const title = screen.getByText(/Minutes spent Running/i);
         fireEvent.click(title);
-        expect(await screen.findByText(/Minutes per Day/i)).toBeInTheDocument();
+        expect(await screen.findByText(/minutes spent Running/i)).toBeInTheDocument();
         expect(await screen.findByText(/ back/i)).toBeInTheDocument();
 
     })

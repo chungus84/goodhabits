@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.33% </span>
+                <span class="strong">92.85% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/15</span>
+                <span class='fraction'>13/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>3/6</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.3% </span>
+                <span class="strong">91.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/13</span>
+                <span class='fraction'>11/12</span>
             </div>
         
             
@@ -115,7 +115,28 @@
 <a name='L50'></a><a href='#L50'>50</a>
 <a name='L51'></a><a href='#L51'>51</a>
 <a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,8 +146,10 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,7 +166,7 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -167,18 +190,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useParams, useNavigate } from "react-router-dom"
 import MetricCard from "./MetricCard";
+import useMeasure from "react-use-measure";
+import { parseISO } from 'date-fns';
+import { ResizeObserver } from '@juggle/resize-observer';
 &nbsp;
 &nbsp;
 import HabitChart from './HabitChart';
 import { calcMetric, buildChartArray } from "./utils/helper.js";
+import * as d3 from 'd3';
+import { useRef, useEffect } from 'react';
 &nbsp;
 const HabitSummary = (data) =&gt; {
 &nbsp;
+    let [ref, bounds] = useMeasure({ polyfill: ResizeObserver });
+&nbsp;
     const id = useParams();
     const navigate = useNavigate();
-    console.log(data.data);
+    // console.log(data.data);
     const { habits, habitCards } = data.data;
     // console.log(habits);
     // console.log(habitCards);
@@ -195,7 +234,7 @@ const HabitSummary = (data) =&gt; {
         <span class="missing-if-branch" title="else path not taken" >E</span>if (ele.name === userHabit.name) return ele;
     })
 &nbsp;
-    console.log(`userHabuit is: ${userHabit.name}`);
+    // console.log(`userHabuit is: ${userHabit.name}`);
 &nbsp;
     return (
         &lt;&gt;
@@ -207,11 +246,20 @@ const HabitSummary = (data) =&gt; {
                 &lt;h3&gt;{`minutes spent ${userHabit.name}: ${calcMetric(habitRec, "minutes")}`}&lt;/h3&gt;
                 &lt;h3&gt;{`distance ${calcMetric(habitRec, "distance")} miles`}&lt;/h3&gt;
             &lt;/div&gt;
+            &lt;div style={{ height: "200px" }}&gt;
+                &lt;div className="relative h-100 bg-light" ref={ref}&gt;
+                    {bounds.width &gt; 0 &amp;&amp; (
 &nbsp;
-            &lt;h2&gt;Minutes per Day&lt;/h2&gt;
-            &lt;div className="bg-white"&gt;&lt;HabitChart data={buildChartArray(habitRec, 'minutes')} /&gt;&lt;/div&gt;
-            &lt;h2&gt;Distance per Day&lt;/h2&gt;
-            &lt;div className="bg-white"&gt;&lt;HabitChart data={buildChartArray(habitRec, 'distance')} /&gt;&lt;/div&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >                        &lt; HabitChart data={buildChartArray(habitRec, 'minutes')} width={bounds.width} height={bounds.height} /&gt;</span>
+                    )}
+&nbsp;
+                &lt;/div&gt;
+&nbsp;
+            &lt;/div&gt;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 &nbsp;
         &lt;/&gt;
 &nbsp;
@@ -226,7 +274,7 @@ export default HabitSummary
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-17T08:37:11.487Z
+                at 2023-11-19T19:03:09.070Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

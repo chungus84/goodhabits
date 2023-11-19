@@ -1,4 +1,5 @@
 import HabitCard from "../HabitCard";
+import { parseISO } from 'date-fns';
 
 
 export const calcMetric = (array, metric) => {
@@ -22,7 +23,7 @@ export const cardNames = (habitArray) => {
 
 export const buildChartArray = (array, metric) => {
     let retArr = [];
-    array.forEach((ele) => { retArr.push(ele[metric]) })
+    array.forEach((ele) => { retArr.push({ total: ele[metric], date: ele.createdAt }) })
     // console.log(retArr);
     return retArr
 
