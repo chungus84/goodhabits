@@ -2,7 +2,7 @@ import * as d3 from 'd3';
 import { useRef, useEffect } from 'react';
 
 
-const HabitChart = ({ data, width = 640, height = 400, marginTop = 20, marginRight = 20, marginBottom = 30, marginLeft = 40 }) => {
+const HabitChart = ({ data, width = 340, height = 300, marginTop = 20, marginRight = 20, marginBottom = 30, marginLeft = 40 }) => {
 
     const gx = useRef();
     const gy = useRef();

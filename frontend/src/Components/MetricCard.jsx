@@ -1,10 +1,12 @@
 import * as helper from './utils/helper';
 
-const MetricCard = (metric, total) => {
+const MetricCard = (data) => {
+    console.log(data);
+
     return (
-        <div className="card col-lg-4 col-sm-10 col-xs-10 text-dark bg-white my-2">
-            <h3>{`minutes completed this week: `}</h3>
-            <h2>{total}</h2>
+        <div className="card col-sm-10 col-xs-10 text-dark bg-white my-2">
+            <h3>{`${data.data.name} completed this week.`}</h3>
+            <h2>{`${data.data.total} ${data.data.metric === "minutes" ? "mins" : "miles"}`}</h2>
         </div>
     )
 }

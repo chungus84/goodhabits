@@ -32,8 +32,13 @@ const HabitSummary = (data) => {
         <>
             <h2>{userHabit.name}</h2>
             <div onClick={(() => navigate(`/`))}>〈 back</div>
-            <h3>{`minutes spent ${userHabit.name}: ${calcMetric(habitRec, "minutes")}`}</h3>
-            <h3>{`distance ${calcMetric(habitRec, "distance")} miles`}</h3>
+            <div className="row">
+                <div className="col"><MetricCard data={{ name: userHabit.name, total: calcMetric(habitRec, "minutes"), metric: "minutes" }} /></div>
+                <div className="col"><MetricCard data={{ name: userHabit.name, total: calcMetric(habitRec, "distance"), metric: "distance" }} /></div>
+                <h3>{`minutes spent ${userHabit.name}: ${calcMetric(habitRec, "minutes")}`}</h3>
+                <h3>{`distance ${calcMetric(habitRec, "distance")} miles`}</h3>
+            </div>
+
             <h2>Minutes per Day</h2>
             <div className="bg-white"><HabitChart data={buildChartArray(habitRec, 'minutes')} /></div>
             <h2>Distance per Day</h2>
