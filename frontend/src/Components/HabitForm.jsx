@@ -25,15 +25,15 @@ const HabitForm = ({ submitAction, habit }) => {
             </div>
             <div className="form-group">
                 <label htmlFor="habitMinutes">Minutes:&nbsp;</label>
-                <input type="number" name="habitMinutes" placeholder='0' className='form-control' value={habitMinutes} onChange={event => setHabitMinutes(event.target.value)} />
+                <input type="number" name="habitMinutes" placeholder='0' data-testid="minutes" className='form-control' value={habitMinutes} onChange={event => setHabitMinutes(event.target.value)} />
             </div>
             <div className="form-group">
                 <label htmlFor="habitDistance">Distance:&nbsp;</label>
-                <input type="number" name="habitDistance" placeholder='0' className='form-control' value={habitDistance} onChange={event => setHabitDistance(event.target.value)} />
+                <input type="number" name="habitDistance" placeholder='0' data-testid="distance" className='form-control' value={habitDistance} onChange={event => setHabitDistance(event.target.value)} />
             </div>
             <div className="form-group">
                 <label htmlFor="habitCreatedAt">Date:&nbsp;</label>
-                <input type="date" name="habitCreatedAt" placeholder='' className='form-control' value={habitCreatedAt} onChange={event => setHabitCreatedAt(event.target.value)} />
+                <input type="date" name="habitCreatedAt" placeholder='' data-testid="date" className='form-control' value={habitCreatedAt} onChange={event => setHabitCreatedAt(event.target.value)} />
             </div>
             <div className="form-group">
                 <input type="submit" value="Submit" className={`btn ${!habitName || !habitMinutes || !habitDistance ? `btn-danger` : `btn-primary`}`} disabled={!habitName || !habitMinutes || !habitDistance} />

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.17% </span>
+                <span class="strong">70.58% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/17</span>
+                <span class='fraction'>12/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">37.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/6</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.17% </span>
+                <span class="strong">70.58% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/17</span>
+                <span class='fraction'>12/17</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -112,35 +112,35 @@
 <a name='L47'></a><a href='#L47'>47</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">47x</span>
+<span class="cline-any cline-yes">47x</span>
+<span class="cline-any cline-yes">47x</span>
+<span class="cline-any cline-yes">47x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">47x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">47x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,9 +165,9 @@ const HabitForm = ({ submitAction, habit }) =&gt; {
     const [habitDistance, setHabitDistance] = useState(0);
     const [habitCreatedAt, setHabitCreatedAt] = useState("");
 &nbsp;
-    const handleSubmit = <span class="fstat-no" title="function not covered" >event =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        event.preventDefault();</span>
-<span class="cstat-no" title="statement not covered" >        submitAction(habit?._id, habitName, habitMinutes, habitDistance, habitCreatedAt);</span>
+    const handleSubmit = event =&gt; {
+        event.preventDefault();
+        submitAction(habit?._id, habitName, habitMinutes, habitDistance, habitCreatedAt);
 <span class="cstat-no" title="statement not covered" >        setHabitName('');</span>
 <span class="cstat-no" title="statement not covered" >        setHabitMinutes(0);</span>
 <span class="cstat-no" title="statement not covered" >        setHabitDistance(0);</span>
@@ -178,22 +178,22 @@ const HabitForm = ({ submitAction, habit }) =&gt; {
         &lt;form aria-label="form" onSubmit={handleSubmit}&gt;
             &lt;div className="form-group"&gt;
                 &lt;label htmlFor="habitName"&gt;Habit Name:&amp;nbsp;&lt;/label&gt;
-                &lt;input type="text" name="habitName" placeholder='Habit Name' className='form-control' value={habitName} onChange={<span class="fstat-no" title="function not covered" >event =&gt; <span class="cstat-no" title="statement not covered" >s</span>etHabitName(event.target.value)} /</span>&gt;
+                &lt;input type="text" name="habitName" placeholder='Habit Name' className='form-control' value={habitName} onChange={event =&gt; setHabitName(event.target.value)} /&gt;
             &lt;/div&gt;
             &lt;div className="form-group"&gt;
                 &lt;label htmlFor="habitMinutes"&gt;Minutes:&amp;nbsp;&lt;/label&gt;
-                &lt;input type="number" name="habitMinutes" placeholder='0' className='form-control' value={habitMinutes} onChange={<span class="fstat-no" title="function not covered" >event =&gt; <span class="cstat-no" title="statement not covered" >s</span>etHabitMinutes(event.target.value)} /</span>&gt;
+                &lt;input type="number" name="habitMinutes" placeholder='0' data-testid="minutes" className='form-control' value={habitMinutes} onChange={event =&gt; setHabitMinutes(event.target.value)} /&gt;
             &lt;/div&gt;
             &lt;div className="form-group"&gt;
                 &lt;label htmlFor="habitDistance"&gt;Distance:&amp;nbsp;&lt;/label&gt;
-                &lt;input type="number" name="habitDistance" placeholder='0' className='form-control' value={habitDistance} onChange={<span class="fstat-no" title="function not covered" >event =&gt; <span class="cstat-no" title="statement not covered" >s</span>etHabitDistance(event.target.value)} /</span>&gt;
+                &lt;input type="number" name="habitDistance" placeholder='0' data-testid="distance" className='form-control' value={habitDistance} onChange={event =&gt; setHabitDistance(event.target.value)} /&gt;
             &lt;/div&gt;
             &lt;div className="form-group"&gt;
                 &lt;label htmlFor="habitCreatedAt"&gt;Date:&amp;nbsp;&lt;/label&gt;
-                &lt;input type="date" name="habitCreatedAt" placeholder='' className='form-control' value={habitCreatedAt} onChange={<span class="fstat-no" title="function not covered" >event =&gt; <span class="cstat-no" title="statement not covered" >s</span>etHabitCreatedAt(event.target.value)} /</span>&gt;
+                &lt;input type="date" name="habitCreatedAt" placeholder='' data-testid="date" className='form-control' value={habitCreatedAt} onChange={<span class="fstat-no" title="function not covered" >event =&gt; <span class="cstat-no" title="statement not covered" >s</span>etHabitCreatedAt(event.target.value)} /</span>&gt;
             &lt;/div&gt;
             &lt;div className="form-group"&gt;
-                &lt;input type="submit" value="Submit" className={`btn ${!habitName || <span class="branch-1 cbranch-no" title="branch not covered" >!habitMinutes || <span class="branch-2 cbranch-no" title="branch not covered" >!</span>habitDistance ? `</span>btn-danger` : <span class="branch-1 cbranch-no" title="branch not covered" >`btn-primary`}</span>`} disabled={!habitName || <span class="branch-1 cbranch-no" title="branch not covered" >!habitMinutes || <span class="branch-2 cbranch-no" title="branch not covered" >!</span>habitDistance} /</span>&gt;
+                &lt;input type="submit" value="Submit" className={`btn ${!habitName || !habitMinutes || !habitDistance ? `btn-danger` : `btn-primary`}`} disabled={!habitName || !habitMinutes || !habitDistance} /&gt;
             &lt;/div&gt;
 &nbsp;
         &lt;/form&gt;
@@ -208,7 +208,7 @@ export default HabitForm
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-20T16:38:03.509Z
+                at 2023-11-20T18:53:56.117Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
