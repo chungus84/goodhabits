@@ -20,6 +20,7 @@ export const getHabits = async () => {
 
 export const submitHabit = async habit => {
     try {
+        console.log(habit);
         const res = await axios.post(`${import.meta.env.VITE_MYDAYSURL}/`, habit)
         return { habit: res.data, status: res.status };
     } catch (err) {

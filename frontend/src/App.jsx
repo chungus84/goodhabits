@@ -8,9 +8,10 @@ import Header from './Components/Header'
 import HabitCard from './Components/HabitCard';
 import HabitPage from './HabitPage';
 import HabitSummary from './Components/HabitSummary';
+import AddHabit from './Components/AddHabit';
 
 
-import { getHabits } from '../asyncFunctions/habitAPICalls.js';
+import { getHabits, submitHabit } from '../asyncFunctions/habitAPICalls.js';
 import * as helper from './Components/utils/helper';
 
 
@@ -18,6 +19,7 @@ function App() {
     const [habits, setHabits] = useState([]);
     const [error, setError] = useState({ type: ``, message: `` })
     const [habitCards, setHabitCards] = useState([])
+    const [createHabitStatus, setCreateHabitStatus] = useState(``);
 
 
 
@@ -40,6 +42,19 @@ function App() {
 
     }
 
+    const submitHabitHandler = async habit => {
+        const externalDataCallResult = await submitHabit(habit);
+        if (externalDataCallResult?.error) {
+            const errorObject = { ...externalDataCallResult.error };
+            errorObject.message = `There was a problem adding your habit: ${externalDataCallResult.error.message}`;
+
+            return setError(errorObject);
+        }
+
+        setCreateHabitStatus(`Habit added`);
+        getHabitHandler();
+    }
+
     useEffect(() => {
         getHabitHandler()
 
@@ -52,6 +67,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<HabitPage data={{ habits, habitCards, error: error.message }} />} />
                     <Route path="/habit/:id" element={<HabitSummary data={{ habits, habitCards }} />} />
+                    <Route path="/add" element={<AddHabit submitAction={submitHabitHandler} data={habits} />} />
                 </Routes>
             </div>
         </>
