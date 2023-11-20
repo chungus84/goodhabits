@@ -29,7 +29,7 @@ const HabitChart = ({ data, width, height }) => {
 
     let xScale = d3
         .scaleTime()
-        .domain([startDay, endDay])
+        .domain(d3.extent(data, (d) => { return new Date(d.date) }))
         .range([margin.left, width - margin.right])
 
     let yScale = d3
@@ -49,20 +49,16 @@ const HabitChart = ({ data, width, height }) => {
     // const x = d3.scaleTime([startDay, endDay], [margin.left, width - margin.right]);
     // const y = d3.scaleLinear(d3.extent(data.map((d) => d.total)), [height - margin.bottom, margin.top]);
     // const line = d3.line((d, i) => x(i), y);
-    useEffect(() => void d3.select(gx.current).call(d3.axisBottom(xScale)), [gx, xScale]);
+    useEffect(() => void d3.select(gx.current).call(d3.axisBottom(xScale).tickFormat(d3.timeFormat("%d-%b")).tickValues(data.map((d) => { return new Date(d.date) }))), [gx, xScale]);
     useEffect(() => void d3.select(gy.current).call(d3.axisLeft(yScale)), [gy, yScale]);
 
     return (
         <>
             <svg width={width} height={height}>
 
-
                 <g ref={gx} transform={`translate(0,${height - margin.bottom})`} />
                 <g ref={gy} transform={`translate(${margin.left}, 0)`} />
-                <path d={d} fill="none" stroke="orange" strokeWidth="2" />
-
-
-
+                <motion.path initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, type: "spring" }} d={d} fill="none" stroke="orange" strokeWidth="2" />
 
             </svg>
         </>
