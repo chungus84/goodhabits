@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">7.14% </span>
+                <span class="strong">64.28% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/14</span>
+                <span class='fraction'>9/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">7.69% </span>
+                <span class="strong">69.23% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/13</span>
+                <span class='fraction'>9/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -111,25 +111,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -150,29 +150,29 @@ import HabitForm from './HabitForm';
 &nbsp;
 &nbsp;
 &nbsp;
-const AddHabit = <span class="fstat-no" title="function not covered" >({</span> submitAction, data }) =&gt; {
+const AddHabit = ({ submitAction, data }) =&gt; {
 &nbsp;
-    const [habit, setHabit] = <span class="cstat-no" title="statement not covered" >useState({});</span>
-    const [submitted, setSubmitted] = <span class="cstat-no" title="statement not covered" >useState(false)</span>
+    const [habit, setHabit] = useState({});
+    const [submitted, setSubmitted] = useState(false)
 &nbsp;
-    const navigate = <span class="cstat-no" title="statement not covered" >useNavigate();</span>
-    const { _id } = <span class="cstat-no" title="statement not covered" >useParams();</span>
+    const navigate = useNavigate();
+    const { _id } = useParams();
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >        if (submitted) <span class="cstat-no" title="statement not covered" >navigate("/");</span></span>
+    useEffect(() =&gt; {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (submitted) <span class="cstat-no" title="statement not covered" >navigate("/");</span>
     }, [submitted, navigate]);
 &nbsp;
-    const submitHabit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(_</span>id = <span class="branch-0 cbranch-no" title="branch not covered" >null, h</span>abitName, minutes, distance, createdAt = <span class="branch-0 cbranch-no" title="branch not covered" >new Date(Date.now())) =&gt; {</span></span>
+    const submitHabit = <span class="fstat-no" title="function not covered" >(_</span>id = <span class="branch-0 cbranch-no" title="branch not covered" >null, h</span>abitName, minutes, distance, createdAt = <span class="branch-0 cbranch-no" title="branch not covered" >new Date(Date.now())) =&gt; {</span>
         const habitToSubmit = <span class="cstat-no" title="statement not covered" >new HabitModel(_id, habitName, minutes, distance, new Date(createdAt).toISOString(),);</span>
 <span class="cstat-no" title="statement not covered" >        submitAction(habitToSubmit);</span>
 <span class="cstat-no" title="statement not covered" >        setSubmitted(true);</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return (</span>
+    return (
         &lt;&gt;
             &lt;h1&gt;Add Habit&lt;/h1&gt;
             &lt;div onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >n</span>avigate("/")}&gt;B</span>ack to Home&lt;/div&gt;
-            &lt;HabitForm submitAction={submitHabit} habit={habit?.error ? {} : habit} /&gt;
+            &lt;HabitForm submitAction={submitHabit} habit={habit?.error ? <span class="branch-0 cbranch-no" title="branch not covered" >{} : h</span>abit} /&gt;
         &lt;/&gt;
 &nbsp;
 &nbsp;
@@ -187,7 +187,7 @@ export default AddHabit
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-20T16:02:15.160Z
+                at 2023-11-20T16:38:03.509Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

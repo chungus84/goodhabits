@@ -1,9 +1,16 @@
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, createMemoryRouter } from 'react-router-dom';
+
 
 import HabitPage from "../src/HabitPage";
+import AddHabit from '../src/Components/AddHabit';
+
 
 describe('HabitPage tests', () => {
+
+
+
+
     test('should render HabitPage ', () => {
 
 
@@ -26,4 +33,10 @@ describe('HabitPage tests', () => {
 
 
     )
+
+
+
+
+
+
 })
