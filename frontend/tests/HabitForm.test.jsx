@@ -68,5 +68,29 @@ describe('HabitForm test suite', () => {
             })
         })
 
+        describe('HabitForm submission tests', () => {
+            test('should call the submitHabit prop function when submit button is clicked', async () => {
+                render(<HabitForm submitAction={mockSubmitAction} habit={testHabit} />)
+                const testName = 'Test Habit'
+                const testMins = 52;
+                const testDis = 3;
+
+                const nameInput = screen.getByPlaceholderText(/habit name/i);
+                const minutesInput = screen.getByTestId('minutes');
+                const distanceInput = screen.getByTestId('distance');
+                const submitBtn = screen.getByDisplayValue(/submit/i)
+
+                await userEvent.type(nameInput, testName)
+                await userEvent.type(minutesInput, testMins.toString());
+                await userEvent.type(distanceInput, testDis.toString());
+
+                await userEvent.click(submitBtn)
+
+                expect(mockSubmitAction).toHaveBeenCalledTimes(1);
+                expect(mockSubmitAction).toHaveBeenCalledWith(undefined, testName, testMins.toString(), testDis.toString(), "")
+
+            })
+        })
+
     });
 })
