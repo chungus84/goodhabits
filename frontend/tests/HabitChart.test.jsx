@@ -15,7 +15,7 @@ describe('Habitchart tests', () => {
         ]
 
         render(<MemoryRouter><HabitChart data={testHabitArray} width={400} height={350} /></MemoryRouter>)
-        expect(await screen.findByText(/Fri 03/i)).toBeInTheDocument();
+        expect(await screen.findByText(/03-Nov/i)).toBeInTheDocument();
 
     })
 })
