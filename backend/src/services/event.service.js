@@ -11,6 +11,16 @@ class EventServices {
         }
     }
 
+    addEvent = async (newEvent) => {
+        if (!newEvent || !newEvent.name || !newEvent.distance || !newEvent.minutes) return Promise.reject(new Error('Invalid arguments!'))
+
+        try {
+            return await Event.create(newEvent);
+        } catch (err) {
+            throw err;
+        }
+    }
+
 }
 
 export default EventServices;

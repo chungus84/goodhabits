@@ -35,7 +35,7 @@ describe('Event Service tests', () => {
         sandbox.restore();
     });
 
-    context('getEvents', () => {
+    describe('getEvents', () => {
         it('should return all events', async () => {
             const resEvents = await events.getEvents();
 
@@ -60,6 +60,33 @@ describe('Event Service tests', () => {
                 expect(err.message).to.equal('cant find database');
                 expect(rejectedFindStub).to.have.been.calledOnce;
             }
+        });
+    });
+
+    describe('addEvents', () => {
+        it('should reject invalid arguments', async () => {
+            await expect(events.addEvent()).to.eventually.be.rejectedWith('Invalid arguments');
+            await expect(events.addEvent({ habit: "Error Events", ditance: 2, time: 30 })).to.eventually.be.rejectedWith('Invalid arguments')
+        });
+
+        it('should create a new event', async () => {
+            const newEvent = {
+                name: "Walking",
+                date: new Date("2023-11-20"),
+                minutes: 40,
+                distance: 2.3
+            }
+
+            let stub = sandbox.stub(mongoose.Model, 'create').resolves(newEvent);
+
+            const res = await events.addEvent(newEvent);
+
+            expect(stub).to.have.been.calledOnceWith(newEvent);
+            expect(res).to.have.property('name').to.equal('Walking');
+            expect(res).to.have.property('date').to.be.a('date');
+            expect(res).to.have.property('minutes').to.equal(40);
+            expect(res).to.have.property('distance').to.equal(2.3);
         })
+
     })
 });
