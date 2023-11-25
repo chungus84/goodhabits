@@ -86,6 +86,26 @@ describe('Event Service tests', () => {
             expect(res).to.have.property('date').to.be.a('date');
             expect(res).to.have.property('minutes').to.equal(40);
             expect(res).to.have.property('distance').to.equal(2.3);
+        });
+
+        it('should throw an error when rejected', async () => {
+            const newEvent = {
+                name: "Walking",
+                date: new Date("2023-11-20"),
+                minutes: 40,
+                distance: 2.3
+            }
+
+            let stub = sandbox.stub(mongoose.Model, 'create').rejects();
+
+            try {
+                const res = await events.addEvent(newEvent);
+            } catch (err) {
+                expect(stub).to.have.been.calledOnce;
+                expect(err).to.be.instanceOf(Error);
+            }
+
+
         })
 
     })
