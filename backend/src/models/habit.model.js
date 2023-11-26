@@ -1,9 +1,13 @@
 import mongoose from 'mongoose';
+import Event from './event.model.js';
 
 const habitSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    minutes: { type: Number, required: true },
-    distance: { type: Number, default: 0 },
+    type: { type: String, required: true },
+    events: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Event"
+    }],
     createdAt: { type: Date, immutable: true, default: () => Date.now() }
 });
 
