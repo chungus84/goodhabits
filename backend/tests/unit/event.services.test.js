@@ -70,11 +70,19 @@ describe('Event Service tests', () => {
         });
 
         it('should create a new event', async () => {
+            const habit = {
+                _id: "655b2a98e78be5ac03405fea",
+                name: "Walking",
+                type: "cardio",
+                events: [],
+                createdAt: new Date("2023-11-21")
+            }
             const newEvent = {
                 name: "Walking",
                 date: new Date("2023-11-20"),
                 minutes: 40,
-                distance: 2.3
+                distance: 2.3,
+                habitId: "655b2a98e78be5ac03405fea"
             }
 
             let stub = sandbox.stub(mongoose.Model, 'create').resolves(newEvent);
@@ -89,17 +97,26 @@ describe('Event Service tests', () => {
         });
 
         it('should throw an error when rejected', async () => {
+
+            const habit = {
+                _id: 123,
+                name: "Walking",
+                type: "cardio",
+                events: [],
+                createdAt: new Date("2023-11-21")
+            }
+
             const newEvent = {
                 name: "Walking",
                 date: new Date("2023-11-20"),
                 minutes: 40,
-                distance: 2.3
+                distance: 2.3,
             }
 
             let stub = sandbox.stub(mongoose.Model, 'create').rejects();
 
             try {
-                const res = await events.addEvent(newEvent);
+                const res = await events.addEvent(newEvent, habit);
             } catch (err) {
                 expect(stub).to.have.been.calledOnce;
                 expect(err).to.be.instanceOf(Error);
