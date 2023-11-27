@@ -8,7 +8,7 @@ chai.use(sinonChai);
 chai.use(chaiAsPromised);
 
 import EventServices from '../../src/services/event.service.js';
-import mongoose, { mongo } from 'mongoose';
+import mongoose from 'mongoose';
 import Event from '../../src/models/event.model.js';
 
 var sandbox = sinon.createSandbox();
