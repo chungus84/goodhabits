@@ -6,7 +6,8 @@ const eventServices = new EventServices();
 class EventControllers {
     getAllEvents = async (req, res) => {
         try {
-            const events = await eventServices.getEvents();
+
+            const events = await eventServices.getEvents(req.params.habitId);
             res.status(200).json(events);
         } catch (err) {
             res.status(400).json(err);

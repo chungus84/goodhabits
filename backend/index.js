@@ -18,7 +18,7 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/', habitRouter);
-app.use('/:habitId', eventRouter);
+app.use('/habits', eventRouter);
 
 
 

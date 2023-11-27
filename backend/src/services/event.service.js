@@ -3,9 +3,10 @@ import Habit from '../models/habit.model.js';
 
 class EventServices {
 
-    getEvents = async () => {
+    getEvents = async (habitId) => {
         try {
-            const res = await Event.find({});
+            const res = await Habit.findOne({ _id: habitId }, { name: 1, events: 1 }).populate('events');
+            console.log(res);
             return res
         } catch (err) {
             throw err
