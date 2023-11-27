@@ -11,7 +11,7 @@ import HabitSummary from './Components/HabitSummary';
 import AddHabit from './Components/AddHabit';
 
 
-import { getHabits, submitHabit } from '../asyncFunctions/habitAPICalls.js';
+import { getHabits, submitHabit, getHabitEvents } from '../asyncFunctions/habitAPICalls.js';
 import * as helper from './Components/utils/helper';
 
 
@@ -20,6 +20,7 @@ function App() {
     const [error, setError] = useState({ type: ``, message: `` })
     const [habitCards, setHabitCards] = useState([])
     const [createHabitStatus, setCreateHabitStatus] = useState(``);
+    const [events, setEvents] = useState([]);
 
 
 
@@ -41,6 +42,9 @@ function App() {
         // console.log(habits);
 
     }
+    // console.log(habitCards);
+
+
 
     const submitHabitHandler = async habit => {
         const externalDataCallResult = await submitHabit(habit);
@@ -55,6 +59,21 @@ function App() {
         getHabitHandler();
     }
 
+    const getHabitEventsHandler = async _id => {
+        const externalDataCallResult = await getHabitEvents(_id);
+        // console.log(externalDataCallResult);
+
+        if (externalDataCallResult?.error) {
+            const errorObject = { ...externalDataCallResult.error };
+            errorObject.message = `There was a problem getting your events: ${externalDataCallResult}`;
+            setError(errorObject);
+        }
+
+        const habitEventsCall = externalDataCallResult?.events ? externalDataCallResult.events : [];
+        const sortedEvents = habitEventsCall.sort((a, b) => { return new Date(a.date) - new Date(b.date) })
+        setEvents(sortedEvents)
+    }
+
     useEffect(() => {
         getHabitHandler()
 
@@ -66,7 +85,7 @@ function App() {
             <div className="container-fluid">
                 <Routes>
                     <Route path="/" element={<HabitPage data={{ habits, habitCards, error: error.message }} />} />
-                    <Route path="/habit/:id" element={<HabitSummary data={{ habits, habitCards }} />} />
+                    <Route path="/habit/:id" element={<HabitSummary data={{ habits: habitCards, events: events }} getEventsFunc={getHabitEventsHandler} />} />
                     <Route path="/add" element={<AddHabit submitAction={submitHabitHandler} data={habits} />} />
                 </Routes>
             </div>

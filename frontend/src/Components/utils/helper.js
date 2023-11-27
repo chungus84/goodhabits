@@ -9,21 +9,17 @@ export const calcMetric = (array, metric) => {
 }
 
 export const cardNames = (habitArray) => {
-    let count = 0;
     const habitOBJ = []
-    const habitSet = new Set();
-    habitArray.forEach(habit => {
-        habitSet.add(habit.name);
-    })
-    // console.log(habitSet);
-    habitSet.forEach(e => habitOBJ.push({ name: e, _id: count++ }))
+    habitArray.forEach(e => habitOBJ.push({ name: e.name, _id: e._id, type: e.type }))
     // console.log(habitOBJ);
     return habitOBJ
 }
 
 export const buildChartArray = (array, metric) => {
+    // console.log(array);
+    // console.log(metric);
     let retArr = [];
-    array.forEach((ele) => { retArr.push({ total: ele[metric], date: ele.createdAt }) })
+    array.forEach((ele) => { retArr.push({ total: ele[metric], date: ele.date }) })
     // console.log(retArr);
     return retArr
 

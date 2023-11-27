@@ -9,9 +9,11 @@ import './utils/css/HabitFeed.css'
 const HabitFeed = ({ data }) => {
 
     // console.log(`habitFeed: ${data}`);
+    // console.log(data);
 
     const habitCardNames = data.habitCards;
     const habits = data.habits;
+    // console.log(habitCardNames);
     // console.log(`habit card names: ${habitCardNames}`);
     // console.log(data.habits);
 

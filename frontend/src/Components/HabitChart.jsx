@@ -7,6 +7,8 @@ import { motion } from 'framer-motion';
 
 const HabitChart = ({ data, width, height }) => {
 
+    // console.log(`habitChart: ${data.at(0).date}`);
+
     console.log(data);
 
 
@@ -21,11 +23,22 @@ const HabitChart = ({ data, width, height }) => {
     const gx = useRef();
     const gy = useRef();
 
-    let startDay = parseISO(data.at(0).date);
-    let endDay = parseISO(data.at(-1).date);
-    let days = eachDayOfInterval({ start: startDay, end: endDay })
+    let startDay;
 
-    console.log(endDay);
+    let endDay;
+
+    let days;
+
+    if (data.length > 0) {
+
+        startDay = parseISO(data.at(0).date);
+        endDay = parseISO(data.at(-1).date);
+        days = eachDayOfInterval({ start: startDay, end: endDay })
+    }
+
+
+
+    // console.log(endDay);
 
     let xScale = d3
         .scaleTime()
@@ -37,7 +50,7 @@ const HabitChart = ({ data, width, height }) => {
         .domain(d3.extent(data.map((d) => d.total)))
         .range([height - margin.bottom, margin.top])
 
-    console.log(`ticks ${yScale.ticks(7)}`);
+    // console.log(`ticks ${yScale.ticks(7)}`);
 
     let line = d3
         .line()

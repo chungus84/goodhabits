@@ -1,7 +1,7 @@
 import * as helper from './utils/helper';
 
 const MetricCard = (data) => {
-    console.log(data);
+    // console.log(data);
 
     return (
         <div className="card col-sm-10 col-xs-10 text-dark bg-white my-2">

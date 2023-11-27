@@ -18,6 +18,25 @@ export const getHabits = async () => {
     }
 }
 
+export const getHabitEvents = async _id => {
+    try {
+        // console.log(_id);
+        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/habits/${_id.id}`, _id.id)
+        // console.log(res.data.length);
+        if (Array.isArray(res.data.events) && res.data.events.length > 0) return { events: res.data.events, status: res.status }
+        throw new Error("There are no events for this habit, please add one");
+    } catch (err) {
+        return {
+            events: [],
+            status: err.response?.status ?? 204,
+            error: {
+                type: 'get',
+                message: `Data not available from the server: ${err.message ?? error.response.message}`
+            }
+        }
+    }
+}
+
 export const submitHabit = async habit => {
     try {
         console.log(habit);
