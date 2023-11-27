@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 const HabitForm = ({ submitAction, habit }) => {
 
     const [habitName, setHabitName] = useState("");
-    const [habitMinutes, setHabitMinutes] = useState(0);
-    const [habitDistance, setHabitDistance] = useState(0);
-    const [habitCreatedAt, setHabitCreatedAt] = useState("");
+    const [habitType, setHabitType] = useState("");
+    // const [habitDistance, setHabitDistance] = useState(0);
+    // const [habitCreatedAt, setHabitCreatedAt] = useState("");
 
     const handleSubmit = event => {
         event.preventDefault();
-        submitAction(habit?._id, habitName, habitMinutes, habitDistance, habitCreatedAt);
+        submitAction(habit?._id, habitName, habitType);
         setHabitName('');
-        setHabitMinutes(0);
-        setHabitDistance(0);
-        setHabitCreatedAt("");
+        setHabitType('');
+        // setHabitDistance(0);
+        // setHabitCreatedAt("");
     }
 
     return (
@@ -24,19 +24,19 @@ const HabitForm = ({ submitAction, habit }) => {
                 <input type="text" name="habitName" placeholder='Habit Name' className='form-control' value={habitName} onChange={event => setHabitName(event.target.value)} />
             </div>
             <div className="form-group">
-                <label htmlFor="habitMinutes">Minutes:&nbsp;</label>
-                <input type="number" name="habitMinutes" placeholder='0' data-testid="minutes" className='form-control' value={habitMinutes} onChange={event => setHabitMinutes(event.target.value)} />
+                <label htmlFor="habitType">Type:&nbsp;</label>
+                <input type="text" name="habitType" placeholder='Type of Habit' data-testid="type" className='form-control' value={habitType} onChange={event => setHabitType(event.target.value)} />
             </div>
-            <div className="form-group">
+            {/* <div className="form-group">
                 <label htmlFor="habitDistance">Distance:&nbsp;</label>
                 <input type="number" name="habitDistance" placeholder='0' data-testid="distance" className='form-control' value={habitDistance} onChange={event => setHabitDistance(event.target.value)} />
             </div>
             <div className="form-group">
                 <label htmlFor="habitCreatedAt">Date:&nbsp;</label>
                 <input type="date" name="habitCreatedAt" placeholder='' data-testid="date" className='form-control' value={habitCreatedAt} onChange={event => setHabitCreatedAt(event.target.value)} />
-            </div>
+            </div> */}
             <div className="form-group">
-                <input type="submit" value="Submit" className={`btn ${!habitName || !habitMinutes || !habitDistance ? `btn-danger` : `btn-primary`}`} disabled={!habitName || !habitMinutes || !habitDistance} />
+                <input type="submit" value="Submit" className={`btn ${!habitName || !habitType ? `btn-danger` : `btn-primary`}`} disabled={!habitName || !habitType} />
             </div>
 
         </form>
