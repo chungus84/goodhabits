@@ -18,9 +18,12 @@ class HabitServices {
 
     addHabit = async (newHabit) => {
 
-        if (!newHabit || !newHabit.name) return Promise.reject(new Error('Invalid arguments'))
-        try {
 
+
+        if (!newHabit || !newHabit.name) return Promise.reject(new Error('Invalid arguments'))
+
+        if (await Habit.findOne({ name: newHabit.name })) return Promise.reject(new Error('This habit already exists'))
+        try {
 
             return await Habit.create(newHabit);
 

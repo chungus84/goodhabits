@@ -6,4 +6,4 @@ export const router = express.Router();
 
 const eventControllers = new EventControllers();
 router.get('/:habitId', eventControllers.getAllEvents);
-router.post('/', eventControllers.addEvent);
+router.post('/:habitId', eventControllers.addEvent);
