@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Event from "./event.model.js";
+
 
 const habitSchema = new mongoose.Schema({
     name: { type: String, required: true },
