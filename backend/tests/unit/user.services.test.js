@@ -50,9 +50,9 @@ describe('user service tests', () => {
 
     describe('FindUserById', () => {
         it('should return sampleUser by id', async () => {
-            const res = await user.findUserById({ _id: 123456789 });
+            const res = await user.findUserById(123456789);
 
-            expect(findUserStub).to.have.been.calledOnceWith({ _id: { _id: 123456789 } });
+            expect(findUserStub).to.have.been.calledOnceWith({ _id: 123456789 });
             expect(res).to.have.property('_id').to.equal(123456789);
             expect(res).to.have.property("firstName").to.equal("Test");
             expect(res).to.have.property("lastName").to.equal("Testy");
@@ -62,9 +62,9 @@ describe('user service tests', () => {
 
         });
         it('User object should have nested documents in habits', async () => {
-            const res = await user.findUserById({ _id: 123456789 });
+            const res = await user.findUserById(123456789);
 
-            expect(findUserStub).to.have.been.calledOnceWith({ _id: { _id: 123456789 } });
+            expect(findUserStub).to.have.been.calledOnceWith({ _id: 123456789 });
             expect(res.habits.length).to.equal(2);
             expect(res.habits[0]).to.have.property('name').to.equal("Running")
             expect(res.habits[0]).to.have.property('type').to.equal("cardio");
@@ -72,5 +72,18 @@ describe('user service tests', () => {
             expect(res.habits[0]).to.have.property('events').to.be.empty;
 
         })
+        it('should test that it throws and error if rejected', async () => {
+            findUserStub.restore()
+            findUserStub = sandbox.stub(mongoose.Model, 'findById').rejects(new Error("Problem"))
+
+            try {
+                await user.findUserById({ _id: 123456789 });
+            } catch (err) {
+                expect(err).to.be.instanceOf(Error);
+                expect(err.message).to.equal("Problem");
+            }
+            findUserStub.restore()
+        })
+
     })
 })
