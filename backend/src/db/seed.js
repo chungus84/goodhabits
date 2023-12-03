@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Habit from "../models/habit.model.js";
 import Event from "../models/event.model.js";
+import User from "../models/user.model.js";
 
 mongoose.connect("mongodb://127.0.0.1:27017/mydaysdev")
 
@@ -28,21 +29,45 @@ const seedDB = async () => {
 
     ]
 
+    const user = {
+        firstName: "Kenichi",
+        lastName: "Beveridge",
+        userName: "Chungus",
+        email: "test@testing.com",
+        password: "password",
+        repeatedPassword: "password",
+        createdAt: new Date("2023-10-01")
+    }
+
+    let dbUser;
+
     try {
         console.log('clearing Database');
         await Habit.deleteMany({});
         await Event.deleteMany({});
+        await User.deleteMany({})
 
         console.log('cleared Database');
     } catch (err) {
         console.log(err.message);
     }
+    try {
+        console.log("creating user");
+        dbUser = await User.create(user);
+
+    } catch (err) {
+        console.log(err.message);
+    }
+
+
 
     try {
         console.log(`populating habits`);
-        await Habit.create({ name: "Running", type: "cardio", createdAt: new Date("2023-10-01") })
+        await dbUser.habits.push({ name: "Running", type: "cardio", createdAt: new Date("2023-10-01") })
 
-        await Habit.create({ name: "Walking", type: "cardio", createdAt: new Date("2023-10-01") })
+        await dbUser.habits.push({ name: "Walking", type: "cardio", createdAt: new Date("2023-10-01") })
+
+        await dbUser.save()
         console.log('populating habits complete');
     } catch (err) {
         console.log(err.message);
@@ -50,14 +75,16 @@ const seedDB = async () => {
 
     try {
         console.log('populating running events');
+        // console.log(dbUser);
+
 
 
         runningArray.forEach(async event => {
             const newEvent = await Event.create(event)
             console.log(newEvent._id);
-            const habit = await Habit.findOne({ name: "Running" });
-            habit.events.push(newEvent._id)
-            await habit.save()
+            const userHabits = await User.updateOne({ _id: dbUser._id, "habits.name": "Running" }, { $push: { "habits.$.events": { _id: newEvent._id } } })
+
+            // await userHabits.save()
 
 
         });
@@ -65,9 +92,8 @@ const seedDB = async () => {
         walkingArray.forEach(async event => {
             const newEvent = await Event.create(event)
             console.log(newEvent._id);
-            const habit = await Habit.findOne({ name: "Walking" });
-            habit.events.push(newEvent._id)
-            await habit.save()
+            const userHabits = await User.updateOne({ _id: dbUser._id, "habits.name": "Walking" }, { $push: { "habits.$.events": { _id: newEvent._id } } })
+            // await userHabits.save()
         })
 
     } catch (err) {
