@@ -8,6 +8,16 @@ class UserServices {
             throw err;
         }
     }
+
+    addNewUser = async (user) => {
+
+        try {
+            const res = await User.create(user);
+            return res;
+        } catch (err) {
+            throw err;
+        }
+    }
 }
 
 export default UserServices;

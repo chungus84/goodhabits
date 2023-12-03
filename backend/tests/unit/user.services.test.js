@@ -7,7 +7,7 @@ chai.use(sinonChai);
 chai.use(chaiAsPromised);
 
 import UserServices from '../../src/services/user.service.js'
-import mongoose from 'mongoose';
+import mongoose, { mongo } from 'mongoose';
 
 var sandbox = sinon.createSandbox();
 
@@ -83,6 +83,53 @@ describe('user service tests', () => {
                 expect(err.message).to.equal("Problem");
             }
             findUserStub.restore()
+        })
+
+    })
+
+    describe('addUser Tests', () => {
+        let createUserStub, sampleUser, user;
+
+        user = new UserServices();
+
+        beforeEach(() => {
+            sampleUser = {
+                _id: 123456789,
+                firstName: "Test",
+                lastName: "Testy",
+                userName: "Testy McGee",
+                email: "test@test.com",
+                password: "password",
+                repeatedPassword: "password",
+                save: sandbox.stub().resolves()
+            }
+
+        })
+        it('should create a new user', async () => {
+            createUserStub = sandbox.stub(mongoose.Model, 'create').resolves(sampleUser);
+            const res = await user.addNewUser(sampleUser)
+
+
+            expect(createUserStub).to.have.been.calledOnceWith(sampleUser);
+            expect(res).to.have.property('firstName').to.equal(sampleUser.firstName)
+
+        });
+
+        it('should return an error with no firstName', async () => {
+
+
+            const newUser = {
+                lastName: "Testy",
+                userName: "Testy McGee",
+                email: "test@test.com",
+                password: "password",
+                repeatedPassword: "password",
+                save: sandbox.stub().resolves()
+            }
+            createUserStub = sandbox.stub().resolves(newUser);
+
+            await expect(user.addNewUser(newUser)).to.eventually.be.rejectedWith('User validation failed: firstName: Path `firstName` is required')
+
         })
 
     })
