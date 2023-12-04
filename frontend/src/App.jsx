@@ -29,7 +29,7 @@ function App() {
 
     const getUserHandler = async () => {
         const externalDataCallResult = await getUser();
-        console.log(externalDataCallResult);
+        // console.log(externalDataCallResult);
         if (externalDataCallResult?.error) {
             const errorObject = { ...externalDataCallResult.error }
             errorObject.message = `There was a problem in retrieving your data ${externalDataCallResult.error.message}`
@@ -63,6 +63,8 @@ function App() {
     // console.log(habitCards);
 
     const submitEventHandler = async event => {
+        // console.log(event);
+        console.log('submitEventHandler called');
         const externalDataCallResult = await submitHabitEvent(event);
         if (externalDataCallResult?.error) {
             const errorObject = { ...externalDataCallResult.error };
@@ -70,6 +72,7 @@ function App() {
             return setError(errorObject)
         }
         setCreateEventStatus(`Event added`);
+        getUserHandler()
 
     }
 
@@ -89,7 +92,7 @@ function App() {
     }
 
     const getHabitEventsHandler = async userHabit => {
-        console.log('getHabitEventsHandler called');
+        // console.log('getHabitEventsHandler called');
         const externalDataCallResult = await getHabitEvents(userHabit);
         // console.log(externalDataCallResult);
 
@@ -101,7 +104,7 @@ function App() {
 
         const habitEventsCall = externalDataCallResult?.events ? externalDataCallResult.events : [];
         const userEvents = habitEventsCall.find(ele => {
-            if (ele._id === userHabit.habitId) return ele.events.sort
+            if (ele._id === userHabit.habitId) return ele.events
         })
         // console.log(userEvents.events);
         userEvents.events.sort((a, b) => { return new Date(a.date) - new Date(b.date) })
@@ -115,10 +118,10 @@ function App() {
 
     useEffect(() => {
         getUserHandler()
-        console.log("UseEffect ran in app.jsx");
+        // console.log("UseEffect ran in app.jsx");
 
     }, [])
-    console.log(user.user);
+    // console.log(user.user);
     return (
         <>
             <Header data={user.userName} />

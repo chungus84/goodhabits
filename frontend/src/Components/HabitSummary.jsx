@@ -20,30 +20,16 @@ const HabitSummary = (data) => {
     const habitId = useParams();
     const navigate = useNavigate();
     // console.log(getEventsFunc);
-    console.log(data);
+    // console.log(data);
     const { habits, events, userId } = data.data;
     const { getEventsFunc } = data
-    // const { getEvents } = data.getEventsFunc
 
-
-
-
-    // console.log(matchEvents.name);
 
     const userHabitIds = {
         habitId: habitId.id,
         userId: userId
     }
 
-    // console.log(habits);
-    // console.log(`events: ${events}`);
-
-
-
-
-    // console.log(habitCards);
-
-    // console.log(events);
 
     const userHabit = habits.find(ele => {
 
@@ -53,29 +39,16 @@ const HabitSummary = (data) => {
         }
     })
 
-    // const getHabitEvents = (_id) => {
-    //     getEventsFunc(_id);
-    // }
-
-    // console.log(userHabit);
-    // console.log(events);
-
-    // const habitRec = habits.filter(ele => {
-    //     if (ele.name === userHabit.name) return ele;
-    // })
-
-    // console.log(`userHabuit is: ${userHabit.name}`);
-    // buildChartArray(events, "minutes");
 
     useEffect(() => {
-        // setHabitEvents(matchEvents)
+
         getEventsFunc(userHabitIds);
-        console.log("UseEffect ran in habit summary");
+        // console.log("UseEffect ran in habit summary");
 
 
     }, [])
 
-    // console.log(habitEvents);
+
 
 
     return (

@@ -9,7 +9,7 @@ const HabitChart = ({ data, width, height }) => {
 
     // console.log(`habitChart: ${data.at(0).date}`);
 
-    console.log(data);
+    // console.log(data);
 
 
 

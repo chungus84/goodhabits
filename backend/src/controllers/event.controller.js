@@ -15,6 +15,7 @@ class EventControllers {
     }
 
     addEvent = async (req, res) => {
+        // console.log(req);
         try {
 
             const newEvent = await eventServices.addEvent(req.body)

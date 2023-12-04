@@ -1,19 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const EventForm = ({ submitAction, userEvent }) => {
+const EventForm = ({ submitAction, data }) => {
 
-
+    console.log(data);
 
     const [eventName, setEventName] = useState("");
     const [eventMinutes, setEventMinutes] = useState(0);
     const [eventDistance, setEventDistance] = useState(0);
     const [eventDate, setEventDate] = useState("");
+    const [habitId, setHabitId] = useState("")
+
 
 
     const handleSubmit = event => {
         event.preventDefault();
-        submitAction(eventName, eventMinutes, eventDistance, eventDate,);
+        submitAction(eventName, eventMinutes, eventDistance, new Date(eventDate).toISOString().split("T")[0], habitId);
         setEventName('');
         setEventMinutes(0);
         setEventDistance(0);
@@ -21,6 +23,13 @@ const EventForm = ({ submitAction, userEvent }) => {
 
 
     }
+    useEffect(() => {
+        setEventName(data.name)
+        setHabitId(data._id)
+
+    })
+    // console.log(eventName);
+    // console.log(habitId);
 
 
 
@@ -29,6 +38,17 @@ const EventForm = ({ submitAction, userEvent }) => {
             <div className="form-group">
                 <label htmlFor="eventMinutes">Minutes:</label>
                 <input type="text" name="eventMinutes" placeholder='0' className='form-control' value={eventMinutes} onChange={event => setEventMinutes(event.target.value)} />
+            </div>
+            <div className="form-group">
+                <label htmlFor="eventDistance">Distance:</label>
+                <input type="text" name="eventDistance" placeholder='0' className='form-control' value={eventDistance} onChange={event => setEventDistance(event.target.value)} />
+            </div>
+            <div className="form-group">
+                <label htmlFor="eventDate">Date:</label>
+                <input type="date" name="eventDate" placeholder='0' className='form-control' value={eventDate} onChange={event => setEventDate(event.target.value)} />
+            </div>
+            <div className="form-group">
+                <input type="submit" value="Submit" className={`btn ${!eventMinutes || !eventDate ? `btn-danger` : `btn-primary`}`} disabled={!eventMinutes || !eventDate} />
             </div>
         </form>
     )
