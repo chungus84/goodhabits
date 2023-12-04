@@ -16,6 +16,7 @@ class HabitControllers {
     }
     addHabit = async (req, res) => {
         try {
+
             const newHabit = await habitServices.addHabit(req.body)
             res.status(201).json(newHabit);
         } catch (err) {

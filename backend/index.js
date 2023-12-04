@@ -7,6 +7,7 @@ import main from './src/db/main.js';
 
 import { router as habitRouter } from './src/routes/habits.routes.js';
 import { router as eventRouter } from './src/routes/events.router.js'
+import { router as userRouter } from './src/routes/user.routes.js';
 
 const app = express();
 
@@ -18,6 +19,7 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/', habitRouter);
+app.use('/user', userRouter);
 app.use('/habits', eventRouter);
 
 

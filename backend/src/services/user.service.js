@@ -2,7 +2,9 @@ import User from "../models/user.model.js";
 class UserServices {
     findUserById = async (id) => {
         try {
-            const res = await User.findById({ _id: id });
+            // console.log(id);
+            const res = await User.findById({ _id: "656c8236e394c45b13549677" });
+            // console.log(res);
             return res;
         } catch (err) {
             throw err;

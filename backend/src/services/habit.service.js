@@ -1,4 +1,4 @@
-import Habit from "../models/habit.model.js";
+import User from "../models/user.model.js";
 
 class HabitServices {
 
@@ -21,11 +21,14 @@ class HabitServices {
 
 
         if (!newHabit || !newHabit.name) return Promise.reject(new Error('Invalid arguments'))
+        const userHabit = await User.findOne({ _id: newHabit.userId, "habits.name": newHabit.name })
 
-        if (await Habit.findOne({ name: newHabit.name })) return Promise.reject(new Error('This habit already exists'))
+        if (userHabit) return Promise.reject(new Error('This habit already exists'))
         try {
 
-            return await Habit.create(newHabit);
+            const res = await User.updateOne({ _id: newHabit.userId }, { $push: { habits: { name: newHabit.name, type: newHabit.type, createdAt: newHabit.createdAt } } });
+            // console.log(res);
+            return res;
 
         } catch (err) {
 
