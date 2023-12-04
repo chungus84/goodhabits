@@ -18,12 +18,18 @@ import axios from 'axios';
 //     }
 // }
 
-export const getHabitEvents = async _id => {
+export const getHabitEvents = async userHabitIds => {
     try {
-        // console.log(_id);
-        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/habits/${_id.id}`, _id.id)
-        // console.log(res.data.length);
-        if (Array.isArray(res.data.events) && res.data.events.length > 0) return { events: res.data.events, status: res.status }
+        // console.log(userHabitIds);
+        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/habits/${userHabitIds.habitId}`, {
+            params: {
+                userId: userHabitIds.userId,
+                habitId: userHabitIds.habitId
+            }
+        })
+        console.log(res.data.habits);
+
+        if (Array.isArray(res.data.habits) && res.data.habits.length > 0) return { events: res.data.habits, status: res.status }
         throw new Error("There are no events for this habit, please add one");
     } catch (err) {
         return {

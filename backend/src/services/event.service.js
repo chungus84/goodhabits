@@ -1,11 +1,13 @@
 import Event from '../models/event.model.js';
 import Habit from '../models/habit.model.js';
+import User from '../models/user.model.js';
 
 class EventServices {
 
     getEvents = async (habitId) => {
         try {
-            const res = await Habit.findOne({ _id: habitId }, { name: 1, events: 1 }).populate('events');
+            // console.log(habitId);
+            const res = await User.findOne({ _id: habitId.userId, "habits._id": habitId.habitId }, { "habits.name": 1, "habits._id": 1, "habits.events": 1 }).populate("habits.events")
             console.log(res);
             return res
         } catch (err) {

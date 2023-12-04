@@ -13,15 +13,27 @@ import { getHabitEvents } from "../../asyncFunctions/habitAPICalls.js";
 
 const HabitSummary = (data) => {
 
+
+
     let [ref, bounds] = useMeasure({ polyfill: ResizeObserver });
 
-    const id = useParams();
+    const habitId = useParams();
     const navigate = useNavigate();
     // console.log(getEventsFunc);
-    // console.log(data);
-    const { habits, events } = data.data;
+    console.log(data);
+    const { habits, events, userId } = data.data;
     const { getEventsFunc } = data
     // const { getEvents } = data.getEventsFunc
+
+
+
+
+    // console.log(matchEvents.name);
+
+    const userHabitIds = {
+        habitId: habitId.id,
+        userId: userId
+    }
 
     // console.log(habits);
     // console.log(`events: ${events}`);
@@ -35,7 +47,7 @@ const HabitSummary = (data) => {
 
     const userHabit = habits.find(ele => {
 
-        if (ele._id === id.id) {
+        if (ele._id === habitId.id) {
 
             return ele
         }
@@ -56,14 +68,22 @@ const HabitSummary = (data) => {
     // buildChartArray(events, "minutes");
 
     useEffect(() => {
-        getEventsFunc(id);
+        // setHabitEvents(matchEvents)
+        getEventsFunc(userHabitIds);
+        console.log("UseEffect ran in habit summary");
+
+
     }, [])
+
+    // console.log(habitEvents);
+
 
     return (
         <>
             <h2>{userHabit.name}</h2>
             <div onClick={(() => navigate(`/`))}>〈 back</div>
             <div className="btn btn-primary rounded-pill" onClick={(() => navigate(`/habit/${userHabit._id}/add`))}>Add Event</div>
+            {/* <p>{matchEvents}</p> */}
 
             <div className="row">
                 <div className="col"><MetricCard data={{ name: userHabit.name, total: calcMetric(events, "minutes"), metric: "minutes" }} /></div>
@@ -80,7 +100,7 @@ const HabitSummary = (data) => {
 
                 </div>
 
-            </div>
+            </div >
 
 
 

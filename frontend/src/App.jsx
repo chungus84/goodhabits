@@ -88,8 +88,9 @@ function App() {
         getUserHandler();
     }
 
-    const getHabitEventsHandler = async _id => {
-        const externalDataCallResult = await getHabitEvents(_id);
+    const getHabitEventsHandler = async userHabit => {
+        console.log('getHabitEventsHandler called');
+        const externalDataCallResult = await getHabitEvents(userHabit);
         // console.log(externalDataCallResult);
 
         if (externalDataCallResult?.error) {
@@ -99,14 +100,22 @@ function App() {
         }
 
         const habitEventsCall = externalDataCallResult?.events ? externalDataCallResult.events : [];
-        const sortedEvents = habitEventsCall.sort((a, b) => { return new Date(a.date) - new Date(b.date) })
-        setEvents(sortedEvents)
+        const userEvents = habitEventsCall.find(ele => {
+            if (ele._id === userHabit.habitId) return ele.events.sort
+        })
+        // console.log(userEvents.events);
+        userEvents.events.sort((a, b) => { return new Date(a.date) - new Date(b.date) })
+        // console.log(sortedEvents);
+        setEvents(userEvents.events)
+
+
     }
 
 
 
     useEffect(() => {
         getUserHandler()
+        console.log("UseEffect ran in app.jsx");
 
     }, [])
     console.log(user.user);
@@ -116,7 +125,7 @@ function App() {
             <div className="container-fluid">
                 <Routes>
                     <Route path="/" element={<HabitPage data={{ user, habitCards, error: error.message }} />} />
-                    <Route path="/habit/:id" element={<HabitSummary data={{ habits: habitCards, events: events }} getEventsFunc={getHabitEventsHandler} />} />
+                    <Route path="/habit/:id" element={<HabitSummary data={{ habits: habitCards, events: events, userId: user._id }} getEventsFunc={getHabitEventsHandler} />} />
                     <Route path="habit/:id/add" element={<AddEvent submitAction={submitEventHandler} data={{ habits: habitCards }} />} />
                     <Route path="/add" element={<AddHabit submitAction={submitHabitHandler} data={user} />} />
                 </Routes>

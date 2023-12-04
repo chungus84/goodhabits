@@ -16,11 +16,9 @@ export const cardNames = (habitArray) => {
 }
 
 export const buildChartArray = (array, metric) => {
-    // console.log(array);
-    // console.log(metric);
+
     let retArr = [];
     array.forEach((ele) => { retArr.push({ total: ele[metric], date: ele.date }) })
-    // console.log(retArr);
     return retArr
 
 }
