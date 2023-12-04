@@ -1,22 +1,22 @@
 import axios from 'axios';
 
-export const getHabits = async () => {
-    try {
-        const res = await axios.get(import.meta.env.VITE_MYDAYSURL);
-        // console.log(res);
-        if (Array.isArray(res.data) && res.data?.length > 0) return { habits: res.data, status: res.status };
-        throw new Error('There are not habits to retrieve, please add one');
-    } catch (err) {
-        return {
-            habits: [],
-            status: err.response?.status ?? 204,
-            error: {
-                type: 'get',
-                message: `Data not available from  the server: ${err.message ?? err.response.message}`
-            }
-        }
-    }
-}
+// export const getHabits = async () => {
+//     try {
+//         const res = await axios.get(import.meta.env.VITE_MYDAYSURL);
+//         // console.log(res);
+//         if (Array.isArray(res.data) && res.data?.length > 0) return { habits: res.data, status: res.status };
+//         throw new Error('There are not habits to retrieve, please add one');
+//     } catch (err) {
+//         return {
+//             habits: [],
+//             status: err.response?.status ?? 204,
+//             error: {
+//                 type: 'get',
+//                 message: `Data not available from  the server: ${err.message ?? err.response.message}`
+//             }
+//         }
+//     }
+// }
 
 export const getHabitEvents = async _id => {
     try {
@@ -39,14 +39,49 @@ export const getHabitEvents = async _id => {
 
 export const submitHabit = async habit => {
     try {
-        console.log(habit);
+        // console.log(habit);
         const res = await axios.post(`${import.meta.env.VITE_MYDAYSURL}/`, habit)
+        console.log(res);
         return { habit: res.data, status: res.status };
     } catch (err) {
         return {
             status: err.response?.status,
             error: {
                 type: `post`,
+                message: err.response?.message
+            }
+        }
+    }
+}
+
+export const submitHabitEvent = async event => {
+    try {
+        console.log(event);
+        const res = await axios.post(`${import.meta.env.VITE_MYDAYSURL}/habits/${_id.id}`, event)
+        return { event: res.data, status: res.status };
+
+    } catch (err) {
+        return {
+            status: err.response?.status,
+            error: {
+                type: 'post',
+                message: err.response?.message
+            }
+        }
+    }
+}
+
+export const getUser = async () => {
+    try {
+        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/user`)
+        // console.log(res);
+        return { user: res.data, status: res.status }
+
+    } catch (err) {
+        return {
+            status: err.response?.status,
+            error: {
+                type: 'get',
                 message: err.response?.message
             }
         }

@@ -9,18 +9,27 @@ import HabitForm from './HabitForm';
 
 const AddHabit = ({ submitAction, data }) => {
 
+    console.log(data);
+
     const [habit, setHabit] = useState({});
+    const [userId, setUserId] = useState("")
     const [submitted, setSubmitted] = useState(false)
+
+
+
+
+
 
     const navigate = useNavigate();
     const { _id } = useParams();
 
     useEffect(() => {
+        setUserId(data._id)
         if (submitted) navigate("/");
     }, [submitted, navigate]);
 
-    const submitHabit = (_id = null, habitName, minutes, distance, createdAt = new Date(Date.now())) => {
-        const habitToSubmit = new HabitModel(_id, habitName, minutes, distance, new Date(createdAt).toISOString(),);
+    const submitHabit = (_id = null, habitName, type, createdAt = new Date().toISOString().split('T')[0], userId) => {
+        const habitToSubmit = new HabitModel(_id, habitName, type, createdAt, userId);
         submitAction(habitToSubmit);
         setSubmitted(true);
     }
@@ -29,7 +38,7 @@ const AddHabit = ({ submitAction, data }) => {
         <>
             <h1>Add Habit</h1>
             <div onClick={() => navigate("/")}>Back to Home</div>
-            <HabitForm submitAction={submitHabit} habit={habit?.error ? {} : habit} />
+            <HabitForm submitAction={submitHabit} data={{ userId: userId?.error ? {} : userId, habit: habit }} />
         </>
 
 

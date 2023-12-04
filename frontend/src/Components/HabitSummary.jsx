@@ -15,11 +15,6 @@ const HabitSummary = (data) => {
 
     let [ref, bounds] = useMeasure({ polyfill: ResizeObserver });
 
-
-
-
-
-
     const id = useParams();
     const navigate = useNavigate();
     // console.log(getEventsFunc);
@@ -68,6 +63,8 @@ const HabitSummary = (data) => {
         <>
             <h2>{userHabit.name}</h2>
             <div onClick={(() => navigate(`/`))}>〈 back</div>
+            <div className="btn btn-primary rounded-pill" onClick={(() => navigate(`/habit/${userHabit._id}/add`))}>Add Event</div>
+
             <div className="row">
                 <div className="col"><MetricCard data={{ name: userHabit.name, total: calcMetric(events, "minutes"), metric: "minutes" }} /></div>
                 <div className="col"><MetricCard data={{ name: userHabit.name, total: calcMetric(events, "distance"), metric: "distance" }} /></div>

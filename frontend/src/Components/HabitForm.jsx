@@ -1,21 +1,32 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const HabitForm = ({ submitAction, habit }) => {
+const HabitForm = ({ submitAction, data }) => {
+
+    console.log(data);
+
+    const habit = data.habit
 
     const [habitName, setHabitName] = useState("");
     const [habitType, setHabitType] = useState("");
+    const [userId, setUserId] = useState("")
     // const [habitDistance, setHabitDistance] = useState(0);
     // const [habitCreatedAt, setHabitCreatedAt] = useState("");
 
     const handleSubmit = event => {
         event.preventDefault();
-        submitAction(habit?._id, habitName, habitType);
+        submitAction(habit?._id, habitName, habitType, new Date().toISOString().split('T')[0], userId);
         setHabitName('');
         setHabitType('');
+        setUserId("");
+
         // setHabitDistance(0);
         // setHabitCreatedAt("");
     }
+
+    useEffect(() => {
+        setUserId(data.userId)
+    })
 
     return (
         <form aria-label="form" onSubmit={handleSubmit}>
