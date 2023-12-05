@@ -15,6 +15,7 @@ import AddEvent from './Components/AddEvent';
 import { submitHabit, getHabitEvents, submitHabitEvent, getUser } from '../asyncFunctions/habitAPICalls.js';
 import * as helper from './Components/utils/helper';
 import Modal from './Components/utils/Modal';
+import Authentication from './Components/Authentication';
 
 
 
@@ -137,6 +138,8 @@ function App() {
                     <Route path="/habit/:id" element={<HabitSummary data={{ habits: habitCards, events: events, userId: user._id }} getEventsFunc={getHabitEventsHandler} submitAction={submitEventHandler} />} />
                     <Route path="habit/:id/add" element={<AddEvent submitAction={submitEventHandler} data={{ habits: habitCards }} />} />
                     <Route path="/add" element={<AddHabit submitAction={submitHabitHandler} data={user} />} />
+                    <Route path="/authenticate" element={<Authentication />} />
+
                 </Routes>
             </div>
         </>

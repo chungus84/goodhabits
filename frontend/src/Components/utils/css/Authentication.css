@@ -1,0 +1,11 @@
+.btn-active {
+    background-color: black;
+    color: white;
+}
+
+
+
+.authentication-form {
+    display: inline-table;
+    justify-content: center;
+}
