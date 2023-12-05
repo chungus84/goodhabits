@@ -13,6 +13,7 @@ import AddEvent from './Components/AddEvent';
 
 
 import { submitHabit, getHabitEvents, submitHabitEvent, getUser } from '../asyncFunctions/habitAPICalls.js';
+import { loginUser } from '../asyncFunctions/authenitcationAPICalls.js';
 import * as helper from './Components/utils/helper';
 import Modal from './Components/utils/Modal';
 import Authentication from './Components/Authentication';
@@ -27,6 +28,7 @@ function App() {
     const [createHabitStatus, setCreateHabitStatus] = useState(``);
     const [createEventStatus, setCreateEventStatus] = useState(``)
     const [events, setEvents] = useState([]);
+    const [loggedIn, setLoggedIn] = useState(false)
 
 
     const getUserHandler = async () => {
@@ -41,6 +43,11 @@ function App() {
         setUser(userCall)
         setHabitCards(helper.cardNames(userCall.habits))
 
+    }
+
+    const loginHandler = async (user) => {
+        const externalDataCallResult = await loginUser(user);
+        console.log(externalDataCallResult);
     }
 
 
@@ -65,8 +72,8 @@ function App() {
     // console.log(habitCards);
 
     const submitEventHandler = async event => {
-        console.log(event);
-        console.log('submitEventHandler called');
+        // console.log(event);
+        // console.log('submitEventHandler called');
         const externalDataCallResult = await submitHabitEvent(event);
         if (externalDataCallResult?.error) {
             const errorObject = { ...externalDataCallResult.error };
@@ -120,10 +127,18 @@ function App() {
 
     }
 
+    const testUserLogin = {
+        email: "test@test.com",
+        password: "password"
+    }
+
+    loginHandler(testUserLogin)
+
 
 
     useEffect(() => {
         getUserHandler()
+
         // console.log("UseEffect ran in app.jsx");
 
     }, [])

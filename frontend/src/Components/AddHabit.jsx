@@ -9,7 +9,7 @@ import HabitForm from './HabitForm';
 
 const AddHabit = ({ submitAction, data }) => {
 
-    console.log(data);
+    // console.log(data);
 
     const [habit, setHabit] = useState({});
     const [userId, setUserId] = useState("")

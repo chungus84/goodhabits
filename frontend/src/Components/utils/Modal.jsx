@@ -6,7 +6,7 @@ import AddHabit from '../AddHabit'
 
 const Modal = ({ data, submitAction }) => {
 
-    console.log(data);
+    // console.log(data);
     // console.log(submitAction);
 
     const [modal, setModal] = useState(false)
