@@ -1,0 +1,14 @@
+# Dependency directories
+node_modules/
+
+# Coverage files
+coverage/
+
+# env files
+.env
+.env.test
+.env.dev
+
+#mac
+# Mac Files
+.DS_Store
