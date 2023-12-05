@@ -2,20 +2,25 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
 import HabitFeed from './Components/HabitFeed';
+import Modal from './Components/utils/Modal';
 
-const HabitPage = ({ data }) => {
+const HabitPage = ({ data, submitAction }) => {
+
+    // console.log(data);
 
     const navigate = useNavigate();
 
-    const { habits, habitCards, error } = data;
+    const { user, habitCards, error } = data;
+
+
 
 
     return (
         <>
             <h2>Habit Page</h2>
-            <div onClick={(() => navigate(`/add`))}>Add Habit</div>
+            <Modal data={{ user, habitCards, error }} submitAction={submitAction} />
 
-            <HabitFeed data={{ habits, habitCards, error }} />
+            <HabitFeed data={{ user, habitCards, error }} />
         </>
 
     )

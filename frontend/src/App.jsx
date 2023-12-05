@@ -14,6 +14,7 @@ import AddEvent from './Components/AddEvent';
 
 import { submitHabit, getHabitEvents, submitHabitEvent, getUser } from '../asyncFunctions/habitAPICalls.js';
 import * as helper from './Components/utils/helper';
+import Modal from './Components/utils/Modal';
 
 
 
@@ -125,10 +126,11 @@ function App() {
     return (
         <>
             <Header data={user.userName} />
+
             <div className="container-fluid">
                 <Routes>
-                    <Route path="/" element={<HabitPage data={{ user, habitCards, error: error.message }} />} />
-                    <Route path="/habit/:id" element={<HabitSummary data={{ habits: habitCards, events: events, userId: user._id }} getEventsFunc={getHabitEventsHandler} />} />
+                    <Route path="/" element={<HabitPage data={{ user, habitCards, error: error.message }} submitAction={submitHabitHandler} />} />
+                    <Route path="/habit/:id" element={<HabitSummary data={{ habits: habitCards, events: events, userId: user._id }} getEventsFunc={getHabitEventsHandler} submitAction={submitEventHandler} />} />
                     <Route path="habit/:id/add" element={<AddEvent submitAction={submitEventHandler} data={{ habits: habitCards }} />} />
                     <Route path="/add" element={<AddHabit submitAction={submitHabitHandler} data={user} />} />
                 </Routes>

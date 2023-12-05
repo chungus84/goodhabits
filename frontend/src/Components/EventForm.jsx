@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const EventForm = ({ submitAction, data }) => {
 
-    console.log(data);
+    // console.log(data);
 
     const [eventName, setEventName] = useState("");
     const [eventMinutes, setEventMinutes] = useState(0);

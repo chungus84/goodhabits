@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const HabitForm = ({ submitAction, data }) => {
 
-    console.log(data);
+    // console.log(data);
 
     const habit = data.habit
 

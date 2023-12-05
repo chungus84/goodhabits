@@ -9,15 +9,15 @@ import EventForm from './EventForm';
 
 const AddEvent = (eventData) => {
 
-    // console.log(eventData);
+    console.log(eventData);
 
     const habits = eventData.data.habits;
     const submitAction = eventData.submitAction;
 
     const { id } = useParams()
-    console.log(id);
+    // console.log(id);
 
-    console.log(habits);
+    // console.log(habits);
 
     const matchHabits = habits.find(ele => {
         if (ele._id === id) return ele

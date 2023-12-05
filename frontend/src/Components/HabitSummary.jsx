@@ -10,6 +10,7 @@ import { calcMetric, buildChartArray } from "./utils/helper.js";
 import * as d3 from 'd3';
 import { useRef, useEffect, useState } from 'react';
 import { getHabitEvents } from "../../asyncFunctions/habitAPICalls.js";
+import EventModal from "./utils/EventModal";
 
 const HabitSummary = (data) => {
 
@@ -23,6 +24,9 @@ const HabitSummary = (data) => {
     // console.log(data);
     const { habits, events, userId } = data.data;
     const { getEventsFunc } = data
+    const { submitAction } = data
+
+    // console.log(submitAction);
 
 
     const userHabitIds = {
@@ -55,7 +59,8 @@ const HabitSummary = (data) => {
         <>
             <h2>{userHabit.name}</h2>
             <div onClick={(() => navigate(`/`))}>〈 back</div>
-            <div className="btn btn-primary rounded-pill" onClick={(() => navigate(`/habit/${userHabit._id}/add`))}>Add Event</div>
+            <EventModal submitAction={submitAction} data={habits} />
+            {/* <div className="btn btn-primary rounded-pill" onClick={(() => navigate(`/habit/${userHabit._id}/add`))}>Add Event</div> */}
             {/* <p>{matchEvents}</p> */}
 
             <div className="row">
@@ -64,7 +69,7 @@ const HabitSummary = (data) => {
                 <h3>{`minutes spent ${userHabit.name}: ${calcMetric(events, "minutes")}`}</h3>
                 <h3>{`distance ${calcMetric(events, "distance")} miles`}</h3>
             </div>
-            <div style={{ height: "200px" }}>
+            <div style={{ height: "200px" }} className="my-2">
                 <div className="relative h-100 bg-light" ref={ref}>
                     {bounds.width > 0 && (
 

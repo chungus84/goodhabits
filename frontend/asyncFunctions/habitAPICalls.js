@@ -45,7 +45,7 @@ export const getHabitEvents = async userHabitIds => {
 
 export const submitHabit = async habit => {
     try {
-        // console.log(habit);
+        console.log(habit);
         const res = await axios.post(`${import.meta.env.VITE_MYDAYSURL}/`, habit)
         console.log(res);
         return { habit: res.data, status: res.status };
@@ -62,9 +62,9 @@ export const submitHabit = async habit => {
 
 export const submitHabitEvent = async event => {
     try {
-        console.log(event);
+        // console.log(event);
         const res = await axios.post(`${import.meta.env.VITE_MYDAYSURL}/habits/${event.habitId}/add`, event)
-        console.log(res);
+        // console.log(res);
         return { event: res.data, status: res.status };
 
     } catch (err) {

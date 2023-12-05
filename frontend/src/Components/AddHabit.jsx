@@ -16,10 +16,6 @@ const AddHabit = ({ submitAction, data }) => {
     const [submitted, setSubmitted] = useState(false)
 
 
-
-
-
-
     const navigate = useNavigate();
     const { _id } = useParams();
 
