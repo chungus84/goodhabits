@@ -64,7 +64,7 @@ function App() {
     // console.log(habitCards);
 
     const submitEventHandler = async event => {
-        // console.log(event);
+        console.log(event);
         console.log('submitEventHandler called');
         const externalDataCallResult = await submitHabitEvent(event);
         if (externalDataCallResult?.error) {
@@ -73,7 +73,11 @@ function App() {
             return setError(errorObject)
         }
         setCreateEventStatus(`Event added`);
-        getUserHandler()
+        const userHabitIds = {
+            habitId: event.habitId,
+            userId: user._id
+        }
+        getHabitEventsHandler(userHabitIds)
 
     }
 

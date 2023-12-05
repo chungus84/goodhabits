@@ -35,13 +35,13 @@ const AddEvent = (eventData) => {
 
     useEffect(() => {
         setHabitId(id)
-        if (submitted) navigate(`/habits/${id}`)
     }, [submitted, navigate])
 
     const submitEvent = (name, minutes, distance, date = new Date().toISOString().split('T')[0], habId = habitId) => {
         const eventToSubmit = new EventModel(name, minutes, distance, date, habId)
         submitAction(eventToSubmit);
         setSubmitted(true)
+        navigate(`/habit/${id}`, { replace: true })
 
     }
     // console.log(habitId);

@@ -6,7 +6,8 @@ import AddEvent from '../AddEvent';
 const EventModal = ({ submitAction, data }) => {
 
     console.log(data);
-    const habitCards = data
+    const habitCards = data.habits
+    const userId = data.userId
 
     const [modal, setModal] = useState(false)
 
@@ -25,7 +26,7 @@ const EventModal = ({ submitAction, data }) => {
 
                         </div>
                         <div className="event-content">
-                            <AddEvent submitAction={submitAction} data={{ habits: habitCards }} />
+                            <AddEvent submitAction={submitAction} data={{ habits: habitCards, userId: userId }} />
                         </div>
                     </div>
                 </div>
