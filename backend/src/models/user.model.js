@@ -12,11 +12,8 @@ const habitSchema = new mongoose.Schema({
 });
 
 const userSchema = new mongoose.Schema({
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
+    user_id: { type: mongoose.Schema.Types.ObjectId, required: true },
     userName: { type: String, required: true },
-    email: { type: String, required: true },
-    password: { type: String, required: true },
     habits: [habitSchema],
     createdAt: { type: Date, immutable: true, default: () => Date.now() }
 })

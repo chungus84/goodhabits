@@ -2,8 +2,27 @@ import mongoose from "mongoose";
 import Habit from "../models/habit.model.js";
 import Event from "../models/event.model.js";
 import User from "../models/user.model.js";
+import AuthUser from "../../../auth-backend/src/model/authUser.model.js";
 
-mongoose.connect("mongodb://127.0.0.1:27017/mydaysdev")
+const conn1 = mongoose.createConnection("mongodb://127.0.0.1:27017/mydaysdev")
+const conn2 = mongoose.createConnection("mongodb://127.0.0.1:27017/mydaysdevauth")
+
+const authUserSchema = new mongoose.Schema({ firstName: String, lastName: String, userName: String, email: String, password: String, createdAt: Date })
+
+
+const eventSchema = new mongoose.Schema({ name: String, minutes: Number, distance: Number, date: Date })
+const habitSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    type: { type: String, required: true },
+    events: [eventSchema],
+    createdAt: { type: Date, immutable: true, default: () => Date.now() }
+});
+const userSchema = new mongoose.Schema({ userName: String, userId: mongoose.Schema.Types.ObjectId, habits: [habitSchema] })
+
+const authUserModel = conn2.model('AuthUser', authUserSchema);
+const eventModel = conn1.model('Event', eventSchema);
+const userModel = conn1.model('User', userSchema);
+
 
 const seedDB = async () => {
 
@@ -39,22 +58,35 @@ const seedDB = async () => {
         createdAt: new Date("2023-10-01")
     }
 
-    let dbUser;
+    let dbUser, conn1User;
 
     try {
-        console.log('clearing Database');
-        await Habit.deleteMany({});
-        await Event.deleteMany({});
-        await User.deleteMany({})
+        console.log('clearing Databases');
 
-        console.log('cleared Database');
+        await eventModel.deleteMany({});
+        await userModel.deleteMany({});
+        await authUserModel.deleteMany({});
+
+        console.log('cleared Databases');
     } catch (err) {
         console.log(err.message);
     }
     try {
-        console.log("creating user");
-        dbUser = await User.create(user);
+        console.log("creating user in auth database");
+        dbUser = await authUserModel.create(user);
 
+    } catch (err) {
+        console.log(err.message);
+    }
+
+    try {
+        console.log("passing user details to mydaysdev");
+        const user = {
+            userName: dbUser.userName,
+            userId: dbUser._id
+        }
+        conn1User = await userModel.create(user)
+        console.log(conn1User);
     } catch (err) {
         console.log(err.message);
     }
@@ -63,11 +95,11 @@ const seedDB = async () => {
 
     try {
         console.log(`populating habits`);
-        await dbUser.habits.push({ name: "Running", type: "cardio", createdAt: new Date("2023-10-01") })
+        await conn1User.habits.push({ name: "Running", type: "cardio", createdAt: new Date("2023-10-01") })
 
-        await dbUser.habits.push({ name: "Walking", type: "cardio", createdAt: new Date("2023-10-01") })
+        await conn1User.habits.push({ name: "Walking", type: "cardio", createdAt: new Date("2023-10-01") })
 
-        await dbUser.save()
+        await conn1User.save()
         console.log('populating habits complete');
     } catch (err) {
         console.log(err.message);
@@ -80,9 +112,9 @@ const seedDB = async () => {
 
 
         runningArray.forEach(async event => {
-            const newEvent = await Event.create(event)
+            const newEvent = await eventModel.create(event)
             console.log(newEvent._id);
-            const userHabits = await User.updateOne({ _id: dbUser._id, "habits.name": "Running" }, { $push: { "habits.$.events": { _id: newEvent._id } } })
+            const userHabits = await userModel.updateOne({ _id: conn1User._id, "habits.name": "Running" }, { $push: { "habits.$.events": { _id: newEvent._id } } })
 
             // await userHabits.save()
 
@@ -90,9 +122,9 @@ const seedDB = async () => {
         });
 
         walkingArray.forEach(async event => {
-            const newEvent = await Event.create(event)
+            const newEvent = await eventModel.create(event)
             console.log(newEvent._id);
-            const userHabits = await User.updateOne({ _id: dbUser._id, "habits.name": "Walking" }, { $push: { "habits.$.events": { _id: newEvent._id } } })
+            const userHabits = await userModel.updateOne({ _id: conn1User._id, "habits.name": "Walking" }, { $push: { "habits.$.events": { _id: newEvent._id } } })
             // await userHabits.save()
         })
 
