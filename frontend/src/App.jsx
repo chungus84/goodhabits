@@ -12,6 +12,7 @@ const App = () => {
 
     const [loggedIn, setLoggedIn] = useState(false)
     const [userId, setUserId] = useState("");
+    const [userName, setUserName] = useState("")
 
     const loginHandler = async (user) => {
         const externalDataCallResult = await loginUser(user);
@@ -24,21 +25,29 @@ const App = () => {
         const loginCall = externalDataCallResult?.user ? externalDataCallResult.user : []
         // console.log(loginCall.user.userId);
         setUserId(loginCall.user.userId)
+        setUserName(loginCall.user.userName)
         setLoggedIn(true)
         // console.log(userId);
 
 
     }
 
-    const testUserLogin = {
-        email: "test@testing.com",
-        password: "password"
+    const logoutHandler = () => {
+        setLoggedIn(false);
+        setUserId("")
+        setUserName("")
     }
 
-    loginHandler(testUserLogin)
+    // const testUserLogin = {
+    //     email: "test@testing.com",
+    //     password: "password"
+    // }
+
+    // loginHandler(testUserLogin)
 
     return (
         <>
+            <Header logout={logoutHandler} data={userName} />
             {!loggedIn && <Authentication loginHandler={loginHandler} />}
             {loggedIn && <RoutedMain userId={userId} />}
 

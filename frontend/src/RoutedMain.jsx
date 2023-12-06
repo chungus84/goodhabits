@@ -153,7 +153,7 @@ function RoutedMain(userId) {
     // console.log(user.user);
     return (
         <>
-            <Header data={user.userName} />
+
 
             <div className="container-fluid">
                 <Routes>
