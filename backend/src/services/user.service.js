@@ -1,9 +1,13 @@
 import User from "../models/user.model.js";
+import mongoose from 'mongoose';
+
 class UserServices {
     findUserById = async (id) => {
         try {
-            // console.log(id);
-            const res = await User.findById({ _id: "656c8236e394c45b13549677" });
+            // console.log(id.userId);
+            const objId = new mongoose.Types.ObjectId(id.userId)
+            // console.log(objId);
+            const res = await User.findOne({ userId: objId });
             // console.log(res);
             return res;
         } catch (err) {

@@ -34,6 +34,8 @@ const HabitSummary = (data) => {
         userId: userId
     }
 
+    console.log(userHabitIds);
+
 
     const userHabit = habits.find(ele => {
 

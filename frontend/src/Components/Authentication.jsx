@@ -3,7 +3,7 @@ import './utils/css/Authentication.css';
 import LoginForm from './utils/LoginForm';
 import SignUpForm from './utils/SignUpForm';
 
-const Authentication = () => {
+const Authentication = (loginHandler) => {
 
     const [login, setLogin] = useState(false);
 

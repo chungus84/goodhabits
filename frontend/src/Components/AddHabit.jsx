@@ -20,7 +20,7 @@ const AddHabit = ({ submitAction, data }) => {
     const { _id } = useParams();
 
     useEffect(() => {
-        setUserId(data._id)
+        setUserId(data.userId)
         if (submitted) navigate("/");
     }, [submitted, navigate]);
 

@@ -78,10 +78,11 @@ export const submitHabitEvent = async event => {
     }
 }
 
-export const getUser = async () => {
+export const getUser = async (id) => {
     try {
-        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/user`)
-        // console.log(res);
+        // console.log(id);
+        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/user`, { params: { userId: id } })
+        console.log(res);
         return { user: res.data, status: res.status }
 
     } catch (err) {

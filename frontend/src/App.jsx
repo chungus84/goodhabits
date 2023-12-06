@@ -1,162 +1,48 @@
-import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom';
-
-
+import React, { useState, useEffect } from 'react'
 import './App.css'
 
-import Header from './Components/Header'
-import HabitCard from './Components/HabitCard';
-import HabitPage from './HabitPage';
-import HabitSummary from './Components/HabitSummary';
-import AddHabit from './Components/AddHabit';
-import AddEvent from './Components/AddEvent';
-
-
-import { submitHabit, getHabitEvents, submitHabitEvent, getUser } from '../asyncFunctions/habitAPICalls.js';
-import { loginUser } from '../asyncFunctions/authenitcationAPICalls.js';
-import * as helper from './Components/utils/helper';
-import Modal from './Components/utils/Modal';
+import Header from './Components/Header';
+import RoutedMain from './RoutedMain';
 import Authentication from './Components/Authentication';
 
+import { loginUser } from '../asyncFunctions/authenitcationAPICalls';
 
 
-function App() {
-    const [user, setUser] = useState({})
-    const [habits, setHabits] = useState([]);
-    const [error, setError] = useState({ type: ``, message: `` })
-    const [habitCards, setHabitCards] = useState([])
-    const [createHabitStatus, setCreateHabitStatus] = useState(``);
-    const [createEventStatus, setCreateEventStatus] = useState(``)
-    const [events, setEvents] = useState([]);
+const App = () => {
+
     const [loggedIn, setLoggedIn] = useState(false)
-
-
-    const getUserHandler = async () => {
-        const externalDataCallResult = await getUser();
-        // console.log(externalDataCallResult);
-        if (externalDataCallResult?.error) {
-            const errorObject = { ...externalDataCallResult.error }
-            errorObject.message = `There was a problem in retrieving your data ${externalDataCallResult.error.message}`
-            setError(errorObject)
-        }
-        const userCall = externalDataCallResult?.user ? externalDataCallResult.user : [];
-        setUser(userCall)
-        setHabitCards(helper.cardNames(userCall.habits))
-
-    }
+    const [userId, setUserId] = useState("");
 
     const loginHandler = async (user) => {
         const externalDataCallResult = await loginUser(user);
-        console.log(externalDataCallResult);
-    }
-
-
-    const getHabitHandler = async () => {
-        const externalDataCallResult = await getHabits();
+        // console.log(externalDataCallResult?.user);
         if (externalDataCallResult?.error) {
             const errorObject = { ...externalDataCallResult.error };
             errorObject.message = `There was a problem getting your habits ${externalDataCallResult.error.message}`;
             setError(errorObject);
         }
-
-        const habitCall = externalDataCallResult?.habits ? externalDataCallResult.habits : [];
-        // console.log(habitCall);
-
-        setHabits(habitCall);
-        setHabitCards(helper.cardNames(habitCall))
-        // console.log(habitCards);
-
-        // console.log(habits);
-
-    }
-    // console.log(habitCards);
-
-    const submitEventHandler = async event => {
-        // console.log(event);
-        // console.log('submitEventHandler called');
-        const externalDataCallResult = await submitHabitEvent(event);
-        if (externalDataCallResult?.error) {
-            const errorObject = { ...externalDataCallResult.error };
-            errorObject.message = `There was a problem adding your habits event ${externalDataCallResult.error.message}`;
-            return setError(errorObject)
-        }
-        setCreateEventStatus(`Event added`);
-        const userHabitIds = {
-            habitId: event.habitId,
-            userId: user._id
-        }
-        getHabitEventsHandler(userHabitIds)
-
-    }
-
-
-
-    const submitHabitHandler = async habit => {
-        const externalDataCallResult = await submitHabit(habit);
-        if (externalDataCallResult?.error) {
-            const errorObject = { ...externalDataCallResult.error };
-            errorObject.message = `There was a problem adding your habit: ${externalDataCallResult.error.message}`;
-
-            return setError(errorObject);
-        }
-
-        setCreateHabitStatus(`Habit added`);
-        getUserHandler();
-    }
-
-    const getHabitEventsHandler = async userHabit => {
-        // console.log('getHabitEventsHandler called');
-        const externalDataCallResult = await getHabitEvents(userHabit);
-        // console.log(externalDataCallResult);
-
-        if (externalDataCallResult?.error) {
-            const errorObject = { ...externalDataCallResult.error };
-            errorObject.message = `There was a problem getting your events: ${externalDataCallResult}`;
-            setError(errorObject);
-        }
-
-        const habitEventsCall = externalDataCallResult?.events ? externalDataCallResult.events : [];
-        const userEvents = habitEventsCall.find(ele => {
-            if (ele._id === userHabit.habitId) return ele.events
-        })
-        // console.log(userEvents.events);
-        userEvents.events.sort((a, b) => { return new Date(a.date) - new Date(b.date) })
-        // console.log(sortedEvents);
-        setEvents(userEvents.events)
+        const loginCall = externalDataCallResult?.user ? externalDataCallResult.user : []
+        // console.log(loginCall.user.userId);
+        setUserId(loginCall.user.userId)
+        setLoggedIn(true)
+        // console.log(userId);
 
 
     }
 
     const testUserLogin = {
-        email: "test@test.com",
+        email: "test@testing.com",
         password: "password"
     }
 
     loginHandler(testUserLogin)
 
-
-
-    useEffect(() => {
-        getUserHandler()
-
-        // console.log("UseEffect ran in app.jsx");
-
-    }, [])
-    // console.log(user.user);
     return (
         <>
-            <Header data={user.userName} />
+            {!loggedIn && <Authentication loginHandler={loginHandler} />}
+            {loggedIn && <RoutedMain userId={userId} />}
 
-            <div className="container-fluid">
-                <Routes>
-                    <Route path="/" element={<HabitPage data={{ user, habitCards, error: error.message }} submitAction={submitHabitHandler} />} />
-                    <Route path="/habit/:id" element={<HabitSummary data={{ habits: habitCards, events: events, userId: user._id }} getEventsFunc={getHabitEventsHandler} submitAction={submitEventHandler} />} />
-                    <Route path="habit/:id/add" element={<AddEvent submitAction={submitEventHandler} data={{ habits: habitCards }} />} />
-                    <Route path="/add" element={<AddHabit submitAction={submitHabitHandler} data={user} />} />
-                    <Route path="/authenticate" element={<Authentication />} />
 
-                </Routes>
-            </div>
         </>
     )
 }

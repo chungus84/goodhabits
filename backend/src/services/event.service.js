@@ -1,13 +1,15 @@
 import Event from '../models/event.model.js';
 import Habit from '../models/habit.model.js';
 import User from '../models/user.model.js';
+import mongoose from 'mongoose';
 
 class EventServices {
 
     getEvents = async (habitId) => {
         try {
             // console.log(habitId);
-            const res = await User.findOne({ _id: habitId.userId, "habits._id": habitId.habitId }, { "habits.name": 1, "habits._id": 1, "habits.events": 1 }).populate("habits.events")
+            const objId = new mongoose.Types.ObjectId(habitId.userId)
+            const res = await User.findOne({ userId: objId, "habits._id": habitId.habitId }, { "habits.name": 1, "habits._id": 1, "habits.events": 1 }).populate("habits.events")
             // console.log(res);
             return res
         } catch (err) {

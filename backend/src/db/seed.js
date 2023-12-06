@@ -14,7 +14,7 @@ const eventSchema = new mongoose.Schema({ name: String, minutes: Number, distanc
 const habitSchema = new mongoose.Schema({
     name: { type: String, required: true },
     type: { type: String, required: true },
-    events: [eventSchema],
+    events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }],
     createdAt: { type: Date, immutable: true, default: () => Date.now() }
 });
 const userSchema = new mongoose.Schema({ userName: String, userId: mongoose.Schema.Types.ObjectId, habits: [habitSchema] })
