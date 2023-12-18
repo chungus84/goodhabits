@@ -34,23 +34,27 @@ const EventForm = ({ submitAction, data }) => {
 
 
     return (
-        <form aria-label="form" onSubmit={handleSubmit}>
-            <div className="form-group">
-                <label htmlFor="eventMinutes">Minutes:</label>
-                <input type="text" name="eventMinutes" id="eventMinutes" placeholder='0' className='form-control' value={eventMinutes} onChange={event => setEventMinutes(event.target.value)} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="eventDistance">Distance:</label>
-                <input type="text" name="eventDistance" id="eventDistance" placeholder='0' className='form-control' value={eventDistance} onChange={event => setEventDistance(event.target.value)} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="eventDate">Date:</label>
-                <input type="date" name="eventDate" id="eventDate" placeholder='0' className='form-control' value={eventDate} onChange={event => setEventDate(event.target.value)} />
-            </div>
-            <div className="form-group">
-                <input type="submit" value="Submit" className={`btn ${!eventMinutes || !eventDate ? `btn-danger` : `btn-primary`}`} disabled={!eventMinutes || !eventDate} />
-            </div>
-        </form>
+        <div className="user-form">
+            <form aria-label="form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="eventMinutes">Minutes:</label>
+                    <input type="text" name="eventMinutes" id="eventMinutes" placeholder='0' className='form-control' value={eventMinutes} onChange={event => setEventMinutes(event.target.value)} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="eventDistance">Distance:</label>
+                    <input type="text" name="eventDistance" id="eventDistance" placeholder='0' className='form-control' value={eventDistance} onChange={event => setEventDistance(event.target.value)} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="eventDate">Date:</label>
+                    <input type="date" name="eventDate" id="eventDate" placeholder='0' className='form-control' value={eventDate} onChange={event => setEventDate(event.target.value)} />
+                </div>
+                <div className="form-group">
+                    <input type="submit" value="Submit" className={`btn ${!eventMinutes || !eventDate ? `btn-danger` : `btn-primary`} my-3`} disabled={!eventMinutes || !eventDate} />
+                </div>
+            </form>
+
+        </div>
+
     )
 }
 

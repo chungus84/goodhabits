@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
+import './Components/utils/css/Authentication.css'
 
 
 import Header from './Components/Header';
@@ -16,6 +17,7 @@ const App = () => {
     const [userId, setUserId] = useState("");
     const [userName, setUserName] = useState("")
     const [error, setError] = useState("")
+    const [login, setLogin] = useState(false);
 
     const loginHandler = async (user) => {
         const externalDataCallResult = await loginUser(user);
@@ -68,7 +70,7 @@ const App = () => {
     return (
         <>
             <Header logout={logoutHandler} data={userName} />
-            {!loggedIn && <Authentication loginHandler={loginHandler} signUpFunc={signUpHandler} />}
+            {!loggedIn && <Authentication loginHandler={loginHandler} signUpFunc={signUpHandler} loginFunc={setLogin} login={login} />}
             {loggedIn && <RoutedMain userId={userId} />}
 
 

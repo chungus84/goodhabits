@@ -20,6 +20,8 @@ const LoginForm = ({ submitLogin }) => {
         // console.log(password);
     })
     return (
+
+
         <form aria-label="form" onSubmit={handleSubmit}>
             <div className="form-group">
                 <label htmlFor="email">Please enter your email</label>
@@ -30,11 +32,14 @@ const LoginForm = ({ submitLogin }) => {
                 <input type="password" name="password" id="password" className='form-control' placeholder='Password' value={password} onChange={event => { setPassword(event.target.value) }} required={true} />
             </div>
             <div className="form-group">
-                <input type="submit" value="Submit" className='form-control btn btn-danger rounded-pill' />
+                <input type="submit" value="Submit" className='form-control btn btn-danger rounded-pill mt-3' />
             </div>
 
 
         </form>
+
+
+
     )
 }
 

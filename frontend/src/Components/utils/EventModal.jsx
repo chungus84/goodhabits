@@ -25,7 +25,7 @@ const EventModal = ({ submitAction, data }) => {
                         <div className="event-modal-header">
 
                         </div>
-                        <div className="event-content">
+                        <div className="modal-content">
                             <AddEvent submitAction={submitAction} data={{ habits: habitCards, userId: userId }} />
                         </div>
                     </div>

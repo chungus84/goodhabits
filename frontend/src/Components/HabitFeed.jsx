@@ -1,21 +1,17 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import HabitCard from './HabitCard';
-import HabitModel from './utils/habit.model';
+
 
 
 import './utils/css/HabitFeed.css'
 
 const HabitFeed = ({ data }) => {
 
-    // console.log(`habitFeed: ${data}`);
-    // console.log(data);
 
     const habitCardNames = data.habitCards;
     const habits = data.habits;
-    // console.log(habitCardNames);
-    // console.log(`habit card names: ${habitCardNames}`);
-    // console.log(data.habits);
+
 
     useEffect(() => {
 
@@ -36,7 +32,7 @@ const HabitFeed = ({ data }) => {
         }
     }
     return (
-        <div className='row row-cols-sm-auto justify-content-around feed py-3 px-2 rounded' data-testid="newcard">
+        <div className='row row-cols-sm-auto justify-content-around feed py-3 px-2 mt-3 rounded' data-testid="newcard">
 
             {popHabitNames(habits, habitCardNames)}
 

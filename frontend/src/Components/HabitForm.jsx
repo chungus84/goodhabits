@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import './utils/css/HabitForm.css'
+
 const HabitForm = ({ submitAction, data }) => {
 
     // console.log(data);
@@ -31,28 +33,27 @@ const HabitForm = ({ submitAction, data }) => {
     })
 
     return (
-        <form aria-label="form" onSubmit={handleSubmit}>
-            <div className="form-group">
-                <label htmlFor="habitName">Habit Name:&nbsp;</label>
-                <input type="text" name="habitName" id="habitName" placeholder='Habit Name' className='form-control' value={habitName} onChange={event => setHabitName(event.target.value)} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="habitType">Type:&nbsp;</label>
-                <input type="text" name="habitType" id="habitType" placeholder='Type of Habit' data-testid="type" className='form-control' value={habitType} onChange={event => setHabitType(event.target.value)} />
-            </div>
-            {/* <div className="form-group">
-                <label htmlFor="habitDistance">Distance:&nbsp;</label>
-                <input type="number" name="habitDistance" placeholder='0' data-testid="distance" className='form-control' value={habitDistance} onChange={event => setHabitDistance(event.target.value)} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="habitCreatedAt">Date:&nbsp;</label>
-                <input type="date" name="habitCreatedAt" placeholder='' data-testid="date" className='form-control' value={habitCreatedAt} onChange={event => setHabitCreatedAt(event.target.value)} />
-            </div> */}
-            <div className="form-group">
-                <input type="submit" value="Submit" className={`btn ${!habitName || !habitType ? `btn-danger` : `btn-primary`}`} disabled={!habitName || !habitType} />
-            </div>
 
-        </form>
+        <div className="user-form">
+
+            <form aria-label="form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="habitName">Habit Name:&nbsp;</label>
+                    <input type="text" name="habitName" id="habitName" placeholder='Habit Name' className='form-control' value={habitName} onChange={event => setHabitName(event.target.value)} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="habitType">Type:&nbsp;</label>
+                    <input type="text" name="habitType" id="habitType" placeholder='Type of Habit' data-testid="type" className='form-control' value={habitType} onChange={event => setHabitType(event.target.value)} />
+                </div>
+
+                <div className="form-group">
+                    <input type="submit" value="Submit" className={`btn ${!habitName || !habitType ? `btn-danger` : `btn-primary`} my-3`} disabled={!habitName || !habitType} />
+                </div>
+
+            </form>
+
+        </div>
+
     )
 }
 

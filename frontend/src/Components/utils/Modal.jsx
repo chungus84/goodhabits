@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import "./css/Modal.css"
-import HabitForm from '../HabitForm'
+
 import AddHabit from '../AddHabit'
 
 

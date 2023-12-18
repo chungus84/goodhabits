@@ -18,7 +18,7 @@ const Header = (data) => {
                         <>
                             <img src={userPic} alt="user profile image" className="rounded-circle mx-2" />
                             <span>Hi, {userName}</span>
-                            <button className="btn btn-warning" onClick={data.logout}>Logout</button>
+                            <button className="btn btn-warning mx-2" onClick={data.logout}>Logout</button>
                         </>
 
                     )}

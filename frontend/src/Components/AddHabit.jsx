@@ -33,7 +33,7 @@ const AddHabit = ({ submitAction, data }) => {
     return (
         <>
             <h1>Add Habit</h1>
-            <div onClick={() => navigate("/")}>Back to Home</div>
+
             <HabitForm submitAction={submitHabit} data={{ userId: userId?.error ? {} : userId, habit: habit }} />
         </>
 

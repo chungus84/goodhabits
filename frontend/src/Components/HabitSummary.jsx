@@ -68,8 +68,7 @@ const HabitSummary = (data) => {
             <div className="row">
                 <div className="col"><MetricCard data={{ name: userHabit.name, total: calcMetric(events, "minutes"), metric: "minutes" }} /></div>
                 <div className="col"><MetricCard data={{ name: userHabit.name, total: calcMetric(events, "distance"), metric: "distance" }} /></div>
-                <h3>{`minutes spent ${userHabit.name}: ${calcMetric(events, "minutes")}`}</h3>
-                <h3>{`distance ${calcMetric(events, "distance")} miles`}</h3>
+
             </div>
             <div style={{ height: "200px" }} className="my-2">
                 <div className="relative h-100 bg-light chart-area" ref={ref}>

@@ -55,7 +55,7 @@ const SignUpForm = ({ submitNewUser }) => {
                 <input type="password" name="repeatPassword" id="repeatPassword" className='form-control' placeholder='Repeat Password' value={repeatPassword} onChange={event => { setRepeatPassword(event.target.value) }} required={true} />
             </div>
             <div className="form-group">
-                <input type="submit" value="Submit" className='form-control btn btn-danger rounded-pill' />
+                <input type="submit" value="Submit" className='form-control btn btn-danger rounded-pill mt-3' />
             </div>
         </form>
     )

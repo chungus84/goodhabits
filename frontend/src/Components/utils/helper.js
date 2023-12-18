@@ -1,6 +1,3 @@
-import HabitCard from "../HabitCard";
-import { parseISO } from 'date-fns';
-
 
 export const calcMetric = (array, metric) => {
     let total = 0;
@@ -22,18 +19,3 @@ export const buildChartArray = (array, metric) => {
     return retArr
 
 }
-
-// export const popHabitNames = (habits, habitCardsNames) => {
-//     if (habitCardNames?.length > 0) {
-//         let displayHabitNames = [];
-//         displayHabitNames.push(habitCardNames.map(habit => {
-
-//             return (<HabitCard data={habit} habits={habits} key={habit._id} />)
-//         }))
-
-//         // console.log(displayHabitNames);
-
-//         return displayHabitNames
-
-//     }
-// }
