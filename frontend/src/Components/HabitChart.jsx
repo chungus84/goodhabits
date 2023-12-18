@@ -11,11 +11,17 @@ const HabitChart = ({ data, width, height }) => {
 
     // console.log(data);
 
+    const xAccessor = d => { return new Date(d.date) }
 
+    const dates = []
+
+    data.forEach(el => dates.push(el.date.slice(0, 10)))
+
+    console.log(dates);
 
     let margin = {
         top: 10,
-        right: 10,
+        right: 50,
         bottom: 20,
         left: 24,
     }
@@ -23,38 +29,27 @@ const HabitChart = ({ data, width, height }) => {
     const gx = useRef();
     const gy = useRef();
 
-    let startDay;
-
-    let endDay;
-
-    let days;
-
-    if (data.length > 0) {
-
-        startDay = parseISO(data.at(0).date);
-        endDay = parseISO(data.at(-1).date);
-        days = eachDayOfInterval({ start: startDay, end: endDay })
-    }
-
 
 
     // console.log(endDay);
 
     let xScale = d3
-        .scaleTime()
-        .domain(d3.extent(data, (d) => { return new Date(d.date) }))
+        .scaleLinear()
+        .domain([0, data.length - 1])
         .range([margin.left, width - margin.right])
+
+    console.log(xScale.ticks());
 
     let yScale = d3
         .scaleLinear()
         .domain(d3.extent(data.map((d) => d.total)))
-        .range([height - margin.bottom, margin.top])
+        .range([height - margin.bottom, 0])
 
     // console.log(`ticks ${yScale.ticks(7)}`);
 
     let line = d3
         .line()
-        .x((d) => xScale(parseISO(d.date)))
+        .x((d, i) => xScale(i))
         .y((d) => yScale(d.total));
 
     let d = line(data);
@@ -62,7 +57,11 @@ const HabitChart = ({ data, width, height }) => {
     // const x = d3.scaleTime([startDay, endDay], [margin.left, width - margin.right]);
     // const y = d3.scaleLinear(d3.extent(data.map((d) => d.total)), [height - margin.bottom, margin.top]);
     // const line = d3.line((d, i) => x(i), y);
-    useEffect(() => void d3.select(gx.current).call(d3.axisBottom(xScale).tickFormat(d3.timeFormat("%d-%b")).tickValues(data.map((d) => { return new Date(d.date) }))), [gx, xScale]);
+    useEffect(() => void d3.select(gx.current)
+        .call(d3.axisBottom(xScale)
+            .ticks(data.length)
+            .tickFormat(i => dates[i])),
+        [gx, xScale]);
     useEffect(() => void d3.select(gy.current).call(d3.axisLeft(yScale)), [gy, yScale]);
 
     return (

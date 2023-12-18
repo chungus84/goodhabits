@@ -5,7 +5,7 @@ import AddEvent from '../AddEvent';
 
 const EventModal = ({ submitAction, data }) => {
 
-    console.log(data);
+    // console.log(data);
     const habitCards = data.habits
     const userId = data.userId
 

@@ -21,7 +21,7 @@ import Authentication from './Components/Authentication';
 
 
 function RoutedMain(userId) {
-    console.log(userId);
+    // console.log(userId);
 
     // const [userId, setUserId] = useState("")
     const [user, setUser] = useState({})
@@ -121,7 +121,7 @@ function RoutedMain(userId) {
         // console.log('getHabitEventsHandler called');
         // console.log(userHabit);
         const externalDataCallResult = await getHabitEvents(userHabit);
-        console.log(externalDataCallResult);
+        // console.log(externalDataCallResult);
 
         if (externalDataCallResult?.error) {
             const errorObject = { ...externalDataCallResult.error };

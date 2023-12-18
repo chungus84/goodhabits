@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Header = (data) => {
     const navigate = useNavigate();
-    console.log(data);
+    // console.log(data);
 
     const userName = data.data
     return (

@@ -34,7 +34,7 @@ const HabitSummary = (data) => {
         userId: userId
     }
 
-    console.log(userHabitIds);
+    // console.log(userHabitIds);
 
 
     const userHabit = habits.find(ele => {
@@ -72,7 +72,7 @@ const HabitSummary = (data) => {
                 <h3>{`distance ${calcMetric(events, "distance")} miles`}</h3>
             </div>
             <div style={{ height: "200px" }} className="my-2">
-                <div className="relative h-100 bg-light" ref={ref}>
+                <div className="relative h-100 bg-light chart-area" ref={ref}>
                     {bounds.width > 0 && (
 
                         < HabitChart data={buildChartArray(events, 'minutes')} width={bounds.width} height={bounds.height} />
