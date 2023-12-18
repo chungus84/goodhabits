@@ -15,13 +15,13 @@ const HabitChart = ({ data, width, height }) => {
 
     const dates = []
 
-    data.forEach(el => dates.push(el.date.slice(0, 10)))
+    data.forEach(el => dates.push(format(new Date(el.date.slice(0, 10)), 'dd-MMM')))
 
     console.log(dates);
 
     let margin = {
         top: 10,
-        right: 50,
+        right: 20,
         bottom: 20,
         left: 24,
     }
@@ -57,9 +57,10 @@ const HabitChart = ({ data, width, height }) => {
     // const x = d3.scaleTime([startDay, endDay], [margin.left, width - margin.right]);
     // const y = d3.scaleLinear(d3.extent(data.map((d) => d.total)), [height - margin.bottom, margin.top]);
     // const line = d3.line((d, i) => x(i), y);
+    // useEffect(() => void d3.select(gx.current).call(d3.axisBottom(xScale).tickFormat(d3.timeFormat("%d-%b")).tickValues(data.map((d) => { return new Date(d.date) }))), [gx, xScale]);
     useEffect(() => void d3.select(gx.current)
         .call(d3.axisBottom(xScale)
-            .ticks(data.length)
+            .ticks(6)
             .tickFormat(i => dates[i])),
         [gx, xScale]);
     useEffect(() => void d3.select(gy.current).call(d3.axisLeft(yScale)), [gy, yScale]);
@@ -71,6 +72,17 @@ const HabitChart = ({ data, width, height }) => {
                 <g ref={gx} transform={`translate(0,${height - margin.bottom})`} />
                 <g ref={gy} transform={`translate(${margin.left}, 0)`} />
                 <motion.path initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, type: "spring" }} d={d} fill="none" stroke="orange" strokeWidth="2" />
+                {data.map((d, i) => (
+                    <motion.circle
+                        key={dates[i]}
+                        r="5"
+                        cx={xScale(dates[i])}
+                        cy={yScale(d.total)}
+                        fill="orange"
+                        strokeWidth={2}
+                        stroke={"white"}
+                    />
+                ))}
 
             </svg>
         </>
