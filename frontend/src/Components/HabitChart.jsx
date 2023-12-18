@@ -72,17 +72,7 @@ const HabitChart = ({ data, width, height }) => {
                 <g ref={gx} transform={`translate(0,${height - margin.bottom})`} />
                 <g ref={gy} transform={`translate(${margin.left}, 0)`} />
                 <motion.path initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, type: "spring" }} d={d} fill="none" stroke="orange" strokeWidth="2" />
-                {data.map((d, i) => (
-                    <motion.circle
-                        key={dates[i]}
-                        r="5"
-                        cx={xScale(dates[i])}
-                        cy={yScale(d.total)}
-                        fill="orange"
-                        strokeWidth={2}
-                        stroke={"white"}
-                    />
-                ))}
+
 
             </svg>
         </>
