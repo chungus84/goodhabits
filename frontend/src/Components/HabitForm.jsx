@@ -24,6 +24,8 @@ const HabitForm = ({ submitAction, data }) => {
         // setHabitCreatedAt("");
     }
 
+    console.log(data);
+
     useEffect(() => {
         setUserId(data.userId)
     })
@@ -32,11 +34,11 @@ const HabitForm = ({ submitAction, data }) => {
         <form aria-label="form" onSubmit={handleSubmit}>
             <div className="form-group">
                 <label htmlFor="habitName">Habit Name:&nbsp;</label>
-                <input type="text" name="habitName" placeholder='Habit Name' className='form-control' value={habitName} onChange={event => setHabitName(event.target.value)} />
+                <input type="text" name="habitName" id="habitName" placeholder='Habit Name' className='form-control' value={habitName} onChange={event => setHabitName(event.target.value)} />
             </div>
             <div className="form-group">
                 <label htmlFor="habitType">Type:&nbsp;</label>
-                <input type="text" name="habitType" placeholder='Type of Habit' data-testid="type" className='form-control' value={habitType} onChange={event => setHabitType(event.target.value)} />
+                <input type="text" name="habitType" id="habitType" placeholder='Type of Habit' data-testid="type" className='form-control' value={habitType} onChange={event => setHabitType(event.target.value)} />
             </div>
             {/* <div className="form-group">
                 <label htmlFor="habitDistance">Distance:&nbsp;</label>

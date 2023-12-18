@@ -23,11 +23,11 @@ const LoginForm = ({ submitLogin }) => {
         <form aria-label="form" onSubmit={handleSubmit}>
             <div className="form-group">
                 <label htmlFor="email">Please enter your email</label>
-                <input type="email" name="email" id="" className='form-control' placeholder='your@email.com' value={email} onChange={event => { setEmail(event.target.value) }} required={true} />
+                <input type="email" name="email" id="email" className='form-control' placeholder='your@email.com' value={email} onChange={event => { setEmail(event.target.value) }} required={true} />
             </div>
             <div className="form-group">
                 <label htmlFor="password">Password:</label>
-                <input type="password" name="password" id="" className='form-control' placeholder='Password' value={password} onChange={event => { setPassword(event.target.value) }} required={true} />
+                <input type="password" name="password" id="password" className='form-control' placeholder='Password' value={password} onChange={event => { setPassword(event.target.value) }} required={true} />
             </div>
             <div className="form-group">
                 <input type="submit" value="Submit" className='form-control btn btn-danger rounded-pill' />

@@ -37,15 +37,15 @@ const EventForm = ({ submitAction, data }) => {
         <form aria-label="form" onSubmit={handleSubmit}>
             <div className="form-group">
                 <label htmlFor="eventMinutes">Minutes:</label>
-                <input type="text" name="eventMinutes" placeholder='0' className='form-control' value={eventMinutes} onChange={event => setEventMinutes(event.target.value)} />
+                <input type="text" name="eventMinutes" id="eventMinutes" placeholder='0' className='form-control' value={eventMinutes} onChange={event => setEventMinutes(event.target.value)} />
             </div>
             <div className="form-group">
                 <label htmlFor="eventDistance">Distance:</label>
-                <input type="text" name="eventDistance" placeholder='0' className='form-control' value={eventDistance} onChange={event => setEventDistance(event.target.value)} />
+                <input type="text" name="eventDistance" id="eventDistance" placeholder='0' className='form-control' value={eventDistance} onChange={event => setEventDistance(event.target.value)} />
             </div>
             <div className="form-group">
                 <label htmlFor="eventDate">Date:</label>
-                <input type="date" name="eventDate" placeholder='0' className='form-control' value={eventDate} onChange={event => setEventDate(event.target.value)} />
+                <input type="date" name="eventDate" id="eventDate" placeholder='0' className='form-control' value={eventDate} onChange={event => setEventDate(event.target.value)} />
             </div>
             <div className="form-group">
                 <input type="submit" value="Submit" className={`btn ${!eventMinutes || !eventDate ? `btn-danger` : `btn-primary`}`} disabled={!eventMinutes || !eventDate} />

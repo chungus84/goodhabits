@@ -82,7 +82,7 @@ export const getUser = async (id) => {
     try {
         // console.log(id);
         const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/user`, { params: { userId: id } })
-        console.log(res);
+        // console.log(res);
         return { user: res.data, status: res.status }
 
     } catch (err) {
@@ -94,4 +94,21 @@ export const getUser = async (id) => {
             }
         }
     }
+}
+
+export const addNewUser = async (user) => {
+    // console.log(user);
+    try {
+        const res = await axios.post(`${import.meta.env.VITE_MYDAYSURL}/user`, user);
+        return { user: res.data, status: res.status }
+    } catch (err) {
+        return {
+            status: err.response?.status,
+            error: {
+                type: `post`,
+                message: err.response?.status
+            }
+        }
+    }
+
 }

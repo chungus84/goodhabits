@@ -5,4 +5,5 @@ export const router = express.Router();
 
 const userControllers = new UserControllers();
 
-router.get('/', userControllers.getUserById)
+router.get('/', userControllers.getUserById);
+router.post('/', userControllers.addNewUser);

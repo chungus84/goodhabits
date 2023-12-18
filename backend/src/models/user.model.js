@@ -12,7 +12,7 @@ const habitSchema = new mongoose.Schema({
 });
 
 const userSchema = new mongoose.Schema({
-    user_id: { type: mongoose.Schema.Types.ObjectId, required: true },
+    userId: { type: mongoose.Types.ObjectId, required: true },
     userName: { type: String, required: true },
     habits: [habitSchema],
     createdAt: { type: Date, immutable: true, default: () => Date.now() }

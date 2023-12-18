@@ -4,9 +4,9 @@ import './utils/css/Authentication.css';
 import LoginForm from './utils/LoginForm';
 import SignUpForm from './utils/SignUpForm';
 
-const Authentication = ({ loginHandler }) => {
+const Authentication = ({ loginHandler, signUpFunc }) => {
 
-    // console.log(loginHandler);
+    // console.log(signUpFunc);
 
     const [login, setLogin] = useState(false);
     const [submitted, setSubmitted] = useState(false)
@@ -34,6 +34,19 @@ const Authentication = ({ loginHandler }) => {
         setSubmitted(true)
     }
 
+    const signUp = (firstName, lastName, userName, email, password, repeatedPassword) => {
+        const newUserToSubmit = {
+            firstName: firstName,
+            lastName: lastName,
+            userName: userName,
+            email: email,
+            password: password
+        }
+
+        signUpFunc(newUserToSubmit)
+        setSubmitted(true);
+    }
+
     useEffect(() => {
         if (submitted) navigate('/')
     }, [submitted, navigate])
@@ -51,7 +64,7 @@ const Authentication = ({ loginHandler }) => {
                     <LoginForm submitLogin={submitLogin} />
                 )}
                 {!login && (
-                    <SignUpForm />
+                    <SignUpForm submitNewUser={signUp} />
                 )}
 
             </div>

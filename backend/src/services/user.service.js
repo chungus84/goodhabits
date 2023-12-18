@@ -16,9 +16,11 @@ class UserServices {
     }
 
     addNewUser = async (user) => {
+        console.log(user);
 
         try {
             const res = await User.create(user);
+            console.log(res);
             return res;
         } catch (err) {
             throw err;
