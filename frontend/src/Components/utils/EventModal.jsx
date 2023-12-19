@@ -17,7 +17,7 @@ const EventModal = ({ submitAction, data }) => {
 
     return (
         <>
-            <button className={modal ? "btn btn-danger" : "btn btn-primary"} onClick={toggleModal}>{modal ? "Close" : "Add an Event"}</button>
+            <button className={modal ? "btn btn-danger my-3" : "btn btn-primary my-3"} onClick={toggleModal}>{modal ? "Close" : "Add an Event"}</button>
 
             {modal && (
                 <div className="event-modal-container">

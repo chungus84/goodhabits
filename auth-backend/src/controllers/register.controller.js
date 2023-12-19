@@ -2,7 +2,6 @@ import { addUser } from "../services/register.service.js"
 
 export const registerNewUser = async (req, res) => {
     try {
-        // console.log(req.body);
         const user = await addUser(req.body)
         res.status(201).json(user)
     } catch (err) {

@@ -60,10 +60,12 @@ const HabitChart = ({ data, width, height }) => {
     // useEffect(() => void d3.select(gx.current).call(d3.axisBottom(xScale).tickFormat(d3.timeFormat("%d-%b")).tickValues(data.map((d) => { return new Date(d.date) }))), [gx, xScale]);
     useEffect(() => void d3.select(gx.current)
         .call(d3.axisBottom(xScale)
-            .ticks(6)
+            .ticks(data.length - 1)
             .tickFormat(i => dates[i])),
         [gx, xScale]);
-    useEffect(() => void d3.select(gy.current).call(d3.axisLeft(yScale)), [gy, yScale]);
+    useEffect(() => void d3.select(gy.current)
+        .call(d3.axisLeft(yScale).ticks(5)),
+        [gy, yScale]);
 
     return (
         <>

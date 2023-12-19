@@ -17,7 +17,7 @@ const Modal = ({ data, submitAction }) => {
 
     return (
         <>
-            <button className={modal ? "btn btn-danger" : "btn btn-primary"} onClick={toggleModal}>{modal ? "Close" : "Add a Habit"}</button>
+            <button className={modal ? "btn btn-danger my-3" : "btn btn-primary my-3"} onClick={toggleModal}>{modal ? "Close" : "Add a Habit"}</button>
 
             {modal && (
                 <div className="habit-modal-container">

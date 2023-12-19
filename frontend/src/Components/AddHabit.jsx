@@ -32,7 +32,7 @@ const AddHabit = ({ submitAction, data }) => {
 
     return (
         <>
-            <h1>Add Habit</h1>
+            <h3>Please add a new habit</h3>
 
             <HabitForm submitAction={submitHabit} data={{ userId: userId?.error ? {} : userId, habit: habit }} />
         </>

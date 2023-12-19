@@ -4,11 +4,8 @@ const userServices = new UserServices()
 
 class UserControllers {
     getUserById = async (req, res) => {
-
-
         try {
             const user = await userServices.findUserById(req.query)
-            // console.log(user);
             res.status(200).json(user)
         } catch (err) {
             res.status(400).json(err)
@@ -16,7 +13,6 @@ class UserControllers {
     }
 
     addNewUser = async (req, res) => {
-
         try {
             const user = await userServices.addNewUser(req.body);
             res.status(201).json(user);
