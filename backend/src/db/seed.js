@@ -3,6 +3,7 @@ import Habit from "../models/habit.model.js";
 import Event from "../models/event.model.js";
 import User from "../models/user.model.js";
 import AuthUser from "../../../auth-backend/src/model/authUser.model.js";
+import bcrypt from 'bcrypt';
 
 const conn1 = mongoose.createConnection("mongodb://127.0.0.1:27017/mydaysdev")
 const conn2 = mongoose.createConnection("mongodb://127.0.0.1:27017/mydaysdevauth")
@@ -53,7 +54,7 @@ const seedDB = async () => {
         lastName: "Beveridge",
         userName: "Chungus",
         email: "test@testing.com",
-        password: "password",
+        password: bcrypt.hashSync("password", 8),
         repeatedPassword: "password",
         createdAt: new Date("2023-10-01")
     }
