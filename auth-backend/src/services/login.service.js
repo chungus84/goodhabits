@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import AuthUser from "../model/authUser.model.js";
+import bcrypt from 'bcrypt';
 
 export const login = async (user) => {
 
@@ -7,7 +8,7 @@ export const login = async (user) => {
 
     try {
         const userDetails = await AuthUser.findOne({ email: user.email });
-        if (userDetails && (user.password = userDetails.password)) {
+        if (userDetails && (bcrypt.compareSync(user.password, userDetails.password))) {
             return {
                 message: 'login was successful', user: {
                     userName: userDetails.userName,
