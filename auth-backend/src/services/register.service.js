@@ -1,4 +1,5 @@
 import AuthUser from "../model/authUser.model.js";
+import bcrypt from 'bcrypt';
 
 export const addUser = async (user) => {
 
@@ -8,7 +9,15 @@ export const addUser = async (user) => {
 
     try {
 
-        const res = await AuthUser.create(user);
+        const newUser = {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            userName: user.userName,
+            password: bcrypt.hashSync(user.password, 8)
+        }
+
+        const res = await AuthUser.create(newUser);
         return res
     } catch (err) {
         throw err;
