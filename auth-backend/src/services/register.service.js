@@ -7,6 +7,7 @@ export const addUser = async (user) => {
     if (!user || !user.firstName || !user.lastName || !user.email || !user.userName || !user.password) return Promise.reject(new Error("Invalid arguments"))
 
     try {
+
         const res = await AuthUser.create(user);
         return res
     } catch (err) {
