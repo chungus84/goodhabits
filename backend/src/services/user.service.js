@@ -2,9 +2,10 @@ import User from "../models/user.model.js";
 import mongoose from 'mongoose';
 
 class UserServices {
-    findUserById = async (id) => {
+    findUserById = async (userId) => {
+        console.log(userId);
         try {
-            const objId = new mongoose.Types.ObjectId(id.userId)
+            const objId = new mongoose.Types.ObjectId(userId)
             const res = await User.findOne({ userId: objId });
             return res;
         } catch (err) {

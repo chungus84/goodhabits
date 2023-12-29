@@ -4,8 +4,9 @@ const userServices = new UserServices()
 
 class UserControllers {
     getUserById = async (req, res) => {
+        // console.log(req.headers.userid);
         try {
-            const user = await userServices.findUserById(req.query)
+            const user = await userServices.findUserById(req.headers.userid)
             res.status(200).json(user)
         } catch (err) {
             res.status(400).json(err)

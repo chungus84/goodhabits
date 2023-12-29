@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { authHeader } from './authHeaders.js';
+
 // export const getHabits = async () => {
 //     try {
 //         const res = await axios.get(import.meta.env.VITE_MYDAYSURL);
@@ -81,7 +83,7 @@ export const submitHabitEvent = async event => {
 export const getUser = async (id) => {
     try {
         // console.log(id);
-        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/user`, { params: { userId: id } })
+        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/user`, { headers: authHeader() })
         // console.log(res);
         return { user: res.data, status: res.status }
 
