@@ -26,7 +26,7 @@ const Modal = ({ data, submitAction }) => {
 
                         </div>
                         <div className="modal-content">
-                            <AddHabit submitAction={submitAction} data={data.user} />
+                            <AddHabit submitAction={submitAction} data={data.userHabits} />
                         </div>
                     </div>
                 </div>

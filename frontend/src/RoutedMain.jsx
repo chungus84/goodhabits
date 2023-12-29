@@ -145,7 +145,15 @@ function RoutedMain(userId) {
 
 
     useEffect(() => {
-        getUserHandler(userId.userId)
+
+        const currentUser = helper.getCurrentUser();
+        getUserHandler(currentUser.userId)
+        // console.log(currentUser);
+
+        if (currentUser) {
+            setUser(currentUser)
+            getUserHandler(currentUser.userId)
+        }
 
         // console.log("UseEffect ran in app.jsx");
 

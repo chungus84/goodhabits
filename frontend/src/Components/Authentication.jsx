@@ -6,8 +6,8 @@ import SignUpForm from './utils/SignUpForm';
 
 const Authentication = ({ loginHandler, signUpFunc, loginFunc, login }) => {
 
-    console.log(loginFunc);
-    console.log(login);
+    // console.log(loginFunc);
+    // console.log(login);
 
 
     const [submitted, setSubmitted] = useState(false)

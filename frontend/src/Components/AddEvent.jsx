@@ -14,6 +14,8 @@ const AddEvent = (eventData) => {
     const habits = eventData.data.habits;
     const submitAction = eventData.submitAction;
 
+    // console.log(submitAction);
+
     const { id } = useParams()
     // console.log(id);
 

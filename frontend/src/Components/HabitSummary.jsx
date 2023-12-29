@@ -60,7 +60,7 @@ const HabitSummary = (data) => {
     return (
         <>
             <h2>{userHabit.name}</h2>
-            <div onClick={(() => navigate(`/`))}>〈 back</div>
+            <div onClick={(() => navigate(`/habit`))}>〈 back</div>
             <EventModal submitAction={submitAction} data={{ habits, userId }} />
             {/* <div className="btn btn-primary rounded-pill" onClick={(() => navigate(`/habit/${userHabit._id}/add`))}>Add Event</div> */}
             {/* <p>{matchEvents}</p> */}

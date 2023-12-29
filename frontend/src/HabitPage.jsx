@@ -8,15 +8,16 @@ const HabitPage = ({ data, submitAction }) => {
 
     // console.log(data);
 
-    const { user, habitCards, error } = data;
+    const { userHabits, habitCards, error } = data;
+    console.log(userHabits);
 
 
     return (
         <>
             <h2>Habit Page</h2>
-            <Modal data={{ user, habitCards, error }} submitAction={submitAction} />
+            <Modal data={{ userHabits, habitCards, error }} submitAction={submitAction} />
 
-            <HabitFeed data={{ user, habitCards, error }} />
+            <HabitFeed data={{ userHabits, habitCards, error }} />
         </>
 
     )
