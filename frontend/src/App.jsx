@@ -47,7 +47,7 @@ const App = () => {
             setError(errorObject);
         }
         const loginCall = externalDataCallResult?.user ? externalDataCallResult.user : []
-        console.log(loginCall.user);
+        // console.log(loginCall.user);
         setUser(loginCall.user)
         setUserId(loginCall.user.userId)
         setUserName(loginCall.user.userName)
@@ -103,13 +103,13 @@ const App = () => {
         const habitsCall = externalDataCallResult?.user ? externalDataCallResult.user : {};
         // console.log(habitsCall);
         setUserHabits(habitsCall)
-        console.log(userHabits);
+        // console.log(userHabits);
         setHabitCards(helper.cardNames(habitsCall.habits))
     }
 
     const submitHabitHandler = async habit => {
         const externalDataCallResult = await habitApi.submitHabit(habit);
-        console.log(externalDataCallResult);
+        // console.log(externalDataCallResult);
 
         if (externalDataCallResult?.error) {
             const errorObject = { ...externalDataCallResult.error };
