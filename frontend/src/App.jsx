@@ -67,8 +67,6 @@ const App = () => {
             setError(errorObject);
         }
 
-
-
         const addUserCall = externalDataCallResult?.user ? externalDataCallResult.user : []
         const newUserToAdd = {
             userName: addUserCall.userName,
@@ -76,10 +74,16 @@ const App = () => {
 
         }
         const addUserDataCallResult = await habitApi.addNewUser(newUserToAdd)
-        // console.log(addUserDataCallResult);
-        setUserId(newUserToAdd.userId)
-        setUserName(newUserToAdd.userName)
-        // setLoggedIn(true);
+
+        if (addUserDataCallResult?.user) {
+            const loginDetails = {
+                email: newUser.email,
+                password: newUser.password
+            }
+            const res = await loginHandler(loginDetails)
+
+        }
+
     }
 
     const logoutHandler = async () => {
