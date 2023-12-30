@@ -82,8 +82,9 @@ const App = () => {
         // setLoggedIn(true);
     }
 
-    const logoutHandler = () => {
+    const logoutHandler = async () => {
         setLoggedIn(false);
+        await authApi.removeRefreshToken();
         localStorage.removeItem('user')
         setUser({})
         setUserId("")
