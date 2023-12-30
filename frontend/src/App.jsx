@@ -51,6 +51,7 @@ const App = () => {
         setUser(loginCall.user)
         setUserId(loginCall.user.userId)
         setUserName(loginCall.user.userName)
+        getUserHabitsHandler(userId)
         navigate('/habit')
         // setLoggedIn(true)
         // console.log(userId);
@@ -91,6 +92,8 @@ const App = () => {
         await authApi.removeRefreshToken();
         localStorage.removeItem('user')
         setUser({})
+        setUserHabits({})
+        setHabitCards([])
         setUserId("")
         setUserName("")
         navigate('/home')
@@ -174,13 +177,14 @@ const App = () => {
             setUserId(currentUser.userId)
             setUserName(currentUser.userName)
             // setLoggedIn(true)
+
             getUserHabitsHandler(currentUser.userId)
             navigate('/habit')
         }
     }, [])
 
     // console.log(submitHabitHandler);
-    console.log(userHabits);
+    console.log(getCurrentUser());
 
 
     return (
