@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 import main from './src/db/main.js'
 import { router as registerRoutes } from './src/routes/register.routes.js'
 import { router as loginRoutes } from './src/routes/login.routes.js'
+import { router as tokenRoutes } from './src/routes/token.routes.js';
 
 const app = express();
 dotenv.config({ path: `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ''}` })
@@ -19,6 +20,8 @@ app.use(cors());
 app.use(bodyParser.json())
 app.use('/register', registerRoutes)
 app.use('/login', loginRoutes)
+app.use('/token', tokenRoutes);
+
 
 main()
 
