@@ -7,7 +7,7 @@ class EventServices {
 
     getEvents = async (habitId) => {
         try {
-            // console.log(habitId);
+
             const objId = new mongoose.Types.ObjectId(habitId.userId)
             const res = await User.findOne({ userId: objId, "habits._id": habitId.habitId }, { "habits.name": 1, "habits._id": 1, "habits.events": 1 }).populate("habits.events")
             // console.log(res);

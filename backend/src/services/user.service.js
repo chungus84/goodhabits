@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 class UserServices {
     findUserById = async (userId) => {
-        console.log(userId);
+        // console.log(userId);
         try {
             const objId = new mongoose.Types.ObjectId(userId)
             const res = await User.findOne({ userId: objId });

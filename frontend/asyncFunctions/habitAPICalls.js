@@ -23,12 +23,7 @@ import { authHeader } from './authHeaders.js';
 export const getHabitEvents = async userHabitIds => {
     try {
         // console.log(userHabitIds);
-        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/habits/${userHabitIds.habitId}`, {
-            params: {
-                userId: userHabitIds.userId,
-                habitId: userHabitIds.habitId
-            }
-        })
+        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/habits/${userHabitIds.habitId}`, { headers: authHeader() })
         // console.log(res.data.habits);
 
         if (Array.isArray(res.data.habits) && res.data.habits.length > 0) return { events: res.data.habits, status: res.status }
@@ -48,7 +43,7 @@ export const getHabitEvents = async userHabitIds => {
 export const submitHabit = async habit => {
     try {
         // console.log(habit);
-        const res = await axios.post(`${import.meta.env.VITE_MYDAYSURL}/`, habit)
+        const res = await axios.post(`${import.meta.env.VITE_MYDAYSURL}/`, habit, { headers: authHeader() })
         // console.log(res);
         return { habit: res.data, status: res.status };
     } catch (err) {
@@ -65,7 +60,7 @@ export const submitHabit = async habit => {
 export const submitHabitEvent = async event => {
     try {
         // console.log(event);
-        const res = await axios.post(`${import.meta.env.VITE_MYDAYSURL}/habits/${event.habitId}/add`, event)
+        const res = await axios.post(`${import.meta.env.VITE_MYDAYSURL}/habits/${event.habitId}/add`, event, { headers: authHeader() })
         // console.log(res);
         return { event: res.data, status: res.status };
 

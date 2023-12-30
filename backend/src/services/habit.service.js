@@ -3,16 +3,16 @@ import mongoose from 'mongoose';
 
 class HabitServices {
 
-    getHabits = async () => {
-        try {
-            const res = await Habit.find({});
+    // getHabits = async () => {
+    //     try {
+    //         const res = await Habit.find({});
 
-            return res;
-        } catch (err) {
+    //         return res;
+    //     } catch (err) {
 
-            throw err
-        }
-    }
+    //         throw err
+    //     }
+    // }
 
     addHabit = async (newHabit) => {
 
