@@ -93,6 +93,7 @@ const App = () => {
 
     const getUserHabitsHandler = async id => {
         const externalDataCallResult = await habitApi.getUser(id);
+        console.log(externalDataCallResult);
 
         if (externalDataCallResult?.error) {
             const errorObject = { ...externalDataCallResult.error };
@@ -100,6 +101,7 @@ const App = () => {
             setError(errorObject);
 
         }
+
         const habitsCall = externalDataCallResult?.user ? externalDataCallResult.user : {};
         // console.log(habitsCall);
         setUserHabits(habitsCall)
@@ -173,6 +175,7 @@ const App = () => {
     }, [])
 
     // console.log(submitHabitHandler);
+    console.log(userHabits);
 
 
     return (

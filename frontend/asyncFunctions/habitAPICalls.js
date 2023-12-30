@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { authHeader } from './authHeaders.js';
+import { refreshToken } from './refreshToken.js';
 
 // export const getHabits = async () => {
 //     try {
@@ -22,13 +23,23 @@ import { authHeader } from './authHeaders.js';
 
 export const getHabitEvents = async userHabitIds => {
     try {
-        // console.log(userHabitIds);
+
         const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/habits/${userHabitIds.habitId}`, { headers: authHeader() })
-        // console.log(res.data.habits);
+
 
         if (Array.isArray(res.data.habits) && res.data.habits.length > 0) return { events: res.data.habits, status: res.status }
         throw new Error("There are no events for this habit, please add one");
     } catch (err) {
+
+        if (err.response.status === 403) {
+            await refreshToken(authHeader());
+            const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/habits/${userHabitIds.habitId}`, { headers: authHeader() })
+
+
+            if (Array.isArray(res.data.habits) && res.data.habits.length > 0) return { events: res.data.habits, status: res.status }
+
+
+        }
         return {
             events: [],
             status: err.response?.status ?? 204,
@@ -47,6 +58,12 @@ export const submitHabit = async habit => {
         // console.log(res);
         return { habit: res.data, status: res.status };
     } catch (err) {
+
+        if (err.response.status === 403) {
+            await refreshToken(authHeader())
+            const res = await axios.post(`${import.meta.env.VITE_MYDAYSURL}/`, habit, { headers: authHeader() })
+            return { habit: res.data, status: res.status };
+        }
         return {
             status: err.response?.status,
             error: {
@@ -65,6 +82,14 @@ export const submitHabitEvent = async event => {
         return { event: res.data, status: res.status };
 
     } catch (err) {
+
+        if (err.response.status === 403) {
+            await refreshToken(authHeader());
+            const res = await axios.post(`${import.meta.env.VITE_MYDAYSURL}/habits/${event.habitId}/add`, event, { headers: authHeader() })
+            return { event: res.data, status: res.status };
+
+        }
+
         return {
             status: err.response?.status,
             error: {
@@ -76,22 +101,30 @@ export const submitHabitEvent = async event => {
 }
 
 export const getUser = async (id) => {
+
     try {
         // console.log(id);
         const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/user`, { headers: authHeader() })
-        // console.log(res);
+        console.log(res);
         return { user: res.data, status: res.status }
 
     } catch (err) {
-        return {
-            status: err.response?.status,
-            error: {
-                type: 'get',
-                message: err.response?.message
-            }
+        console.log(err);
+        if (err.response.status === 403) {
+            const refreshRes = await refreshToken(authHeader());
+            return { user: refreshRes.data, status: refreshRes.status }
+
+        }
+    }
+    return {
+        status: err.response?.status,
+        error: {
+            type: 'get',
+            message: err.response?.message
         }
     }
 }
+
 
 export const addNewUser = async (user) => {
     // console.log(user);

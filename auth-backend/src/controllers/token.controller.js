@@ -5,9 +5,9 @@ import jwt from 'jsonwebtoken';
 export const refreshToken = async (req, res) => {
 
     try {
-        const token = await tokenRefresh(req.headers.refreshtoken)
+        const token = await tokenRefresh(req.body.refreshToken)
         jwt.verify(token.token, process.env.REFRESH_ACCESS_TOKEN, (err, user) => {
-            if (err) return res.status(403);
+            if (err) return res.status(403).json(err);
             const userName = { name: user.name }
             const accessToken = generateAccessToken(userName);
 
