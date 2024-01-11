@@ -5,7 +5,6 @@ import './Components/utils/css/Authentication.css'
 
 
 import Header from './Components/Header';
-// import RoutedMain from './RoutedMain';
 import Authentication from './Components/Authentication';
 import HabitPage from './HabitPage';
 import HabitSummary from './Components/HabitSummary';
@@ -39,52 +38,39 @@ const App = () => {
 
     const loginHandler = async (user) => {
         const externalDataCallResult = await authApi.loginUser(user);
-        // console.log(externalDataCallResult?.user);
-
         if (externalDataCallResult?.error) {
             const errorObject = { ...externalDataCallResult.error };
             errorObject.message = `There was a problem getting your habits ${externalDataCallResult.error.message}`;
             setError(errorObject);
         }
         const loginCall = externalDataCallResult?.user ? externalDataCallResult.user : []
-        // console.log(loginCall.user);
         setUser(loginCall.user)
         setUserId(loginCall.user.userId)
         setUserName(loginCall.user.userName)
         getUserHabitsHandler(userId)
         navigate('/habit')
-        // setLoggedIn(true)
-        // console.log(userId);
-
     }
 
     const signUpHandler = async (newUser) => {
-        // console.log(newUser);
         const externalDataCallResult = await authApi.addUser(newUser);
-        // console.log(externalDataCallResult);
         if (externalDataCallResult?.error) {
             const errorObject = { ...externalDataCallResult.error };
             errorObject.message = `There was a problem getting your habits ${externalDataCallResult.error.message}`;
             setError(errorObject);
         }
-
         const addUserCall = externalDataCallResult?.user ? externalDataCallResult.user : []
         const newUserToAdd = {
             userName: addUserCall.userName,
             userId: addUserCall._id
-
         }
         const addUserDataCallResult = await habitApi.addNewUser(newUserToAdd)
-
         if (addUserDataCallResult?.user) {
             const loginDetails = {
                 email: newUser.email,
                 password: newUser.password
             }
             const res = await loginHandler(loginDetails)
-
         }
-
     }
 
     const logoutHandler = async () => {
@@ -101,32 +87,23 @@ const App = () => {
 
     const getUserHabitsHandler = async id => {
         const externalDataCallResult = await habitApi.getUser(id);
-        console.log(externalDataCallResult);
-
         if (externalDataCallResult?.error) {
             const errorObject = { ...externalDataCallResult.error };
             errorObject.message = `There was a problem retrieving your habits: ${externalDataCallResult.error.message}`
             setError(errorObject);
-
         }
-
         const habitsCall = externalDataCallResult?.user ? externalDataCallResult.user : {};
-        // console.log(habitsCall);
         setUserHabits(habitsCall)
-        // console.log(userHabits);
         setHabitCards(helper.cardNames(habitsCall.habits))
     }
 
     const submitHabitHandler = async habit => {
         const externalDataCallResult = await habitApi.submitHabit(habit);
-        // console.log(externalDataCallResult);
-
         if (externalDataCallResult?.error) {
             const errorObject = { ...externalDataCallResult.error };
             errorObject.message = `There was a problem adding your new habit: ${externalDataCallResult.error.message}`
             return setError(errorObject);
         }
-
         setCreateHabitStatus('Habit Created');
         getUserHabitsHandler(user.userId)
 
@@ -151,22 +128,16 @@ const App = () => {
 
     const getHabitEventsHandler = async userHabit => {
         const externalDataCallResult = await habitApi.getHabitEvents(userHabit);
-        // console.log(externalDataCallResult);
-
         if (externalDataCallResult?.error) {
             const errorObject = { ...externalDataCallResult.error };
             errorObject.message = `There was a problem getting your habits events: ${externalDataCallResult.error.message}`
             setError(errorObject)
         }
         const eventsCall = await externalDataCallResult?.events ? externalDataCallResult.events : [];
-        // console.log(eventsCall);
-        // console.log(userHabit.habitId);
         const userEvents = eventsCall.find(ele => {
             if (ele._id === userHabit.habitId) return ele.events
         })
-
         userEvents.events.sort((a, b) => { return new Date(a.date) - new Date(b.date) });
-        // console.log(userEvents);
         setEvents(userEvents.events);
     }
 
@@ -176,16 +147,10 @@ const App = () => {
             setUser(currentUser)
             setUserId(currentUser.userId)
             setUserName(currentUser.userName)
-            // setLoggedIn(true)
-
             getUserHabitsHandler(currentUser.userId)
             navigate('/habit')
         }
     }, [])
-
-    // console.log(submitHabitHandler);
-    console.log(getCurrentUser());
-
 
     return (
         <>
@@ -198,10 +163,6 @@ const App = () => {
                 <Route path="/habit/:id/add" element={<AddEvent submitAction={submitEventHandler} data={{ habits: habitCards }} />} />
                 <Route path="/habit/add" element={<AddHabit data={{ userHabits: userHabits }} submitAction={submitHabitHandler} />} />
             </Routes>
-            {/* {!loggedIn && <Authentication loginHandler={loginHandler} signUpFunc={signUpHandler} loginFunc={setLogin} login={login} />}
-            {loggedIn && <RoutedMain userId={userId} />} */}
-
-
         </>
     )
 }
