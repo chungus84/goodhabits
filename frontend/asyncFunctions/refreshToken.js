@@ -20,7 +20,7 @@ export const refreshToken = async (headers) => {
             }
 
         }
-        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/user`, { headers: newHeaders })
+        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/profile`, { headers: newHeaders })
         return res;
 
     } catch (err) {

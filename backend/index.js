@@ -19,7 +19,7 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/', habitRouter);
-app.use('/user', profileRouter);
+app.use('/profile', profileRouter);
 app.use('/habits', eventRouter);
 
 

@@ -104,7 +104,7 @@ export const getUser = async (id) => {
 
     try {
         // console.log(id);
-        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/user`, { headers: authHeader() })
+        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/profile`, { headers: authHeader() })
         console.log(res);
         return { user: res.data, status: res.status }
 

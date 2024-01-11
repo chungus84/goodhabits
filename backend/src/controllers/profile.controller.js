@@ -6,8 +6,9 @@ const profileServices = new ProfileServices()
 class ProfileControllers {
     getProfileByUserId = async (req, res) => {
 
+
         try {
-            const profile = await profileServices.getProfileByUserId(req.headers.userid)
+            const profile = await profileServices.findProfileByUserId(req.headers.userid)
             res.status(200).json(profile)
         } catch (err) {
             res.status(400).json(err)

@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 class ProfileServices {
     findProfileByUserId = async (userId) => {
-        // console.log(userId);
+        console.log(userId);
         try {
             const objId = new mongoose.Types.ObjectId(userId)
             const res = await Profile.findOne({ userId: objId });
