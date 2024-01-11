@@ -8,16 +8,13 @@ export const calcMetric = (array, metric) => {
 export const cardNames = (habitArray) => {
     const habitOBJ = []
     habitArray.forEach(e => habitOBJ.push({ name: e.name, _id: e._id, type: e.type }))
-    // console.log(habitOBJ);
     return habitOBJ
 }
 
 export const buildChartArray = (array, metric) => {
-
     let retArr = [];
     array.forEach((ele) => { retArr.push({ total: ele[metric], date: ele.date }) })
     return retArr
-
 }
 
 export const getCurrentUser = () => {
