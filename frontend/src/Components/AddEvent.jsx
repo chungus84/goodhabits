@@ -9,25 +9,14 @@ import EventForm from './EventForm';
 
 const AddEvent = (eventData) => {
 
-    console.log(eventData);
-
     const habits = eventData.data.habits;
     const submitAction = eventData.submitAction;
 
-    // console.log(submitAction);
-
     const { id } = useParams()
-    // console.log(id);
-
-    // console.log(habits);
 
     const matchHabits = habits.find(ele => {
         if (ele._id === id) return ele
     })
-
-
-
-
 
     const [event, setEvent] = useState({});
     const [submitted, setSubmitted] = useState(false);
@@ -46,7 +35,6 @@ const AddEvent = (eventData) => {
         navigate(`/habit/${id}`, { replace: true })
 
     }
-    // console.log(habitId);
 
     return (
         <>
@@ -54,9 +42,6 @@ const AddEvent = (eventData) => {
             <div onClick={() => navigate("/")}>Back to Home</div>
             <EventForm submitAction={submitEvent} data={matchHabits} />
         </>
-
-
-
     )
 }
 
