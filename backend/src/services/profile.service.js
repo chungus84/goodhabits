@@ -1,22 +1,22 @@
-import User from "../models/user.model.js";
+import Profile from "../models/profile.model.js";
 import mongoose from 'mongoose';
 
-class UserServices {
-    findUserById = async (userId) => {
+class ProfileServices {
+    findProfileByUserId = async (userId) => {
         // console.log(userId);
         try {
             const objId = new mongoose.Types.ObjectId(userId)
-            const res = await User.findOne({ userId: objId });
+            const res = await Profile.findOne({ userId: objId });
             return res;
         } catch (err) {
             throw err;
         }
     }
 
-    addNewUser = async (user) => {
+    addNewUserProfile = async (userProfile) => {
 
         try {
-            const res = await User.create(user);
+            const res = await Profile.create(userProfile);
             console.log(res);
             return res;
         } catch (err) {
@@ -25,4 +25,4 @@ class UserServices {
     }
 }
 
-export default UserServices;
+export default ProfileServices;

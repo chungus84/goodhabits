@@ -11,13 +11,13 @@ const habitSchema = new mongoose.Schema({
     createdAt: { type: Date, immutable: true, default: () => Date.now() }
 });
 
-const userSchema = new mongoose.Schema({
+const profileSchema = new mongoose.Schema({
     userId: { type: mongoose.Types.ObjectId, required: true },
     userName: { type: String, required: true },
     habits: [habitSchema],
     createdAt: { type: Date, immutable: true, default: () => Date.now() }
 })
 
-const User = mongoose.model('User', userSchema);
+const Profile = mongoose.model('Profile', profileSchema);
 
-export default User;
+export default Profile;
