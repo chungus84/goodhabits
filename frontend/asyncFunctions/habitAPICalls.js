@@ -129,7 +129,7 @@ export const getUser = async (id) => {
 export const addNewUser = async (user) => {
     // console.log(user);
     try {
-        const res = await axios.post(`${import.meta.env.VITE_MYDAYSURL}/user`, user);
+        const res = await axios.post(`${import.meta.env.VITE_MYDAYSURL}/profile`, user);
         return { user: res.data, status: res.status }
     } catch (err) {
         return {
