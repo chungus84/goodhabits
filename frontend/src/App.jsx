@@ -106,8 +106,6 @@ const App = () => {
         }
         setCreateHabitStatus('Habit Created');
         getUserHabitsHandler(user.userId)
-
-
     }
 
     const submitEventHandler = async event => {
@@ -123,7 +121,6 @@ const App = () => {
             userId: user.userId
         }
         getHabitEventsHandler(userAndHabitIds);
-
     }
 
     const getHabitEventsHandler = async userHabit => {
