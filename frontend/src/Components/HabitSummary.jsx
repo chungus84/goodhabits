@@ -14,79 +14,47 @@ import EventModal from "./utils/EventModal";
 
 const HabitSummary = (data) => {
 
-
-
     let [ref, bounds] = useMeasure({ polyfill: ResizeObserver });
 
     const habitId = useParams();
     const navigate = useNavigate();
-    // console.log(getEventsFunc);
-    // console.log(data);
+
     const { habits, events, userId } = data.data;
     const { getEventsFunc } = data
     const { submitAction } = data
-
-    // console.log(submitAction);
-
 
     const userHabitIds = {
         habitId: habitId.id,
         userId: userId
     }
 
-    // console.log(userHabitIds);
-
-
     const userHabit = habits.find(ele => {
-
         if (ele._id === habitId.id) {
-
             return ele
         }
     })
 
-
     useEffect(() => {
-
         getEventsFunc(userHabitIds);
-        // console.log("UseEffect ran in habit summary");
-
-
     }, [])
-
-
-
 
     return (
         <>
             <h2>{userHabit.name}</h2>
             <div onClick={(() => navigate(`/habit`))}>〈 back</div>
             <EventModal submitAction={submitAction} data={{ habits, userId }} />
-            {/* <div className="btn btn-primary rounded-pill" onClick={(() => navigate(`/habit/${userHabit._id}/add`))}>Add Event</div> */}
-            {/* <p>{matchEvents}</p> */}
-
             <div className="row">
                 <div className="col"><MetricCard data={{ name: userHabit.name, total: calcMetric(events, "minutes"), metric: "minutes" }} /></div>
                 <div className="col"><MetricCard data={{ name: userHabit.name, total: calcMetric(events, "distance"), metric: "distance" }} /></div>
-
             </div>
             <div style={{ height: "200px" }} className="my-2">
                 <div className="relative h-100 bg-light chart-area" ref={ref}>
                     {bounds.width > 0 && (
-
                         < HabitChart data={buildChartArray(events, 'minutes')} width={bounds.width} height={bounds.height} />
                     )}
-
                 </div>
-
             </div >
-
-
-
-
-
         </>
-
     )
 }
 
