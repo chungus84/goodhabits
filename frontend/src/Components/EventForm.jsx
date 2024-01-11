@@ -3,15 +3,11 @@ import PropTypes from 'prop-types';
 
 const EventForm = ({ submitAction, data }) => {
 
-    // console.log(data);
-
     const [eventName, setEventName] = useState("");
     const [eventMinutes, setEventMinutes] = useState(0);
     const [eventDistance, setEventDistance] = useState(0);
     const [eventDate, setEventDate] = useState("");
     const [habitId, setHabitId] = useState("")
-
-
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -20,18 +16,13 @@ const EventForm = ({ submitAction, data }) => {
         setEventMinutes(0);
         setEventDistance(0);
         setEventDate("");
-
-
     }
+
     useEffect(() => {
         setEventName(data.name)
         setHabitId(data._id)
 
     })
-    // console.log(eventName);
-    // console.log(habitId);
-
-
 
     return (
         <div className="user-form">
@@ -52,9 +43,7 @@ const EventForm = ({ submitAction, data }) => {
                     <input type="submit" value="Submit" className={`btn ${!eventMinutes || !eventDate ? `btn-danger` : `btn-primary`} my-3`} disabled={!eventMinutes || !eventDate} />
                 </div>
             </form>
-
         </div>
-
     )
 }
 
