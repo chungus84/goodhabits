@@ -1,13 +1,14 @@
 import axios from "axios";
 
 export const refreshToken = async (headers) => {
-    console.log(headers);
+
     try {
+
         const tokenRefreshResult = await axios.post(`${import.meta.env.VITE_AUTHURL}/token`, headers);
-        console.log(tokenRefreshResult);
         if (tokenRefreshResult.data.accessToken) {
             localStorage.setItem(`user`, JSON.stringify(tokenRefreshResult.data))
         }
+
         const user = JSON.parse(localStorage.getItem(`user`))
         let newHeaders;
 
