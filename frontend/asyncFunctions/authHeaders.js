@@ -9,10 +9,10 @@ export const authHeader = () => {
             "userName": user.userName,
             "accessToken": user.accessToken,
             "refreshToken": user.refreshToken
-
-
         }
+
     } else {
+
         return {};
     }
 }
