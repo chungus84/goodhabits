@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import Habit from "../models/habit.model.js";
 import Event from "../models/event.model.js";
-import User from "../models/user.model.js";
+import Profile from "../models/profile.model.js";
 import AuthUser from "../../../auth-backend/src/model/authUser.model.js";
 import bcrypt from 'bcrypt';
 
@@ -18,11 +18,11 @@ const habitSchema = new mongoose.Schema({
     events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }],
     createdAt: { type: Date, immutable: true, default: () => Date.now() }
 });
-const userSchema = new mongoose.Schema({ userName: String, userId: mongoose.Schema.Types.ObjectId, habits: [habitSchema] })
+const profileSchema = new mongoose.Schema({ userName: String, userId: mongoose.Schema.Types.ObjectId, habits: [habitSchema] })
 
 const authUserModel = conn2.model('AuthUser', authUserSchema);
 const eventModel = conn1.model('Event', eventSchema);
-const userModel = conn1.model('User', userSchema);
+const profileModel = conn1.model('Profile', profileSchema);
 
 
 const seedDB = async () => {
@@ -65,7 +65,7 @@ const seedDB = async () => {
         console.log('clearing Databases');
 
         await eventModel.deleteMany({});
-        await userModel.deleteMany({});
+        await profileModel.deleteMany({});
         await authUserModel.deleteMany({});
 
         console.log('cleared Databases');
@@ -86,7 +86,7 @@ const seedDB = async () => {
             userName: dbUser.userName,
             userId: dbUser._id
         }
-        conn1User = await userModel.create(user)
+        conn1User = await profileModel.create(user)
         console.log(conn1User);
     } catch (err) {
         console.log(err.message);
@@ -115,7 +115,7 @@ const seedDB = async () => {
         runningArray.forEach(async event => {
             const newEvent = await eventModel.create(event)
             console.log(newEvent._id);
-            const userHabits = await userModel.updateOne({ _id: conn1User._id, "habits.name": "Running" }, { $push: { "habits.$.events": { _id: newEvent._id } } })
+            const userHabits = await profileModel.updateOne({ _id: conn1User._id, "habits.name": "Running" }, { $push: { "habits.$.events": { _id: newEvent._id } } })
 
             // await userHabits.save()
 
@@ -125,7 +125,7 @@ const seedDB = async () => {
         walkingArray.forEach(async event => {
             const newEvent = await eventModel.create(event)
             console.log(newEvent._id);
-            const userHabits = await userModel.updateOne({ _id: conn1User._id, "habits.name": "Walking" }, { $push: { "habits.$.events": { _id: newEvent._id } } })
+            const userHabits = await profileModel.updateOne({ _id: conn1User._id, "habits.name": "Walking" }, { $push: { "habits.$.events": { _id: newEvent._id } } })
             // await userHabits.save()
         })
 
