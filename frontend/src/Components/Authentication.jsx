@@ -6,27 +6,18 @@ import SignUpForm from './utils/SignUpForm';
 
 const Authentication = ({ loginHandler, signUpFunc, loginFunc, login }) => {
 
-    // console.log(loginFunc);
-    // console.log(login);
-
-
     const [submitted, setSubmitted] = useState(false)
-
     const navigate = useNavigate()
 
     const loginClicked = () => {
         loginFunc(true)
     }
+
     const signUpClicked = () => {
         loginFunc(false)
     }
 
-    useEffect(() => {
-        // console.log(login);
-    })
-
     const submitLogin = (email, password) => {
-        // console.log('submitLogin fired');
         const loginToSubmit = {
             email: email,
             password: password
@@ -43,7 +34,6 @@ const Authentication = ({ loginHandler, signUpFunc, loginFunc, login }) => {
             email: email,
             password: password
         }
-
         signUpFunc(newUserToSubmit)
         setSubmitted(true);
     }
@@ -52,28 +42,21 @@ const Authentication = ({ loginHandler, signUpFunc, loginFunc, login }) => {
         if (submitted) navigate('/')
     }, [submitted, navigate, login])
 
-
-
     return (
         <div className='authentication-form'>
             <h1>Welcome to .goodhabits.</h1>
-
             {login && (
                 <>
                     <h2>Login</h2>
                     <button className={'btn btn-warning rounded-pill'} onClick={signUpClicked} >Sign-up</button>
                 </>
-
             )}
             {!login && (
                 <>
                     <h2>Sign Up</h2>
                     <button className={`btn btn-warning rounded-pill ${login ? 'btn-active' : ''}`} onClick={loginClicked}>Login</button>
                 </>
-
             )}
-
-
             <div className="form-container">
                 {login && (
                     <LoginForm submitLogin={submitLogin} />
@@ -81,11 +64,7 @@ const Authentication = ({ loginHandler, signUpFunc, loginFunc, login }) => {
                 {!login && (
                     <SignUpForm submitNewUser={signUp} />
                 )}
-
             </div>
-
-
-
         </div>
     )
 }
