@@ -1,6 +1,14 @@
 .header-band {
     background-color: rgba(80, 141, 105, 0.8);
     color: white;
+}
 
+.btn.btn-logout {
+    background-color: rgba(24, 238, 113, 0.8);
+    color: white;
+}
 
+.btn.btn-logout:hover {
+    background-color: rgba(17, 72, 40, 0.8);
+    color: white
 }
