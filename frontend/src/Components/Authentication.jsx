@@ -44,7 +44,7 @@ const Authentication = ({ loginHandler, signUpFunc, loginFunc, login }) => {
 
     return (
         <div className='authentication-form'>
-            <h1>Welcome to .goodhabits.</h1>
+            <h1>Welcome to <span className='logo'>.goodhabits.</span></h1>
             {login && (
                 <>
                     <h2>Login</h2>

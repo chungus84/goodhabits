@@ -3,11 +3,10 @@ import { useRef, useEffect } from 'react';
 import { parseISO, format, eachDayOfInterval, endOfWeek, isSameWeek, startOfWeek } from 'date-fns';
 import useMeasure from 'react-use-measure';
 import { motion } from 'framer-motion';
+import "./utils/css/Chart.css"
 
 
 const HabitChart = ({ data, width, height }) => {
-
-    const xAccessor = d => { return new Date(d.date) }
 
     const dates = []
 
@@ -17,11 +16,12 @@ const HabitChart = ({ data, width, height }) => {
         top: 10,
         right: 20,
         bottom: 20,
-        left: 24,
+        left: 35,
     }
 
     const gx = useRef();
     const gy = useRef();
+    const circleRef = useRef();
 
     let xScale = d3
         .scaleLinear()
@@ -50,12 +50,18 @@ const HabitChart = ({ data, width, height }) => {
         .call(d3.axisLeft(yScale).ticks(5)),
         [gy, yScale]);
 
+
     return (
         <>
-            <svg width={width} height={height}>
-                <g ref={gx} transform={`translate(0,${height - margin.bottom})`} />
-                <g ref={gy} transform={`translate(${margin.left}, 0)`} />
-                <motion.path initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, type: "spring" }} d={d} fill="none" stroke="orange" strokeWidth="2" />
+            <svg viewBox={`0 0 ${width} ${height}`} className='axis'>
+                <g ref={gx} transform={`translate(0,${height - margin.bottom})`} strokeDasharray="1,3" />
+                <g ref={gy} transform={`translate(${margin.left}, 0)`} strokeDasharray="1,3" />
+
+                <motion.path initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, type: "spring" }} d={d} fill="none" stroke="green" strokeWidth="2" />
+                {data.map((d, i) => (
+                    <motion.circle key={dates[i]} r="5" cx={xScale(i)} cy={yScale(d.total)} fill="green" strokeWidth="2" />
+                ))}
+
             </svg>
         </>
     )

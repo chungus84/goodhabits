@@ -16,6 +16,8 @@ const HabitSummary = (data) => {
 
     let [ref, bounds] = useMeasure({ polyfill: ResizeObserver });
 
+    const [metricOption, setMetricOption] = useState("minutes")
+
     const habitId = useParams();
     const navigate = useNavigate();
 
@@ -34,8 +36,10 @@ const HabitSummary = (data) => {
         }
     })
 
+
     useEffect(() => {
         getEventsFunc(userHabitIds);
+
     }, [])
 
     return (
@@ -47,10 +51,21 @@ const HabitSummary = (data) => {
                 <div className="col"><MetricCard data={{ name: userHabit.name, total: calcMetric(events, "minutes"), metric: "minutes" }} /></div>
                 <div className="col"><MetricCard data={{ name: userHabit.name, total: calcMetric(events, "distance"), metric: "distance" }} /></div>
             </div>
-            <div style={{ height: "200px" }} className="my-2">
+            <div className="dropdown">
+                <select name="metric-dropdown" className="btn dropdown-toggle" id="metricDropDown" onChange={e => setMetricOption(e.target.value)}>
+                    <option value="minutes" >minutes</option>
+                    <option value="distance">distance</option>
+                    <option value="mph">mph</option>
+                    <option value="minspermile">mins per mile</option>
+                </select>
+            </div>
+            <div style={{ height: "250px" }} className="my-2">
                 <div className="relative h-100 bg-light chart-area" ref={ref}>
                     {bounds.width > 0 && (
-                        < HabitChart data={buildChartArray(events, 'minutes')} width={bounds.width} height={bounds.height} />
+                        <>
+                            < HabitChart data={buildChartArray(events, metricOption)} width={bounds.width} height={bounds.height} />
+                        </>
+
                     )}
                 </div>
             </div >
