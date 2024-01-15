@@ -1,15 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom"
 import MetricCard from "./MetricCard";
 import useMeasure from "react-use-measure";
-import { parseISO } from 'date-fns';
 import { ResizeObserver } from '@juggle/resize-observer';
 
 
 import HabitChart from './HabitChart';
 import { calcMetric, buildChartArray } from "./utils/helper.js";
-import * as d3 from 'd3';
-import { useRef, useEffect, useState } from 'react';
-import { getHabitEvents } from "../../asyncFunctions/habitAPICalls.js";
+import { useEffect, useState } from 'react';
 import EventModal from "./utils/EventCollapsible.jsx";
 
 const HabitSummary = (data) => {
