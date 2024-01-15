@@ -7,5 +7,4 @@ export const router = express.Router();
 
 const habitControllers = new HabitControllers()
 
-router.get('/', [verifyToken], habitControllers.getAllHabits);
 router.post('/', [verifyToken], habitControllers.addHabit);

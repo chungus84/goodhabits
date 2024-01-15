@@ -6,7 +6,7 @@ const HabitCard = (userHabits) => {
 
     const navigate = useNavigate()
 
-    const { data, habits } = userHabits;
+    const { data } = userHabits;
 
     return (
         <div className="card habit-card col-lg-3 col-sm-10 col-xs-10 my-2 mx-2"

@@ -8,6 +8,7 @@ import HabitForm from './HabitForm';
 
 
 const AddHabit = ({ data, submitAction }) => {
+    console.log(data);
 
     const [habit, setHabit] = useState({});
     const [userId, setUserId] = useState("")
@@ -17,7 +18,7 @@ const AddHabit = ({ data, submitAction }) => {
     const { _id } = useParams();
 
     useEffect(() => {
-        setUserId(data.userId)
+        setUserId(data)
         if (submitted) navigate("/habit");
     }, [submitted, navigate]);
 

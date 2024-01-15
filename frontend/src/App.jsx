@@ -47,7 +47,7 @@ const App = () => {
         setUser(loginCall.user)
         setUserId(loginCall.user.userId)
         setUserName(loginCall.user.userName)
-        getUserHabitsHandler(userId)
+        getUserHabitsHandler(loginCall.user.userId)
         navigate('/habit')
     }
 
@@ -93,6 +93,7 @@ const App = () => {
             setError(errorObject);
         }
         const habitsCall = externalDataCallResult?.user ? externalDataCallResult.user : {};
+        console.log(habitsCall);
         setUserHabits(habitsCall)
         setHabitCards(helper.cardNames(habitsCall.habits))
     }
@@ -155,7 +156,7 @@ const App = () => {
             <Routes>
                 <Route index element={<Authentication loginHandler={loginHandler} signUpFunc={signUpHandler} loginFunc={setLogin} login={login} />} />
                 <Route path="/home" element={<Authentication loginHandler={loginHandler} signUpFunc={signUpHandler} loginFunc={setLogin} login={login} />} />
-                <Route path="/habit" element={<HabitPage data={{ userHabits, habitCards, error: error.message }} submitAction={submitHabitHandler} />} />
+                <Route path="/habit" element={<HabitPage data={{ userId, habitCards, error: error.message }} submitAction={submitHabitHandler} />} />
                 <Route path="/habit/:id" element={<HabitSummary data={{ habits: habitCards, events: events, userId: user.userId }} getEventsFunc={getHabitEventsHandler} submitAction={submitEventHandler} />} />
                 <Route path="/habit/:id/add" element={<AddEvent submitAction={submitEventHandler} data={{ habits: habitCards }} />} />
                 <Route path="/habit/add" element={<AddHabit data={{ userHabits: userHabits }} submitAction={submitHabitHandler} />} />

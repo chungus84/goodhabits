@@ -66,8 +66,9 @@ export const submitHabitEvent = async event => {
 }
 
 export const getUser = async (id) => {
+
     try {
-        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/profile`, { headers: authHeader() })
+        const res = await axios.get(`${import.meta.env.VITE_MYDAYSURL}/profile/${id}`, { headers: authHeader() })
         return { user: res.data, status: res.status }
     } catch (err) {
         if (err.response.status === 403) {

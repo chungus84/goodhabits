@@ -5,10 +5,8 @@ const profileServices = new ProfileServices()
 
 class ProfileControllers {
     getProfileByUserId = async (req, res) => {
-
-
         try {
-            const profile = await profileServices.findProfileByUserId(req.headers.userid)
+            const profile = await profileServices.findProfileByUserId(req.params.userId);
             res.status(200).json(profile)
         } catch (err) {
             res.status(400).json(err)

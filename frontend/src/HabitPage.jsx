@@ -5,19 +5,30 @@ import Modal from './Components/utils/Modal';
 
 const HabitPage = ({ data, submitAction }) => {
 
-    const { userHabits, habitCards, error } = data;
+    const { userId, habitCards, error } = data;
 
     return (
         <>
             <h2>Habit Page</h2>
-            <Modal data={{ userHabits, habitCards, error }} submitAction={submitAction} />
-            <HabitFeed data={{ userHabits, habitCards, error }} />
+            <Modal data={{ userId, habitCards, error }} submitAction={submitAction} />
+            <HabitFeed data={{ habitCards, error }} />
         </>
     )
 }
 
 HabitPage.propTypes = {
-    data: PropTypes.object
+    data: PropTypes.shape({
+        userId: PropTypes.string,
+        error: PropTypes.string,
+        habitCards: PropTypes.arrayOf(
+            PropTypes.shape({
+                name: PropTypes.string,
+                _id: PropTypes.string,
+                type: PropTypes.string
+            })
+        )
+    }),
+    submitAction: PropTypes.func.isRequired
 }
 
 export default HabitPage

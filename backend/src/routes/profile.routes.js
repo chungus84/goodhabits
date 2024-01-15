@@ -7,5 +7,5 @@ export const router = express.Router();
 
 const profileControllers = new ProfileControllers();
 
-router.get('/', [verifyToken], profileControllers.getProfileByUserId);
+router.get('/:userId', [verifyToken], profileControllers.getProfileByUserId);
 router.post('/', profileControllers.addNewUserProfile);
