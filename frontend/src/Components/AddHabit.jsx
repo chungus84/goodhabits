@@ -8,7 +8,6 @@ import HabitForm from './HabitForm';
 
 
 const AddHabit = ({ data, submitAction }) => {
-    console.log(data);
 
     const [habit, setHabit] = useState({});
     const [userId, setUserId] = useState("")
@@ -31,9 +30,14 @@ const AddHabit = ({ data, submitAction }) => {
     return (
         <>
             <h3>Please add a new habit</h3>
-            <HabitForm submitAction={submitHabit} data={{ userId: userId?.error ? {} : userId, habit: habit }} />
+            <HabitForm submitAction={submitHabit} data={{ userId: userId, habit: habit }} />
         </>
     )
+}
+
+AddHabit.propTypes = {
+    data: PropTypes.string,
+    submitAction: PropTypes.func.isRequired
 }
 
 export default AddHabit
