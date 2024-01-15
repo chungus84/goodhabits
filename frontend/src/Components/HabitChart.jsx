@@ -9,13 +9,20 @@ import "./utils/css/Chart.css"
 const HabitChart = ({ data, width, height }) => {
 
     const dates = []
+    const totals = []
 
     data.forEach(el => dates.push(format(new Date(el.date.slice(0, 10)), 'dd-MMM')))
+
+    data.forEach(el => totals.push(el.total))
+
+    const yExtent = d3.extent(data.map((d) => d.total))
+    const yExtentDiff = 0.05 * Math.abs(yExtent[1] - yExtent[0])
+
 
     let margin = {
         top: 10,
         right: 20,
-        bottom: 20,
+        bottom: 35,
         left: 35,
     }
 
@@ -26,11 +33,11 @@ const HabitChart = ({ data, width, height }) => {
     let xScale = d3
         .scaleLinear()
         .domain([0, data.length - 1])
-        .range([margin.left, width - margin.right])
+        .range([margin.left + 10, width - margin.right])
 
     let yScale = d3
         .scaleLinear()
-        .domain(d3.extent(data.map((d) => d.total)))
+        .domain([yExtent[0] - yExtentDiff, yExtent[1] + yExtentDiff])
         .range([height - margin.bottom, 0])
 
     let line = d3
