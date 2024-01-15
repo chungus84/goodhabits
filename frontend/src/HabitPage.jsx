@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import HabitFeed from './Components/HabitFeed';
-import Modal from './Components/utils/Modal';
+import HabitCollapsible from './Components/utils/HabitCollapsible';
 
 const HabitPage = ({ data, submitAction }) => {
 
@@ -10,7 +10,7 @@ const HabitPage = ({ data, submitAction }) => {
     return (
         <>
             <h2>Habit Page</h2>
-            <Modal data={{ userId, habitCards, error }} submitAction={submitAction} />
+            <HabitCollapsible data={{ userId, error }} submitAction={submitAction} />
             <HabitFeed data={{ habitCards, error }} />
         </>
     )

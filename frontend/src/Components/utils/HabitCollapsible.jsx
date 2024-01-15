@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
+import PropTypes from 'prop-types';
 import "./css/Modal.css"
 
 import AddHabit from '../AddHabit'
 
-const Modal = ({ data, submitAction }) => {
+const HabitCollapsible = ({ data, submitAction }) => {
+
+    console.log(data);
 
     const [modal, setModal] = useState(false)
     const toggleModal = () => { setModal(!modal) }
@@ -26,4 +29,13 @@ const Modal = ({ data, submitAction }) => {
     )
 }
 
-export default Modal
+HabitCollapsible.propTypes = {
+    data: PropTypes.shape({
+        userId: PropTypes.string,
+        error: PropTypes.string
+    }),
+    submitAction: PropTypes.func.isRequired
+}
+
+
+export default HabitCollapsible

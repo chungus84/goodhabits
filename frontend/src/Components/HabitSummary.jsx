@@ -10,7 +10,7 @@ import { calcMetric, buildChartArray } from "./utils/helper.js";
 import * as d3 from 'd3';
 import { useRef, useEffect, useState } from 'react';
 import { getHabitEvents } from "../../asyncFunctions/habitAPICalls.js";
-import EventModal from "./utils/EventModal";
+import EventModal from "./utils/EventCollapsible.jsx";
 
 const HabitSummary = (data) => {
 
