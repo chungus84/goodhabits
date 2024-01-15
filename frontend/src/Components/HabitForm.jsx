@@ -5,6 +5,7 @@ import './utils/css/HabitForm.css'
 
 const HabitForm = ({ submitAction, data }) => {
 
+
     const habit = data.habit
 
     const [habitName, setHabitName] = useState("");
@@ -41,6 +42,13 @@ const HabitForm = ({ submitAction, data }) => {
             </form>
         </div>
     )
+}
+HabitForm.propTypes = {
+    data: PropTypes.shape({
+        userId: PropTypes.string,
+        habit: PropTypes.object
+    }),
+    submitAction: PropTypes.func.isRequired
 }
 
 export default HabitForm

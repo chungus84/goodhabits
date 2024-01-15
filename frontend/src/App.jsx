@@ -93,7 +93,7 @@ const App = () => {
             setError(errorObject);
         }
         const habitsCall = externalDataCallResult?.user ? externalDataCallResult.user : {};
-        console.log(habitsCall);
+        // console.log(habitsCall);
         setUserHabits(habitsCall)
         setHabitCards(helper.cardNames(habitsCall.habits))
     }
@@ -159,7 +159,7 @@ const App = () => {
                 <Route path="/habit" element={<HabitPage data={{ userId, habitCards, error: error.message }} submitAction={submitHabitHandler} />} />
                 <Route path="/habit/:id" element={<HabitSummary data={{ habits: habitCards, events: events, userId: user.userId }} getEventsFunc={getHabitEventsHandler} submitAction={submitEventHandler} />} />
                 <Route path="/habit/:id/add" element={<AddEvent submitAction={submitEventHandler} data={{ habits: habitCards }} />} />
-                <Route path="/habit/add" element={<AddHabit data={{ userHabits: userHabits }} submitAction={submitHabitHandler} />} />
+                <Route path="/habit/add" element={<AddHabit data={userId} submitAction={submitHabitHandler} />} />
             </Routes>
         </>
     )

@@ -8,6 +8,7 @@ import HabitForm from './HabitForm';
 
 
 const AddHabit = ({ data, submitAction }) => {
+    console.log(data);
 
     const [habit, setHabit] = useState({});
     const [userId, setUserId] = useState("")
