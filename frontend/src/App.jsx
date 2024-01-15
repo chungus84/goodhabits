@@ -6,7 +6,7 @@ import './Components/utils/css/Authentication.css'
 
 import Header from './Components/Header';
 import Authentication from './Components/Authentication';
-import HabitPage from './HabitPage';
+import HabitPage from './Components/HabitPage.jsx';
 import HabitSummary from './Components/HabitSummary';
 import AddHabit from './Components/AddHabit';
 import AddEvent from './Components/AddEvent';

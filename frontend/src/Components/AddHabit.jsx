@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import HabitModel from './utils/habit.model';
-import HabitForm from './HabitForm';
+import HabitForm from './utils/HabitForm';
 
 
 

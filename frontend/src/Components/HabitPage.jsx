@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import HabitFeed from './Components/HabitFeed';
-import HabitCollapsible from './Components/utils/HabitCollapsible';
+import HabitFeed from './HabitFeed';
+import HabitCollapsible from './utils/HabitCollapsible';
 
 const HabitPage = ({ data, submitAction }) => {
 

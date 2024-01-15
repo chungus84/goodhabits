@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import EventModel from './utils/event.model';
-import EventForm from './EventForm';
+import EventForm from './utils/EventForm';
 
 
 const AddEvent = (eventData) => {
