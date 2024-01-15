@@ -6,8 +6,6 @@ import AddHabit from '../AddHabit'
 
 const HabitCollapsible = ({ data, submitAction }) => {
 
-    console.log(data);
-
     const [modal, setModal] = useState(false)
     const toggleModal = () => { setModal(!modal) }
 
